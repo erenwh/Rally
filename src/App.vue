@@ -10,7 +10,7 @@
       </v-toolbar-item>
     </v-toolbar>
     <main>
-
+      <h1>hello Rally!</h1>
     </main>
   </v-app>
 </template>
@@ -19,7 +19,7 @@
 export default {
   data () {
     return {
-      
+
     }
   }
 }
