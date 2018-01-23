@@ -1,6 +1,6 @@
 # rally
 
-> webapp for scheduling meetings and share feedbacks
+> A meetup app for Purdue students
 
 ## Build Setup
 
@@ -16,9 +16,6 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
-
-npm run build && start
-
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
