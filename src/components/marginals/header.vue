@@ -5,23 +5,51 @@
       v-model="sideNav"
       fixed
     >
-      <v-list dense>
-        <v-list-tile @click="">
+      <v-list
+        dense
+        v-for="item in itemNS"
+        v-bind:key="item.title"
+        v-if="!signin"
+        >
+        <v-list-tile @click=""
+          @click=""
+          :to="item.link">
           <v-list-tile-action>
-            <v-icon>home</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="">
-          <v-list-tile-action>
-            <v-icon>contact_mail</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Contact</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+      </v-list>
+      <v-list
+        dense
+        v-if="signin">
+        <v-list-group v-for="item in menuItems" :value="item.active" v-bind:key="item.title">
+            <v-list-tile slot="item" @click="">
+              <v-list-tile-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile-content>
+              <v-list-tile-action>
+                <v-icon>keyboard_arrow_down</v-icon>
+              </v-list-tile-action>
+            </v-list-tile>
+            <v-list-tile
+            v-for="subItem in item.itemS"
+            v-bind:key="subItem.title"
+            @click=""
+            :to="subItem.link">
+              <v-list-tile-content>
+                <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+              </v-list-tile-content>
+              <v-list-tile-action>
+                <v-icon>{{ subItem.icon }}</v-icon>
+              </v-list-tile-action>
+            </v-list-tile>
+          </v-list-group>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="grey darken-4" dark dense>
@@ -46,7 +74,21 @@
   export default {
     data () {
       return {
-        sideNav: false
+        sideNav: false,
+        signin: true,
+        itemNS: [
+          { icon: "lock_open", title: "Sign In", link: "/signin" },
+          { icon: "face", title: "Register", link: "/register" }
+        ],
+        menuItems: [
+          { icon: "account_box", title: "Account",
+            itemS: [
+              { icon: "account_circle", title: "Account Information", link: "/accInfo"},
+              { icon: "favorite", title: "My Meetings", link: "/mymeets" },
+              { icon: "lock", title: "Sign Out", link: "" }
+            ]
+          }
+        ]
       }
     }
   }
