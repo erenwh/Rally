@@ -23,5 +23,15 @@ new Vue({
   el: '#app',
   router: router,
   render: h => h(App),
-  mode: 'history'
+  mode: 'history',
+  created() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyCzCQ7p381EIq-eQtArdNmxWyPjX_jiKRk",
+      authDomain: "rally-cs408.firebaseapp.com",
+      databaseURL: "https://rally-cs408.firebaseio.com",
+      projectId: "rally-cs408",
+      storageBucket: "rally-cs408.appspot.com",
+      messagingSenderId: "289928867041"
+    })
+  }
 })
