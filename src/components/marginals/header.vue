@@ -42,14 +42,31 @@
             v-bind:key="subItem.title"
             @click=""
             :to="subItem.link">
-              <v-list-tile-content>
-                <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-              </v-list-tile-content>
               <v-list-tile-action>
                 <v-icon>{{ subItem.icon }}</v-icon>
               </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+              </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
+      </v-list>
+      <v-list
+        dense
+        v-for="item in otherItems"
+        v-bind:key="item.title"
+        v-if="signin"
+        >
+        <v-list-tile @click=""
+          @click=""
+          :to="item.link">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="grey darken-4" dark dense>
@@ -75,7 +92,7 @@
     data () {
       return {
         sideNav: false,
-        signin: true,
+        signin: false,
         itemNS: [
           { icon: "lock_open", title: "Sign In", link: "/signin" },
           { icon: "face", title: "Register", link: "/register" }
@@ -88,6 +105,12 @@
               { icon: "lock", title: "Sign Out", link: "" }
             ]
           }
+        ],
+        otherItems: [
+          { icon: "create", title: "Create a Rally", link: "/create" },
+          { icon: "credit_card", title: "Donate", link: "/donate" },
+          { icon: "get_app", title: "Invite a friend", link: "/invite" },
+          { icon: "gavel", title: "Report a problem", link: "/report" }
         ]
       }
     }

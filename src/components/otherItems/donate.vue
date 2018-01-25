@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello world!</h1>
+    <h1>This is Donate</h1>
   </div>
 </template>
 
