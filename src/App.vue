@@ -1,9 +1,11 @@
 <template>
   <v-app class="app" light>
     <app-header></app-header>
-    <v-content>
-      <router-view></router-view>
-    </v-content>
+    <main id="main">
+      <v-content>
+        <router-view></router-view>
+      </v-content>
+    </main>
     <app-footer></app-footer>
   </v-app>
 </template>

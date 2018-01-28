@@ -1,15 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
+import "vue-material-design-icons/styles.css"
 import 'vuetify/dist/vuetify.css'
 
 import App from './App'
 import Routes from './router/index'
 
-
+import facebook from "vue-material-design-icons/facebook-box.vue"
+import google from "vue-material-design-icons/google.vue"
+import twitter from "vue-material-design-icons/twitter.vue"
 
 Vue.use(Vuetify);
 Vue.use(VueRouter);
+Vue.component("facebook-box", facebook);
+Vue.component("google", google);
+Vue.component("twitter", twitter);
 
 Vue.config.productionTip = false
 
