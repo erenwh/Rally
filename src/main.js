@@ -11,6 +11,8 @@ import facebook from "vue-material-design-icons/facebook-box.vue"
 import google from "vue-material-design-icons/google.vue"
 import twitter from "vue-material-design-icons/twitter.vue"
 
+import * as firebase from 'firebase'
+
 Vue.use(Vuetify);
 Vue.use(VueRouter);
 Vue.component("facebook-box", facebook);

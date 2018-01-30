@@ -136,10 +136,10 @@
     methods: {
       signUp() {
         console.log(
-          {username: this.username,
+          {username: this.name,
           email: this.email,
           password: this.password,
-          password2: this.password2}
+          password2: this.Conpassword}
         )
       }
     }
