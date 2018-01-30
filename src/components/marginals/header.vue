@@ -93,7 +93,7 @@
     data () {
       return {
         sideNav: false,
-        signin: true,
+        signin: false,
         itemNS: [
           { icon: "lock_open", title: "Sign In", link: "/signin" },
           { icon: "face", title: "Register", link: "/register" }

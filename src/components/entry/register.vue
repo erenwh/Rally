@@ -45,7 +45,7 @@
               <v-layout id="row">
                 <v-flex xs2 ></v-flex>
                 <v-flex xs8>
-                  <v-form v-model="valid">
+                  <v-form v-model="valid" @submit.prevent="signUp">
                     <v-text-field
                       label="Username"
                       color="white"
@@ -71,6 +71,7 @@
                       box
                       color="white"
                       v-model="password"
+                      :rules="passwordRules"
                       type="password"
                       required
                     ></v-text-field>
@@ -109,12 +110,37 @@
   export default {
     data () {
       return {
-
+        name: '',
+        nameRules: [
+          (v) => !!v || 'Username is required',
+          (v) => v && v.length < 11 || 'Username must be 10 characters or less'
+        ],
+        email: '',
+        emailRules: [
+        (v) => !!v || 'E-mail is required',
+        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ],
+        password: '',
+        passwordRules: [
+          (v) => !!v || 'Password is required',
+          (v) => v && v.length >= 8 || 'Password must be 8 characters or more'
+        ],
+        Conpassword: ''
       }
     },
     computed: {
       comparePasswords () {
-        return this.password !== this.confirmPassword ? 'Passwords do not match' : true
+        return this.password !== this.Conpassword ? 'Passwords do not match' : true
+      }
+    },
+    methods: {
+      signUp() {
+        console.log(
+          {username: this.username,
+          email: this.email,
+          password: this.password,
+          password2: this.password2}
+        )
       }
     }
   }
