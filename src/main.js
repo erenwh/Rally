@@ -38,8 +38,8 @@ new Vue({
       authDomain: "rally-cs408.firebaseapp.com",
       databaseURL: "https://rally-cs408.firebaseio.com",
       projectId: "rally-cs408",
-      storageBucket: "rally-cs408.appspot.com",
-      messagingSenderId: "289928867041"
+      storageBucket: "rally-cs408.appspot.com"/*,
+      messagingSenderId: "289928867041"*/
     })
   }
 })

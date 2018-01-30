@@ -45,7 +45,7 @@
               <v-layout id="row">
                 <v-flex xs2 ></v-flex>
                 <v-flex xs8>
-                  <v-form v-model="valid" @submit.prevent="signUp">
+                  <v-form v-model="valid">
                     <v-text-field
                       label="Username"
                       color="white"
@@ -91,7 +91,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn class="green accent-4">Submit</v-btn>
+                  <v-btn v-on:click="signUp" class="green accent-4">Submit</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="red accent-4">Cancel</v-btn>
@@ -134,13 +134,8 @@
       }
     },
     methods: {
-      signUp() {
-        console.log(
-          {username: this.name,
-          email: this.email,
-          password: this.password,
-          password2: this.Conpassword}
-        )
+      signUp () {
+        console.log({username: this.name, email: this.email, password: this.password, Conpassword: this.Conpassword})
       }
     }
   }
