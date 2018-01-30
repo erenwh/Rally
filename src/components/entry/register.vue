@@ -45,7 +45,7 @@
               <v-layout id="row">
                 <v-flex xs2 ></v-flex>
                 <v-flex xs8>
-                  <v-form v-model="valid">
+                  <v-form v-model="valid" v-on:submit="signUp">
                     <v-text-field
                       label="Username"
                       color="white"
@@ -91,7 +91,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn v-on:click="signUp" class="green accent-4">Submit</v-btn>
+                  <v-btn class="green accent-4">Submit</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="red accent-4">Cancel</v-btn>
