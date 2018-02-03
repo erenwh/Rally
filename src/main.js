@@ -10,6 +10,7 @@ import Routes from './router/index'
 import facebook from "vue-material-design-icons/facebook-box.vue"
 import google from "vue-material-design-icons/google.vue"
 import twitter from "vue-material-design-icons/twitter.vue"
+import FBSignInButton from "vue-facebook-signin-button"
 
 import * as firebase from 'firebase'
 
