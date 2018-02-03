@@ -12,6 +12,7 @@
   "dependencies": {
     "firebase": "^4.9.0",
     "vue": "^2.5.3",
+    "vue-facebook-signin-button": "^1.0.1",
     "vue-material-design-icons": "^1.0.0",
     "vue-paypal-checkout": "^2.1.8",
     "vue-router": "^3.0.1",
