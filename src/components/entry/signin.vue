@@ -17,10 +17,12 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="indigo darken-2" class="white--text">
-                    <facebook-box id="fb"/>
-                    Facebook
-                  </v-btn>
+
+                  <fb:login-button id="fb"
+                    scope="public_profile,email"
+                    onlogin="checkLoginState();">
+                  </fb:login-button>
+
                 </v-flex>
                 <v-flex xs12 md=4>
                   <v-btn id="btn" color="green darken-3" class="white--text">
@@ -89,11 +91,6 @@
 
       }
     },
-    computed: {
-      comparePasswords () {
-        return this.password !== this.confirmPassword ? 'Passwords do not match' : true
-      }
-    }
   }
 </script>
 
