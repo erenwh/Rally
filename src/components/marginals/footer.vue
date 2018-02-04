@@ -20,9 +20,7 @@
 
 
 <style scoped>
-#foot {
-  margin-top: 100px;
-}
+
 
 #report{
   cursor: pointer;

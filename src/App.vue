@@ -39,7 +39,5 @@ export default {
   -webkit-font-smoothing: antialiased;
 }
 
-#main {
-  height: 100vh;
-}
+
 </style>

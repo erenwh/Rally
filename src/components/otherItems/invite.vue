@@ -8,7 +8,7 @@
             <v-toolbar dark color="grey darken-4">
               <div class="text-xs-center">
                 <v-toolbar-title class="white--text">Invite a Friend</v-toolbar-title>
-                </div>
+              </div>
             </v-toolbar>
           <v-form class="ma-3 pa-3">
             <v-text-field

@@ -79,7 +79,7 @@
   export default {
     data () {
       return {
-        register: false
+        register: true
       }
     }
   }

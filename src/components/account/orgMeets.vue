@@ -14,8 +14,7 @@
                   <img class="elevation-7" id="img" src="/../../../static/chik fil a.jpg"/>
                   <h3 class="ma-3">March 3rd, 2017</h3>
                   <h3 class="ma-3">12:30 pm</h3>
-                  <v-btn v-if="!register" class="mb-3" dark color="green accent-4">Register</v-btn>
-                  <v-btn v-if="register" class="mb-3" dark color="red accent-4">Unregister</v-btn>
+                  <v-btn class="mb-3" dark color="light-blue darken-3">Edit</v-btn>
                 </v-card>
               </v-flex>
               <v-flex xs4 id="col">
@@ -26,8 +25,7 @@
                   <img class="elevation-7" id="img" src="/../../../static/chik fil a.jpg"/>
                   <h3 class="ma-3">March 3rd, 2017</h3>
                   <h3 class="ma-3">12:30 pm</h3>
-                  <v-btn v-if="!register" class="mb-3" dark color="green accent-4">Register</v-btn>
-                  <v-btn v-if="register" class="mb-3" dark color="red accent-4">Unregister</v-btn>
+                  <v-btn class="mb-3" dark color="light-blue darken-3">Edit</v-btn>
                 </v-card>
               </v-flex>
               <v-flex xs4 id="col">
@@ -38,8 +36,7 @@
                   <img class="elevation-7" id="img" src="/../../../static/chik fil a.jpg"/>
                   <h3 class="ma-3">March 3rd, 2017</h3>
                   <h3 class="ma-3">12:30 pm</h3>
-                  <v-btn v-if="!register" class="mb-3" dark color="green accent-4">Register</v-btn>
-                  <v-btn v-if="register" class="mb-3" dark color="red accent-4">Unregister</v-btn>
+                  <v-btn class="mb-3" dark color="light-blue darken-3">Edit</v-btn>
                 </v-card>
               </v-flex>
               <v-flex xs4 id="col">
@@ -50,8 +47,7 @@
                   <img class="elevation-7" id="img" src="/../../../static/chik fil a.jpg"/>
                   <h3 class="ma-3">March 3rd, 2017</h3>
                   <h3 class="ma-3">12:30 pm</h3>
-                  <v-btn v-if="!register" class="mb-3" dark color="green accent-4">Register</v-btn>
-                  <v-btn v-if="register" class="mb-3" dark color="red accent-4">Unregister</v-btn>
+                  <v-btn class="mb-3" dark color="light-blue darken-3">Edit</v-btn>
                 </v-card>
               </v-flex>
               <v-flex xs4 id="col">
@@ -62,8 +58,7 @@
                   <img class="elevation-7" id="img" src="/../../../static/chik fil a.jpg"/>
                   <h3 class="ma-3">March 3rd, 2017</h3>
                   <h3 class="ma-3">12:30 pm</h3>
-                  <v-btn v-if="!register" class="mb-3" dark color="green accent-4">Register</v-btn>
-                  <v-btn v-if="register" class="mb-3" dark color="red accent-4">Unregister</v-btn>
+                  <v-btn class="mb-3" dark color="light-blue darken-3">Edit</v-btn>
                 </v-card>
               </v-flex>
             </v-layout>
@@ -79,7 +74,7 @@
   export default {
     data () {
       return {
-        register: false
+        register: true
       }
     }
   }

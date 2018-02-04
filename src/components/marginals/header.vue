@@ -102,7 +102,8 @@
           { icon: "account_box", title: "Account",
             itemS: [
               { icon: "account_circle", title: "Account Information", link: "/accInfo"},
-              { icon: "favorite", title: "My Meetings", link: "/mymeets" },
+              { icon: "favorite", title: "Registered Meetings", link: "/meets" },
+              { icon: "bookmark", title: "Organized Meetings", link: "/orgmeets" },
               { icon: "lock", title: "Sign Out", link: "" }
             ]
           }
