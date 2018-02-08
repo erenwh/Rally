@@ -1,0 +1,32 @@
+[debug] [2018-02-08T16:07:45.158Z] ----------------------------------------------------------------------
+[debug] [2018-02-08T16:07:45.167Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ethau\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-02-08T16:07:45.167Z] CLI Version:   3.17.4
+[debug] [2018-02-08T16:07:45.168Z] Platform:      win32
+[debug] [2018-02-08T16:07:45.168Z] Node Version:  v8.9.4
+[debug] [2018-02-08T16:07:45.168Z] Time:          Thu Feb 08 2018 11:07:45 GMT-0500 (US Eastern Standard Time)
+[debug] [2018-02-08T16:07:45.168Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-08T16:07:45.232Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-08T16:07:45.233Z] > authorizing via signed-in user
+[debug] [2018-02-08T16:07:45.252Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/rally-cs408  
+  
+ Thu Feb 08 2018 11:07:45 GMT-0500 (US Eastern Standard Time)
+[debug] [2018-02-08T16:07:45.745Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-08T16:07:45.748Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/rally-cs408/tokens  
+  
+ Thu Feb 08 2018 11:07:45 GMT-0500 (US Eastern Standard Time)
+[debug] [2018-02-08T16:07:46.097Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\ethau\Documents\GitHub\Rally'...
+[info] 
+[debug] [2018-02-08T16:07:46.110Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/rally-cs408  
+  
+ Thu Feb 08 2018 11:07:46 GMT-0500 (US Eastern Standard Time)
+[debug] [2018-02-08T16:07:46.452Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-08T16:07:46.453Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/289928867041/clients/_:getWebAppConfig  
+  
+ Thu Feb 08 2018 11:07:46 GMT-0500 (US Eastern Standard Time)
+[debug] [2018-02-08T16:07:46.763Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+

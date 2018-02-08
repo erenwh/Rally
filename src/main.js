@@ -31,6 +31,7 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
+  store,
   router: router,
   create() {
     const config = firebase.initializeApp({

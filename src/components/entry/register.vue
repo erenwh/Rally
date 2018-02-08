@@ -137,6 +137,7 @@
     methods: {
       signUp () {
         console.log({username: this.name, email: this.email, password: this.password, Conpassword: this.Conpassword})
+        //getting error : no firebase app
         //this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
       },
       submit () {
