@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "firebase": "^4.9.0",
+    "firebase": "^4.9.1",
     "jshint": "^2.9.5",
     "vue": "^2.5.3",
     "vue-facebook-signin-button": "^1.0.1",

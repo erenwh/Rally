@@ -2,6 +2,15 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
 
+firebase.initializeApp({
+  apiKey: "AIzaSyCzCQ7p381EIq-eQtArdNmxWyPjX_jiKRk",
+  authDomain: "rally-cs408.firebaseapp.com",
+  databaseURL: "https://rally-cs408.firebaseio.com",
+  projectId: "rally-cs408",
+  storageBucket: "rally-cs408.appspot.com"/*,
+  messagingSenderId: "289928867041"*/
+})
+
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
@@ -84,7 +93,7 @@ export const store = new Vuex.Store({
         date: info.date.toISOString(),
         creatorId: getters.user.id
       }
-      firebase.database().ref('Rallys').push(Rally)
+      /*firebase.database().ref('Rallys').push(Rally)
         .then((data) => {
           const key = data.key
           commit('createRally', {
@@ -94,7 +103,7 @@ export const store = new Vuex.Store({
         })
         .catch((error) => {
           console.log(error)
-        })
+        })*/
       // Reach out to firebase and store it
     },
     signUserUp ({commit}, info) {

@@ -33,8 +33,9 @@ new Vue({
   el: '#app',
   store,
   router: router,
+  render: h => h(App),
   create() {
-    const config = firebase.initializeApp({
+    /*const config = */firebase.initializeApp({
       apiKey: "AIzaSyCzCQ7p381EIq-eQtArdNmxWyPjX_jiKRk",
       authDomain: "rally-cs408.firebaseapp.com",
       databaseURL: "https://rally-cs408.firebaseio.com",
@@ -42,14 +43,13 @@ new Vue({
       storageBucket: "rally-cs408.appspot.com"/*,
       messagingSenderId: "289928867041"*/
     });
-    firebase.auth().onAuthStateChanged((user) => {
+    /*firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         this.$router.push('/accinfo')
       } else {
         this.$router.push('/register')
       }
-    });
+    });*/
   },
-  render: h => h(App),
   mode: 'history'
 })
