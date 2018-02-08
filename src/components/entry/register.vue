@@ -125,7 +125,8 @@
           (v) => !!v || 'Password is required',
           (v) => v && v.length >= 8 || 'Password must be 8 characters or more'
         ],
-        Conpassword: ''
+        Conpassword: '',
+        valid: true
       }
     },
     computed: {
@@ -136,6 +137,7 @@
     methods: {
       signUp () {
         console.log({username: this.name, email: this.email, password: this.password, Conpassword: this.Conpassword})
+        //this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
       },
       submit () {
         if (this.$refs.form.validate()) {
