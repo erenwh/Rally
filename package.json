@@ -12,6 +12,7 @@
   "dependencies": {
     "firebase": "^4.9.1",
     "jshint": "^2.9.5",
+    "karma": "^2.0.0",
     "vue": "^2.5.3",
     "vue-facebook-signin-button": "^1.0.1",
     "vue-material-design-icons": "^1.0.0",
