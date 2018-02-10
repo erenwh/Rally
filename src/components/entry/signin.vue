@@ -52,7 +52,6 @@
                       box
                       color="white"
                       v-model="email"
-                      :rules="emailRules"
                       required
                     ></v-text-field>
                     <v-text-field
@@ -70,7 +69,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs12>
-                  <v-btn class="green accent-4">Log In</v-btn>
+                  <v-btn class="green accent-4" @click="signUserIn">Log In</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -86,9 +85,30 @@
   export default {
     data () {
       return {
-
+        email: '',
+        password: '',
+        valid: true
       }
     },
+    computed: {
+      user () {
+        return this.$store.getters.user
+      }
+    },
+    watch: {
+      user(value) {
+        if(value !== null && value !== undefined) {
+          this.$router.push('/');
+        }
+      }
+    },
+    methods: {
+      signUserIn () {
+        // console.log({email: this.email, password: this.password})
+        //getting error : no firebase app
+        this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+      }
+    }
   }
 </script>
 

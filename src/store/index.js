@@ -129,12 +129,12 @@ export const store = new Vuex.Store({
         )
     },
     signUserIn ({commit}, info) {
-      commit('setLoading', true)
-      commit('clearError')
+      //commit('setLoading', true)
+      //commit('clearError')
       firebase.auth().signInWithEmailAndPassword(info.email, info.password)
         .then(
           user => {
-            commit('setLoading', false)
+            //commit('setLoading', false)
             const newUser = {
               id: user.uid,
               registeredRallys: []
