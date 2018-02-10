@@ -10,10 +10,9 @@ import Routes from './router/index'
 import facebook from "vue-material-design-icons/facebook-box.vue"
 import google from "vue-material-design-icons/google.vue"
 import twitter from "vue-material-design-icons/twitter.vue"
-import FBSignInButton from "vue-facebook-signin-button"
 
 import * as firebase from 'firebase'
-import { store } from './store'
+
 
 Vue.use(Vuetify);
 Vue.use(VueRouter);
@@ -31,25 +30,16 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
-  store,
   router: router,
   render: h => h(App),
-  create() {
-    /*const config = */firebase.initializeApp({
+  created () {
+    firebase.initializeApp({
       apiKey: "AIzaSyCzCQ7p381EIq-eQtArdNmxWyPjX_jiKRk",
       authDomain: "rally-cs408.firebaseapp.com",
       databaseURL: "https://rally-cs408.firebaseio.com",
       projectId: "rally-cs408",
-      storageBucket: "rally-cs408.appspot.com"/*,
-      messagingSenderId: "289928867041"*/
+      storageBucket: "rally-cs408.appspot.com",
     });
-    /*firebase.auth().onAuthStateChanged((user) => {
-      if(user) {
-        this.$router.push('/accinfo')
-      } else {
-        this.$router.push('/register')
-      }
-    });*/
   },
   mode: 'history'
 })

@@ -17,7 +17,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="indigo darken-2" class="white--text" @click="signUpFB">
+                  <v-btn @click="fb" id="btn" color="indigo darken-2" class="white--text">
                     <facebook-box id="fb"/>
                     Facebook
                   </v-btn>
@@ -45,7 +45,7 @@
               <v-layout id="row">
                 <v-flex xs2 ></v-flex>
                 <v-flex xs8>
-                  <v-form v-model="valid" ref="form" lazy-validation>
+                  <v-form v-model="valid" ref="form" lazy-validation @submit.prevent="submit">
                     <v-text-field
                       label="Username"
                       color="white"
@@ -91,7 +91,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn class="green accent-4" @click="submit" :disabled="!valid">Submit</v-btn>
+                  <v-btn class="green accent-4" @click="submit">Submit</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="red accent-4" @click="clear">Cancel</v-btn>
@@ -107,6 +107,7 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
   export default {
     data () {
       return {
@@ -132,35 +133,52 @@
     computed: {
       comparePasswords () {
         return this.password !== this.Conpassword ? 'Passwords do not match' : true
-      },
-      user () {
-        return this.$store.getters.user
-      }
-    },
-    watch: {
-      user(value) {
-        if(value !== null && value !== undefined) {
-          this.$router.push('/');
-        }
       }
     },
     methods: {
-      signUp () {
-        //console.log({username: this.name, email: this.email, password: this.password, Conpassword: this.Conpassword})
-        //getting error : no firebase app
-        this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
-        this.$router.push("/");
-      },
-      signUpFB () {
-        this.$store.dispatch('signUserFB')
-      },
-      submit () {
-        if (this.$refs.form.validate()) {
-          this.signUp()
+      submit() {
+
+        if(this.password === this.Conpassword) {
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) =>{
+            var ref = firebase.database().ref('/profiles');
+            var profile = {
+              email: user.email,
+              username: this.name
+            };
+            var key = ref.push(profile);
+            key = key.path.pieces_[1];
+            console.log(key);
+            ref.child('/' + key).update({key: key}).then(function(profile){
+              console.log(profile);
+            });
+          }).catch(function(error){
+            console.log(error.message);
+          });
+        } else {
+          console.log("Passwords do not match");
         }
       },
-      clear () {
-        this.$refs.form.reset()
+      clear() {
+        this.$refs.form.reset();
+      },
+      fb() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+
+          // ...
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+        });
       }
     }
   }

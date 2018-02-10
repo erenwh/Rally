@@ -17,19 +17,19 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="indigo darken-2" class="white--text">
+                  <v-btn id="btn" @click="fb" color="indigo darken-2" class="white--text">
                     <facebook-box id="fb"/>
                     Facebook
                   </v-btn>
                 </v-flex>
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="green darken-3" class="white--text">
+                  <v-btn id="btn" @click="google" color="green darken-3" class="white--text">
                     <google id="google"/>
                     Google
                   </v-btn>
                 </v-flex>
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="light-blue accent-4" class="white--text">
+                  <v-btn @click="twitter" id="btn" color="light-blue accent-4" class="white--text">
                     <twitter id="twitter"/>
                     Twitter
                   </v-btn>
@@ -69,7 +69,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs12>
-                  <v-btn class="green accent-4" @click="signUserIn">Log In</v-btn>
+                  <v-btn class="green accent-4" type="submit">Log In</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -92,23 +92,38 @@
         valid: true
       }
     },
-    computed: {
-      user () {
-        return this.$store.getters.user
-      }
-    },
-    watch: {
-      user(value) {
-        if(value !== null && value !== undefined) {
-          this.$router.push('/');
-        }
-      }
-    },
     methods: {
-      signUserIn () {
-        // console.log({email: this.email, password: this.password})
-        //getting error : no firebase app
-        this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
+      submit() {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function(user){
+              console.log(firebase.auth().currentUser);
+            }).catch(function(error){
+              console.log("caught error: " + error);
+        });
+      },
+      fb() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+
+          // ...
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+        });
+      },
+      google() {
+
+      },
+      twitter() {
+        
       }
     }
   }
