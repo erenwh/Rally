@@ -83,6 +83,8 @@
 
 <script>
   export default {
+    // bug note: need to check for useremail / password format
+    // password length etc
     data () {
       return {
         email: '',
