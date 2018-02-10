@@ -17,7 +17,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="indigo darken-2" class="white--text">
+                  <v-btn id="btn" color="indigo darken-2" class="white--text" @click="signUpFB">
                     <facebook-box id="fb"/>
                     Facebook
                   </v-btn>
@@ -132,14 +132,27 @@
     computed: {
       comparePasswords () {
         return this.password !== this.Conpassword ? 'Passwords do not match' : true
+      },
+      user () {
+        return this.$store.getters.user
+      }
+    },
+    watch: {
+      user(value) {
+        if(value !== null && value !== undefined) {
+          this.$router.push('/');
+        }
       }
     },
     methods: {
       signUp () {
-        console.log({username: this.name, email: this.email, password: this.password, Conpassword: this.Conpassword})
+        //console.log({username: this.name, email: this.email, password: this.password, Conpassword: this.Conpassword})
         //getting error : no firebase app
         this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
         this.$router.push("/");
+      },
+      signUpFB () {
+        this.$store.dispatch('signUserFB')
       },
       submit () {
         if (this.$refs.form.validate()) {
