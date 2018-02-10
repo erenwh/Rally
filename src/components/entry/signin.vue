@@ -106,7 +106,7 @@
       signUserIn () {
         // console.log({email: this.email, password: this.password})
         //getting error : no firebase app
-        this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+        this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
       }
     }
   }
