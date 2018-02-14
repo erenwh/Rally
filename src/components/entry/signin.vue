@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
     // bug note: need to check for useremail / password format
@@ -95,22 +96,26 @@ import * as firebase from 'firebase'
     },
     methods: {
       submit() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function(user){
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((function(user){
               console.log(firebase.auth().currentUser);
-            }).catch(function(error){
+              bus.$emit('signChange', true);
+              this.$router.push('/');
+            }).bind(this)).catch(function(error){
               console.log("caught error: " + error);
         });
       },
       fb() {
         var provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+        firebase.auth().signInWithPopup(provider).then((function(result) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           var token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;
 
           // ...
-        }).catch(function(error) {
+          bus.$emit('signChange', true);
+          this.$router.push('/');
+        }).bind(this)).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -119,35 +124,42 @@ import * as firebase from 'firebase'
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
         });
+
       },
       google() {
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result){
+        firebase.auth().signInWithPopup(provider).then((function(result){
           var token = result.credential.accessToken;
           var user = result.user;
           console.log(firebase.auth().currentUser);
           console.log(user);
-          }).catch(function(error) {
+          bus.$emit('signChange', true);
+          this.$router.push('/');
+          }).bind(this)).catch(function(error) {
           var errorCode = error.code;
           var errorMessage = error.message;
           var email = error.email;
           var credential = error.credential;
         });
 
+
       },
       twitter() {
         var provider = new firebase.auth.TwitterAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result){
+        firebase.auth().signInWithPopup(provider).then((function(result){
           var token = result.credential.accessToken;
           var user = result.user;
           console.log(firebase.auth().currentUser);
           console.log(user);
-          }).catch(function(error) {
+          bus.$emit('signChange', true);
+          this.$router.push('/');
+          }).bind(this)).catch(function(error) {
           var errorCode = error.code;
           var errorMessage = error.message;
           var email = error.email;
           var credential = error.credential;
         });
+
 
       }
     }

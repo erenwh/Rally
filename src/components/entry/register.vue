@@ -107,6 +107,7 @@
 </template>
 
 <script>
+import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
     data () {
@@ -139,7 +140,7 @@ import * as firebase from 'firebase'
       submit() {
 
         if(this.password === this.Conpassword) {
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) =>{
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(((user) =>{
             var ref = firebase.database().ref('/profiles');
             var profile = {
               email: user.email,
@@ -151,9 +152,14 @@ import * as firebase from 'firebase'
             ref.child('/' + key).update({key: key}).then(function(profile){
               console.log(profile);
             });
-          }).catch(function(error){
-            console.log(error.message);
+            bus.$emit('signChange', true);
+            this.$router.push('/');
+          }).bind(this)).catch(function(error){
           });
+
+
+          console.log(error.message);
+
         } else {
           console.log("Passwords do not match");
         }
@@ -163,7 +169,7 @@ import * as firebase from 'firebase'
       },
       fb() {
         var provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+        firebase.auth().signInWithPopup(provider).then((function(result) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           var token = result.credential.accessToken;
           // The signed-in user info.
@@ -178,8 +184,10 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+          bus.$emit('signChange', true);
+          this.$router.push('/');
           // ...
-        }).catch(function(error) {
+        }).bind(this)).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -188,10 +196,11 @@ import * as firebase from 'firebase'
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
         });
+
       },
       twitter() {
         var provider = new firebase.auth.TwitterAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+        firebase.auth().signInWithPopup(provider).then((function(result) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           var token = result.credential.accessToken;
           // The signed-in user info.
@@ -206,8 +215,10 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+          bus.$emit('signChange', true);
+          this.$router.push('/');
           // ...
-        }).catch(function(error) {
+        }).bind(this)).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -216,10 +227,11 @@ import * as firebase from 'firebase'
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
         });
+
       },
       google() {
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+        firebase.auth().signInWithPopup(provider).then((function(result) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           var token = result.credential.accessToken;
           // The signed-in user info.
@@ -235,7 +247,9 @@ import * as firebase from 'firebase'
             console.log(profile);
           });
           // ...
-        }).catch(function(error) {
+          bus.$emit('signChange', true);
+          this.$router.push('/');
+        }).bind(this)).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -244,6 +258,7 @@ import * as firebase from 'firebase'
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
         });
+
       }
     }
   }

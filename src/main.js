@@ -22,6 +22,8 @@ Vue.component("twitter", twitter);
 
 Vue.config.productionTip = false
 
+export const bus = new Vue();
+
 /* eslint-disable no-new */
 const router = new VueRouter({
   routes: Routes,

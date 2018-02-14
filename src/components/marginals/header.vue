@@ -57,8 +57,7 @@
         v-bind:key="item.title"
         v-if="signin"
         >
-        <v-list-tile @click=""
-          @click=""
+        <v-list-tile @click="otherItem(item.title)"
           :to="item.link">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -89,11 +88,12 @@
 </template>
 
 <script>
+import {bus} from '../../main';
   export default {
     data () {
       return {
         sideNav: false,
-        signin: true,
+        signin: false,
         itemNS: [
           { icon: "lock_open", title: "Sign In", link: "/signin" },
           { icon: "face", title: "Register", link: "/register" }
@@ -114,6 +114,19 @@
           { icon: "get_app", title: "Invite a friend", link: "/invite" },
           { icon: "gavel", title: "Report a problem", link: "/report" }
         ]
+      }
+    },
+    created() {
+      bus.$on('signChange', (data) => {
+        this.signin = data;
+      })
+    },
+    methods: {
+      otherItem(data) {
+        if(data === "Sign Out") {
+          this.signin = false;
+          this.$router.push('/');
+        }
       }
     }
   }

@@ -27,7 +27,7 @@
             required
           ></v-text-field>
           <div class="text-xs-center">
-            <v-btn v-on:click="submit">
+            <v-btn @click="submit">
               submit
             </v-btn>
             <v-btn>clear</v-btn>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
   export default {
     data () {
       return {
