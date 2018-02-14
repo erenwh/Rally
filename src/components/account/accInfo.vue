@@ -27,23 +27,15 @@
                   ></v-text-field>
                   <v-text-field
                     name="input-7-1"
-                    v-model="first"
-                    label="First name"
+                    v-model="name"
+                    label="Name"
                     color="black"
                     auto-grow
                     :disabled="disabled"
                   ></v-text-field>
                   <v-text-field
                     name="input-7-1"
-                    v-model="last"
-                    label="Last name"
-                    color="black"
-                    auto-grow
-                    :disabled="disabled"
-                  ></v-text-field>
-                  <v-text-field
-                    name="input-7-1"
-                    v-model="last"
+                    v-model="dob"
                     label="Date of Birth"
                     color="black"
                     auto-grow
@@ -82,8 +74,30 @@
   export default {
     data () {
       return {
-        edit: false
+        edit: false,
+        email: '',
+        name: '',
+        username: '',
+        key: '',
+        dob: ''
       }
+    },
+    mounted(){
+      var email = firebase.auth().currentUser.email;
+      var ref = firebase.database().ref('/profiles');
+      ref.once('value').then((snap)=>{
+        snap.forEach((prof)=>{
+        	user = prof.val();
+          if (prof.val().email == email) {
+            this.email = prof.val().email;
+            this.name = prof.val().name;
+
+            this.username = prof.val().username;
+            this.key = prof.val().key;
+
+          }
+        });
+      })
     }
   }
 </script>

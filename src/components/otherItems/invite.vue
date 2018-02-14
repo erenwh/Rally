@@ -13,7 +13,7 @@
           <v-form class="ma-3 pa-3">
             <v-text-field
               label="E-mail"
-
+              v-model="email"
               required
             ></v-text-field>
             <div class="text-xs-center">
@@ -35,8 +35,14 @@
   export default {
     data () {
       return {
-
+        email: ''
       }
+    },
+    methods: {
+      submit() {
+        emailjs.send("gmail","template_LOOWuveW",{email: this.email});
+      }
+
     }
   }
 </script>

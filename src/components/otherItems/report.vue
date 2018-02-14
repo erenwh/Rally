@@ -49,6 +49,14 @@
           issue: ''
         }
       }
+    },
+    methods: {
+      submit() {
+        var ref = firebase.database().ref('/reports');
+        var key = ref.push(this.report);
+        key = key.path.pieces_[1];
+        ref.child('/' + key).update({key: key});
+      }
     }
   }
 </script>
