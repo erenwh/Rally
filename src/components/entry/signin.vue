@@ -68,8 +68,11 @@
                 <v-flex xs2></v-flex>
               </v-layout>
               <v-layout id="row">
-                <v-flex xs12>
-                  <v-btn class="green accent-4" type="submit">Log In</v-btn>
+                <v-flex xs6>
+                  <v-btn class="green accent-4" @click="submit">Log In</v-btn>
+                </v-flex>
+                <v-flex xs6>
+                  <v-btn class="white" @click="forgot">Forgot Password</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -102,6 +105,13 @@ import * as firebase from 'firebase'
               this.$router.push('/');
             }).bind(this)).catch(function(error){
               console.log("caught error: " + error);
+        });
+      },
+      forgot() {
+        firebase.auth().sendPasswordResetEmail(this.email).then(()=>{
+          console.log("Sent");
+        }).catch((error)=> {
+          console.log(error.errorMessage);
         });
       },
       fb() {

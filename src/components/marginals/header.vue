@@ -40,7 +40,7 @@
             <v-list-tile
             v-for="subItem in item.itemS"
             v-bind:key="subItem.title"
-            @click=""
+            @click="otherItem(subItem)"
             :to="subItem.link">
               <v-list-tile-action>
                 <v-icon>{{ subItem.icon }}</v-icon>
@@ -53,11 +53,11 @@
       </v-list>
       <v-list
         dense
-        v-for="item in otherItems"
-        v-bind:key="item.title"
         v-if="signin"
         >
-        <v-list-tile @click="otherItem(item.title)"
+        <v-list-tile
+          v-for="item in otherItems"
+          v-bind:key="item.title"
           :to="item.link">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
 import {bus} from '../../main';
   export default {
     data () {
@@ -123,9 +124,15 @@ import {bus} from '../../main';
     },
     methods: {
       otherItem(data) {
-        if(data === "Sign Out") {
+        if(data.title === "Sign Out") {
+          console.log("here");
           this.signin = false;
-          this.$router.push('/');
+          this.sideNav = false;
+          firebase.auth().signOut().then((function() {
+            this.$router.push("/");
+            console.log('Signed Out');
+          }).bind(this));
+
         }
       }
     }
