@@ -168,7 +168,16 @@ import * as firebase from 'firebase'
           var token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;
-
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            name: user.displayName
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
           // ...
         }).catch(function(error) {
           // Handle Errors here.
