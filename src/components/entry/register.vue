@@ -23,13 +23,13 @@
                   </v-btn>
                 </v-flex>
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="green darken-3" class="white--text">
+                  <v-btn @click="google" id="btn" color="green darken-3" class="white--text">
                     <google id="google"/>
                     Google
                   </v-btn>
                 </v-flex>
                 <v-flex xs12 md=4>
-                  <v-btn id="btn" color="light-blue accent-4" class="white--text">
+                  <v-btn @click="twitter" id="btn" color="light-blue accent-4" class="white--text">
                     <twitter id="twitter"/>
                     Twitter
                   </v-btn>
@@ -163,6 +163,62 @@ import * as firebase from 'firebase'
       },
       fb() {
         var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            name: user.displayName
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          // ...
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+        });
+      },
+      twitter() {
+        var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            name: user.displayName
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          // ...
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+        });
+      },
+      google() {
+        var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function(result) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           var token = result.credential.accessToken;
