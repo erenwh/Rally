@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
   export default {
     // bug note: need to check for useremail / password format
     // password length etc
@@ -120,10 +121,34 @@
         });
       },
       google() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
 
       },
       twitter() {
-        
+        var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+
       }
     }
   }
