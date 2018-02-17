@@ -99,7 +99,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn class="green accent-4" @click="submit">Submit</v-btn>
+                  <v-btn id="submitBTN" class="green accent-4" @click="submit">Submit</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="red accent-4" @click="clear">Cancel</v-btn>
