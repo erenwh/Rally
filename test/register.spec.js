@@ -5,6 +5,6 @@ describe('register.vue', function(){
     it('tests register.vue', function(){
         //have instance of register component
         const wrapper = shallow(register)
-        expect(wrapper.contains('h4')).toBe(true)
+        expect(false).toBe(true)
     })
 })
