@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import register from '@/components/entry/register'
+import register from './register.vue'
 
-describe("register.vue", function() {
+describe("Register", function() {
     var user = "brad";
     var password = "password";
     var email = "brad@brad.br";
@@ -9,7 +9,7 @@ describe("register.vue", function() {
     it('has a created hook', function(){
         expect(typeof register.submit).toBe('function');
     });
-    /*it("should create a new user", function(){
+    it("should create a new user", function(){
         expect(typeof register.submit).toBe('function');
-    });*/
+    });
 });
