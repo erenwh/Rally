@@ -7,8 +7,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js",
-    "test": "jasmine"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "firebase": "^4.9.1",
@@ -38,7 +37,6 @@
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
-    "jasmine": "^3.0.0",
     "jasmine-core": "^2.99.1",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
