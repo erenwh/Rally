@@ -62,6 +62,7 @@
                       box
                       dark
                       v-model="dob"
+                      :rules="dobRules"
                       required
                     ></v-text-field>
                     <v-text-field
@@ -128,7 +129,7 @@ import * as firebase from 'firebase'
         email: '',
         emailRules: [
         (v) => !!v || 'E-mail is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
         ],
         password: '',
         passwordRules: [
@@ -137,7 +138,11 @@ import * as firebase from 'firebase'
         ],
         Conpassword: '',
         valid: true,
-        dob: ''
+        dob: '',
+        dobRules: [
+          (v) => !!v || 'Date of Birth is required',
+          (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be XX/XX/XX'
+        ]
       }
     },
     computed: {
