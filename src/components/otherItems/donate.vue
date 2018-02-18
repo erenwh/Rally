@@ -61,10 +61,10 @@ export default {
  		  show: true,
       amount: '',
 			amountRules: [
-				(v) => !!v || 'Must enter amount',
-				(v) => /^\d*\.\d?\d?$/.test(v) || 'Amount must be in xxxx.xx format'
+			(v) => !!v || 'Enter amount',
+			(v) => /^\d*\.?\d?\d?$/.test(v) || 'Amount must be in xxxx.xx format',
 			],
-    }
+		}
   },
   methods: {
   	changeBool($event) {
