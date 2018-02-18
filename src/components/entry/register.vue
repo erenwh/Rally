@@ -118,6 +118,7 @@
 import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
+
     data () {
       return {
         username: '',
