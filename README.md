@@ -25,6 +25,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * [Project Charter](https://docs.google.com/document/d/15cPtRO2IZSlIIbxQIAzjKdeMH3HEPMQaVLZzSb-WlRo/edit?usp=sharing)
 * [Product Backlog](https://docs.google.com/document/d/1hjHZlZ0oMQMrNIRGFWsC3MCapC_0nXZfwV9oZpfptUo/edit?usp=sharing)
 * [Product Test Plan](https://docs.google.com/document/d/1c50bXMDoKWstFJ7nP9LG9DRZufbCH9ee3ijX7JdtxfM/edit?usp=sharing)
+* [Incremental and Regression Testing](https://docs.google.com/document/d/1wDnaLlY_f6zHJnyPWvA7QEnW2hm_O4oRgNxLVnpbj9U/edit?usp=sharing)
 
 
 ## Update
