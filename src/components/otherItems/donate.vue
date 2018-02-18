@@ -19,6 +19,7 @@
               light
               color="amber accent-4"
               v-model="amount"
+              :rules="amountRules"
             ></v-text-field>
             <div v-show="show===false">
               <v-alert
@@ -58,7 +59,11 @@ export default {
     		production: "AdtCNixFoW4ZzTOf0g_D4986xLwR9ZvD17JU2Y9LHFA4YazJQvXlY9AFlYbgUxnakV36Eh4_J_Bwybev",
  		  },
  		  show: true,
-      amount: ''
+      amount: '',
+			amountRules: [
+				(v) => !!v || 'Must enter amount',
+				(v) => /^\d*\.\d?\d?$/.test(v) || 'Amount must be in xxxx.xx format'
+			],
     }
   },
   methods: {
