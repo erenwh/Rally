@@ -11,8 +11,7 @@
         v-bind:key="item.title"
         v-if="!signin"
         >
-        <v-list-tile @click=""
-          @click=""
+        <v-list-tile 
           :to="item.link">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -26,7 +25,7 @@
         dense
         v-if="signin">
         <v-list-group v-for="item in menuItems" :value="item.active" v-bind:key="item.title">
-            <v-list-tile slot="item" @click="">
+            <v-list-tile slot="item" >
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
