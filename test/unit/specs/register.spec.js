@@ -29,12 +29,23 @@ describe('register.vue', () => {
   
     it('tests form input and submit button click', () => {
         const Constructor = Vue.extend(register);
-        const registerComponent = new Constructor().$mount();
+        const registerComponent = new Constructor({
+            /*data() {
+                username: 'john';
+                email: 'john@john.com';
+                password: 'johnjohn';
+                Conpassword: 'johnjohn';
+            }*/
+        }).$mount();
         //insert information
         registerComponent.username = 'john';
         registerComponent.email = 'john@john.com';
         registerComponent.password = 'johnjohn';
         registerComponent.Conpassword = 'johnjohn';
+        
+        //expect(registerComponent.$el.textContent).to.contain('john');
+        //expect(registerComponent.$el.textContent).to.contain('john@john.com');
+        
         // simulate click event
         // buttons: 1st facebook, 2nd google, 3rd twitter, 4th submit
         const button = registerComponent.$el.querySelectorAll('button')[3];
