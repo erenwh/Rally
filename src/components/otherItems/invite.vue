@@ -14,6 +14,7 @@
             <v-text-field
               label="E-mail"
               v-model="email"
+              :rules="emailRules"
               required
             ></v-text-field>
             <div class="text-xs-center">
@@ -35,7 +36,11 @@
   export default {
     data () {
       return {
-        email: ''
+        email: '',
+        emailRules: [
+          (v) => !!v || 'Must have email to send to',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
+        ]
       }
     },
     methods: {
