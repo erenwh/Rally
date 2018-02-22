@@ -62,6 +62,7 @@
                       box
                       dark
                       v-model="dob"
+                      :rules="dobRules"
                       required
                     ></v-text-field>
                     <v-text-field
@@ -99,7 +100,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn class="green accent-4" @click="submit">Submit</v-btn>
+                  <v-btn id="submitBTN" class="green accent-4" @click="submit">Submit</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="red accent-4" @click="clear">Cancel</v-btn>
@@ -118,6 +119,7 @@
 import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
+
     data () {
       return {
         username: '',
@@ -128,7 +130,7 @@ import * as firebase from 'firebase'
         email: '',
         emailRules: [
         (v) => !!v || 'E-mail is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length <= 100 || 'E-mail must be valid'
         ],
         password: '',
         passwordRules: [
@@ -137,7 +139,11 @@ import * as firebase from 'firebase'
         ],
         Conpassword: '',
         valid: true,
-        dob: ''
+        dob: '',
+        dobRules: [
+          (v) => !!v || 'Date of Birth is required',
+          (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be XX/XX/XX'
+        ]
       }
     },
     computed: {
@@ -212,7 +218,7 @@ import * as firebase from 'firebase'
       twitter() {
         var provider = new firebase.auth.TwitterAuthProvider();
         firebase.auth().signInWithPopup(provider).then((function(result) {
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          // This gives you a Twitter Access Token. You can use it to access the Twitter API.
           var token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;
@@ -244,7 +250,7 @@ import * as firebase from 'firebase'
       google() {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then((function(result) {
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          // This gives you a google Access Token. You can use it to access the Facebook API.
           var token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;

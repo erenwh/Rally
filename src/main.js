@@ -34,7 +34,7 @@ new Vue({
   el: '#app',
   router: router,
   render: h => h(App),
-  created () {
+  created() {
     firebase.initializeApp({
       apiKey: "AIzaSyCzCQ7p381EIq-eQtArdNmxWyPjX_jiKRk",
       authDomain: "rally-cs408.firebaseapp.com",
