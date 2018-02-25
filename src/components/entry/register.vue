@@ -57,7 +57,7 @@
                       required
                     ></v-text-field>
                     <v-text-field
-<<<<<<< HEAD
+
                       label="DOB"
                       color="white"
                       box
@@ -67,8 +67,6 @@
                       required
                     ></v-text-field>
                     <v-text-field
-=======
->>>>>>> parent of 26be80d... sprint 1
                       label="E-mail"
                       dark
                       box
@@ -141,16 +139,14 @@ import * as firebase from 'firebase'
           (v) => v && v.length >= 8 || 'Password must be 8 characters or more'
         ],
         Conpassword: '',
-<<<<<<< HEAD
+
         valid: true,
         dob: '',
         dobRules: [
           (v) => !!v || 'Date of Birth is required',
           (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be XX/XX/XX'
         ]
-=======
-        valid: true
->>>>>>> parent of 26be80d... sprint 1
+
       }
     },
     computed: {

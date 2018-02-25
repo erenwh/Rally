@@ -25,33 +25,6 @@
         dense
         v-if="signin">
         <v-list-group v-for="item in menuItems" :value="item.active" v-bind:key="item.title">
-<<<<<<< HEAD
-          <v-list-tile slot="item"
-            @click="">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-            </v-list-tile-content>
-            <v-list-tile-action>
-              <v-icon>keyboard_arrow_down</v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
-          <v-list-tile
-          v-for="subItem in item.itemS"
-          v-bind:key="subItem.title"
-          @click="otherItem(subItem)"
-          :to="subItem.link">
-            <v-list-tile-action>
-              <v-icon>{{ subItem.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list-group>
-=======
             <v-list-tile slot="item" @click="">
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
@@ -76,7 +49,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
->>>>>>> parent of 26be80d... sprint 1
+
       </v-list>
       <v-list
         dense
