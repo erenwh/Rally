@@ -25,6 +25,7 @@
         dense
         v-if="signin">
         <v-list-group v-for="item in menuItems" :value="item.active" v-bind:key="item.title">
+<<<<<<< HEAD
           <v-list-tile slot="item"
             @click="">
             <v-list-tile-action>
@@ -50,14 +51,40 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
+=======
+            <v-list-tile slot="item" @click="">
+              <v-list-tile-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile-content>
+              <v-list-tile-action>
+                <v-icon>keyboard_arrow_down</v-icon>
+              </v-list-tile-action>
+            </v-list-tile>
+            <v-list-tile
+            v-for="subItem in item.itemS"
+            v-bind:key="subItem.title"
+            @click=""
+            :to="subItem.link">
+              <v-list-tile-action>
+                <v-icon>{{ subItem.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list-group>
+>>>>>>> parent of 26be80d... sprint 1
       </v-list>
       <v-list
         dense
+        v-for="item in otherItems"
+        v-bind:key="item.title"
         v-if="signin"
         >
-        <v-list-tile
-          v-for="item in otherItems"
-          v-bind:key="item.title"
+        <v-list-tile @click="otherItem(item.title)"
           :to="item.link">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -88,7 +115,6 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
 import {bus} from '../../main';
   export default {
     data () {
@@ -124,15 +150,9 @@ import {bus} from '../../main';
     },
     methods: {
       otherItem(data) {
-        if(data.title === "Sign Out") {
-          console.log("here");
+        if(data === "Sign Out") {
           this.signin = false;
-          this.sideNav = false;
-          firebase.auth().signOut().then((function() {
-            this.$router.push("/");
-            console.log('Signed Out');
-          }).bind(this));
-
+          this.$router.push('/');
         }
       }
     }

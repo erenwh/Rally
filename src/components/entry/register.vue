@@ -51,12 +51,13 @@
                       color="white"
                       box
                       dark
-                      v-model="username"
+                      v-model="name"
                       :rules="nameRules"
                       :counter="10"
                       required
                     ></v-text-field>
                     <v-text-field
+<<<<<<< HEAD
                       label="DOB"
                       color="white"
                       box
@@ -66,6 +67,8 @@
                       required
                     ></v-text-field>
                     <v-text-field
+=======
+>>>>>>> parent of 26be80d... sprint 1
                       label="E-mail"
                       dark
                       box
@@ -122,7 +125,7 @@ import * as firebase from 'firebase'
 
     data () {
       return {
-        username: '',
+        name: '',
         nameRules: [
           (v) => !!v || 'Username is required',
           (v) => v && v.length < 11 || 'Username must be 10 characters or less'
@@ -138,12 +141,16 @@ import * as firebase from 'firebase'
           (v) => v && v.length >= 8 || 'Password must be 8 characters or more'
         ],
         Conpassword: '',
+<<<<<<< HEAD
         valid: true,
         dob: '',
         dobRules: [
           (v) => !!v || 'Date of Birth is required',
           (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be XX/XX/XX'
         ]
+=======
+        valid: true
+>>>>>>> parent of 26be80d... sprint 1
       }
     },
     computed: {
@@ -159,8 +166,7 @@ import * as firebase from 'firebase'
             var ref = firebase.database().ref('/profiles');
             var profile = {
               email: user.email,
-              username: this.username,
-              dob: this.dob
+              username: this.name
             };
             var key = ref.push(profile);
             key = key.path.pieces_[1];
@@ -193,8 +199,7 @@ import * as firebase from 'firebase'
           var ref = firebase.database().ref('/profiles');
           var profile = {
             email: user.email,
-            username: user.displayName,
-            dob: this.dob
+            name: user.displayName
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
@@ -225,8 +230,7 @@ import * as firebase from 'firebase'
           var ref = firebase.database().ref('/profiles');
           var profile = {
             email: user.email,
-            username: user.displayName,
-            dob: this.dob
+            name: user.displayName
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
@@ -257,8 +261,7 @@ import * as firebase from 'firebase'
           var ref = firebase.database().ref('/profiles');
           var profile = {
             email: user.email,
-            username: user.displayName,
-            dob: this.dob
+            name: user.displayName
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];

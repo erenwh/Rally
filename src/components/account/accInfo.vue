@@ -27,6 +27,14 @@
                   ></v-text-field>
                   <v-text-field
                     name="input-7-1"
+                    v-model="name"
+                    label="Name"
+                    color="black"
+                    auto-grow
+                    :disabled="disabled"
+                  ></v-text-field>
+                  <v-text-field
+                    name="input-7-1"
                     v-model="dob"
                     label="Date of Birth"
                     color="black"
@@ -42,18 +50,15 @@
               </v-layout>
               <v-layout v-if="!edit">
                 <v-flex xs12>
-                  <v-btn @click="editing" dark color="grey darken-4">Edit Information</v-btn>
+                  <v-btn dark color="grey darken-4">Edit Information</v-btn>
                 </v-flex>
               </v-layout>
               <v-layout v-if="edit">
-                <v-flex xs4>
-                  <v-btn @click="save" dark color="green accent-4">Save</v-btn>
+                <v-flex xs6>
+                  <v-btn dark color="green accent-4">Save</v-btn>
                 </v-flex>
-                <v-flex xs4>
-                  <v-btn @click="cancel" dark color="red accent-4">Cancel</v-btn>
-                </v-flex>
-                <v-flex xs4>
-                  <v-btn @click="deleteacc" dark color="blue accent-4">Delete Account</v-btn>
+                <v-flex xs6>
+                  <v-btn dark color="red accent-4">Cancel</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -66,17 +71,15 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
-import {bus} from '../../main';
   export default {
     data () {
       return {
         edit: false,
         email: '',
+        name: '',
         username: '',
         key: '',
-        dob: '',
-        disabled: true
+        dob: ''
       }
     },
     mounted(){
@@ -84,43 +87,17 @@ import {bus} from '../../main';
       var ref = firebase.database().ref('/profiles');
       ref.once('value').then((snap)=>{
         snap.forEach((prof)=>{
+        	user = prof.val();
           if (prof.val().email == email) {
             this.email = prof.val().email;
+            this.name = prof.val().name;
+
             this.username = prof.val().username;
-            this.dob = prof.val().dob;
             this.key = prof.val().key;
 
           }
         });
       })
-    },
-    methods: {
-      editing() {
-        this.edit = true;
-        this.disabled = false;
-      },
-      save() {
-        var ref = firebase.database().ref('/profiles/' + this.key)
-        ref.update({
-          username: this.username,
-          dob: this.dob
-        });
-        this.disabled = true;
-        this.edit = false;
-      },
-      cancel() {
-        this.disabled = true;
-        this.edit = false;
-      },
-      deleteacc() {
-        var ref = firebase.database().ref('/profiles/' + this.key);
-      	ref.remove();
-      	firebase.auth().currentUser.delete();
-      	firebase.auth().signOut();
-        bus.$emit('signChange', false);
-        this.$router.push("/");
-      }
-
     }
   }
 </script>
