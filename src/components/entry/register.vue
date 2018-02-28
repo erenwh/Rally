@@ -36,11 +36,14 @@
                 </v-flex>
               </v-layout>
               <v-layout id="row">
-                <v-flex xs3 ></v-flex>
-                <v-flex xs6>
+                <v-flex xs2 ></v-flex>
+                <v-flex xs8>
                   <h4 class="mb-3 mt-3 white--text">Or Register with...</h4>
+                  <v-alert type="error" :value="value">
+                    {{this.error}}
+                  </v-alert>
                 </v-flex>
-                <v-flex xs3></v-flex>
+                <v-flex xs2></v-flex>
               </v-layout>
               <v-layout id="row">
                 <v-flex xs2 ></v-flex>
@@ -51,13 +54,12 @@
                       color="white"
                       box
                       dark
-                      v-model="name"
+                      v-model="username"
                       :rules="nameRules"
                       :counter="10"
                       required
                     ></v-text-field>
                     <v-text-field
-
                       label="DOB"
                       color="white"
                       box
@@ -123,7 +125,7 @@ import * as firebase from 'firebase'
 
     data () {
       return {
-        name: '',
+        username: '',
         nameRules: [
           (v) => !!v || 'Username is required',
           (v) => v && v.length < 11 || 'Username must be 10 characters or less'
@@ -139,14 +141,14 @@ import * as firebase from 'firebase'
           (v) => v && v.length >= 8 || 'Password must be 8 characters or more'
         ],
         Conpassword: '',
-
         valid: true,
         dob: '',
         dobRules: [
           (v) => !!v || 'Date of Birth is required',
           (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be XX/XX/XX'
-        ]
-
+        ],
+        error: '',
+        value: false
       }
     },
     computed: {
@@ -162,21 +164,24 @@ import * as firebase from 'firebase'
             var ref = firebase.database().ref('/profiles');
             var profile = {
               email: user.email,
-              username: this.name
+              username: this.username,
+              dob: this.dob
             };
             var key = ref.push(profile);
             key = key.path.pieces_[1];
-            console.log(key);
             ref.child('/' + key).update({key: key}).then(function(profile){
-              console.log(profile);
+              //console.log(profile);
             });
             bus.$emit('signChange', true);
             this.$router.push('/');
-          }).bind(this)).catch(function(error){
-          });
+          }).bind(this)).catch((function(error){
+            this.value = true;
+            this.error = error.message;
+            console.log(error.message);
+          }).bind(this));
 
 
-          console.log(error.message);
+
 
         } else {
           console.log("Passwords do not match");
@@ -195,7 +200,8 @@ import * as firebase from 'firebase'
           var ref = firebase.database().ref('/profiles');
           var profile = {
             email: user.email,
-            name: user.displayName
+            username: user.displayName,
+            dob: this.dob
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
@@ -205,15 +211,17 @@ import * as firebase from 'firebase'
           bus.$emit('signChange', true);
           this.$router.push('/');
           // ...
-        }).bind(this)).catch(function(error) {
+        }).bind(this)).catch((function(error) {
           // Handle Errors here.
+          this.value = true;
+          this.error = error.message;
           var errorCode = error.code;
           var errorMessage = error.message;
           // The email of the user's account used.
           var email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
-        });
+        }).bind(this));
 
       },
       twitter() {
@@ -226,7 +234,8 @@ import * as firebase from 'firebase'
           var ref = firebase.database().ref('/profiles');
           var profile = {
             email: user.email,
-            name: user.displayName
+            username: user.displayName,
+            dob: this.dob
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
@@ -236,7 +245,9 @@ import * as firebase from 'firebase'
           bus.$emit('signChange', true);
           this.$router.push('/');
           // ...
-        }).bind(this)).catch(function(error) {
+        }).bind(this)).catch((function(error) {
+          this.value = true;
+          this.error = error.message;
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -244,7 +255,7 @@ import * as firebase from 'firebase'
           var email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
-        });
+        }).bind(this));
 
       },
       google() {
@@ -257,7 +268,8 @@ import * as firebase from 'firebase'
           var ref = firebase.database().ref('/profiles');
           var profile = {
             email: user.email,
-            name: user.displayName
+            username: user.displayName,
+            dob: this.dob
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
@@ -267,7 +279,9 @@ import * as firebase from 'firebase'
           // ...
           bus.$emit('signChange', true);
           this.$router.push('/');
-        }).bind(this)).catch(function(error) {
+        }).bind(this)).catch((function(error) {
+          this.value = true;
+          this.error = error.message;
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -275,7 +289,7 @@ import * as firebase from 'firebase'
           var email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
-        });
+        }).bind(this));
 
       }
     }

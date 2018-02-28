@@ -8,7 +8,7 @@ import report from '@/components/otherItems/report.vue';
 import create from '@/components/account/create.vue';
 import home from '@/components/account/home.vue';
 import orgmeets from '@/components/account/orgMeets.vue';
-import List from '@/components/List.vue'
+import viewMeet from '@/components/meet/viewMeet.vue';
 
 export default [
   { path: '/', component: home },
@@ -21,9 +21,6 @@ export default [
   { path: '/report', component: report },
   { path: '/create', component: create },
   { path: '/orgmeets', component: orgmeets },
-  {
-    path: '/to-do',
-    name: 'ToDo',
-    component: List
-  },
+  { path: '/viewmeet/:id', component: viewMeet }
+
 ]

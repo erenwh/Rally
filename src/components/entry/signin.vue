@@ -36,11 +36,14 @@
                 </v-flex>
               </v-layout>
               <v-layout id="row">
-                <v-flex xs3 ></v-flex>
-                <v-flex xs6>
+                <v-flex xs2></v-flex>
+                <v-flex xs8>
                   <h4 class="mb-3 mt-3 white--text">Or Sign in with...</h4>
+                  <v-alert type="error" :value="value">
+                    Invalid Email/Password
+                  </v-alert>
                 </v-flex>
-                <v-flex xs3></v-flex>
+                <v-flex xs2></v-flex>
               </v-layout>
               <v-layout id="row">
                 <v-flex xs2 ></v-flex>
@@ -68,8 +71,11 @@
                 <v-flex xs2></v-flex>
               </v-layout>
               <v-layout id="row">
-                <v-flex xs12>
-                  <v-btn class="green accent-4" type="submit">Log In</v-btn>
+                <v-flex xs6>
+                  <v-btn class="green accent-4" @click="submit">Log In</v-btn>
+                </v-flex>
+                <v-flex xs6>
+                  <v-btn class="white" @click="forgot">Forgot Password</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -91,7 +97,8 @@ import * as firebase from 'firebase'
       return {
         email: '',
         password: '',
-        valid: true
+        valid: true,
+        value: false
       }
     },
     methods: {
@@ -100,8 +107,16 @@ import * as firebase from 'firebase'
               console.log(firebase.auth().currentUser);
               bus.$emit('signChange', true);
               this.$router.push('/');
-            }).bind(this)).catch(function(error){
+            }).bind(this)).catch((function(error){
+              this.value = true;
               console.log("caught error: " + error);
+        }).bind(this));
+      },
+      forgot() {
+        firebase.auth().sendPasswordResetEmail(this.email).then(()=>{
+          console.log("Sent");
+        }).catch((error)=> {
+          console.log(error.errorMessage);
         });
       },
       fb() {

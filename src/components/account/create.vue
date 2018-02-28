@@ -103,7 +103,9 @@ import * as firebase from 'firebase'
           time: new Date(),
           title: '',
           description: '',
-          location: ''
+          location: '',
+          number: 0,
+          change: false
         },
         dialog: false,
         tagSelect: {
@@ -132,12 +134,25 @@ import * as firebase from 'firebase'
             console.log(snap);
             this.imageUrl = snap.downloadURL;
           }).then(()=>{
-          console.log(this.imageUrl);
+            console.log(this.imageUrl);
 
-          ref = firebase.database().ref("/meets/" + key);
-          ref.update({imageUrl: this.imageUrl});
+            ref = firebase.database().ref("/meets/" + key);
+            ref.update({imageUrl: this.imageUrl});
+          });
         });
-        });
+
+        var email = firebase.auth().currentUser.email;
+        var ref1 = firebase.database().ref('/profiles');
+        ref1.once('value').then((snap)=>{
+          snap.forEach((prof)=>{
+            if (prof.val().email == email) {
+              var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
+              ref2.child('/' + key).update({key: key}).then(function(profile){
+              });
+            }
+          });
+        })
+
       },
       onPickFile(){
         this.$refs.fileInput.click();

@@ -19,7 +19,6 @@
               light
               color="amber accent-4"
               v-model="amount"
-              :rules="amountRules"
             ></v-text-field>
             <div v-show="show===false">
               <v-alert
@@ -35,8 +34,8 @@
         			<PayPal
         				:amount="amount"
         				currency="USD"
-        				:dev="true"
         				:client='credentials'
+								env="sandbox"
         				v-on:paypal-paymentCompleted="changeBool($event)"
         				></PayPal>
         		</div>
@@ -55,16 +54,12 @@ export default {
   data () {
     return {
     	credentials: {
-    		sandbox: "AaabrPP3UWw--QGiWf582u1guSIUjx0ItPqm1ocI26OEZ4E5SiM1DwC_HsXzsF8vEkw2-qbMdchCbnNr",
-    		production: "AdtCNixFoW4ZzTOf0g_D4986xLwR9ZvD17JU2Y9LHFA4YazJQvXlY9AFlYbgUxnakV36Eh4_J_Bwybev",
+    		sandbox: "AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R",
+    		production: "AbtDPSNtzICNnGM8bUNsubnepnbz6nFD5XX8qeJpGW83XspYaBzK0B8eLFLebQYKOB_CDGg6MHoWBS6C",
  		  },
  		  show: true,
-      amount: '',
-			amountRules: [
-			(v) => !!v || 'Enter amount',
-			(v) => /^\d*\.?\d?\d?$/.test(v) || 'Amount must be in xxxx.xx format',
-			],
-		}
+      amount: ''
+    }
   },
   methods: {
   	changeBool($event) {
