@@ -34,7 +34,7 @@ import * as firebase from 'firebase'
         meets: []
       }
     },
-    created() {
+    mounted() {
       var ref = firebase.database().ref('/meets');
       var meets = [];
       ref.once('value').then((snap)=>{
