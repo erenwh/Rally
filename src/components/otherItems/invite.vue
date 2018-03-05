@@ -15,7 +15,7 @@
                 <v-toolbar-title class="white--text">Invite a Friend</v-toolbar-title>
               </div>
             </v-toolbar>
-          <v-form class="ma-3 pa-3" v-model="valid" lazy-validation @submit.prevent="submit">
+          <v-form class="ma-3 pa-3" v-model="valid" ref="form" lazy-validation @submit.prevent="submit">
             <v-text-field
               label="E-mail"
               v-model="email"

@@ -13,15 +13,17 @@
               <v-toolbar-title class="white--text">Report a problem</v-toolbar-title>
               </div>
           </v-toolbar>
-        <v-form class="ma-3 pa-3">
+        <v-form class="ma-3 pa-3" v-model="valid" ref="form" lazy-validation @submit.prevent="submit">
           <v-text-field
             label="Name"
             v-model="report.name"
+            :rules="report.nameRules"
             required
           ></v-text-field>
           <v-text-field
             label="E-mail"
             v-model="report.email"
+            :rules="report.emailRules"
             required
           ></v-text-field>
           <v-text-field
@@ -52,10 +54,16 @@ import * as firebase from 'firebase'
       return {
         report: {
           name: '',
+          nameRules: [
+            (v) => !!v || 'Name is required'
+          ],
           email: '',
-
-
+          emailRules: [
+          (v) => !!v || 'E-mail is required',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length <= 100 || 'E-mail must be valid'
+          ]
         },
+        valid: true,
         signin: false,
         sent: false
       }
