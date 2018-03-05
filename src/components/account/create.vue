@@ -4,7 +4,8 @@
       <v-layout class="mt-3">
         <v-flex xs2></v-flex>
         <v-flex xs8>
-          <v-card id="card">
+          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+          <v-card id="card" v-if="signin">
             <v-toolbar dark color="grey darken-4">
               <div class="text-xs-center">
                 <v-toolbar-title class="white--text">Organize a meet up</v-toolbar-title>
@@ -95,6 +96,7 @@
 
 <script>
 import * as firebase from 'firebase'
+import {bus} from '../../main';
   export default {
     data () {
       return {
@@ -117,7 +119,8 @@ import * as firebase from 'firebase'
         image: null,
         imageUrl: '',
         email: '',
-        key: ''
+        key: '',
+        signin: false
       }
     },
     methods: {
@@ -152,7 +155,7 @@ import * as firebase from 'firebase'
             }
           });
         })
-
+        this.$router.push('/');
       },
       onPickFile(){
         this.$refs.fileInput.click();
@@ -172,16 +175,29 @@ import * as firebase from 'firebase'
       }
     },
     mounted(){
-      var email = firebase.auth().currentUser.email;
-      var ref = firebase.database().ref('/profiles');
-      ref.once('value').then((snap)=>{
-        snap.forEach((prof)=>{
-          if (prof.val().email == email) {
-            this.email = prof.val().email;
-            this.key = prof.val().key;
-          }
-        });
-      })
+
+        try {
+          var email = firebase.auth().currentUser.email;
+          this.signin = true;
+        }
+        catch (error) {
+          this.signin = false;
+        }
+
+        if(this.signin){
+          var ref = firebase.database().ref('/profiles');
+          ref.once('value').then((snap)=>{
+            snap.forEach((prof)=>{
+              if (prof.val().email == email) {
+                this.email = prof.val().email;
+                this.key = prof.val().key;
+              }
+            });
+          })
+        }
+
+
+
     }
   }
 </script>

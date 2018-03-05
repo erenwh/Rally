@@ -1,10 +1,15 @@
 <template>
   <div>
     <v-container id="contain" fluid text-xs-center>
+
       <v-layout class="mt-3">
         <v-flex xs3></v-flex>
         <v-flex xs6>
-          <v-card id="card">
+          <v-alert type="success" v-if="sent" :value="true">
+            Invite sent
+          </v-alert>
+          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+          <v-card id="card" v-if="signin">
             <v-toolbar dark color="grey darken-4">
               <div class="text-xs-center">
                 <v-toolbar-title class="white--text">Invite a Friend</v-toolbar-title>
@@ -21,7 +26,7 @@
               <v-btn @click="submit">
                 submit
               </v-btn>
-              <v-btn>clear</v-btn>
+              <v-btn @click="clear">clear</v-btn>
             </div>
           </v-form>
         </v-card>
@@ -33,6 +38,8 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
+import {bus} from '../../main';
   export default {
     data () {
       return {
@@ -40,14 +47,29 @@
         emailRules: [
           (v) => !!v || 'Must have email to send to',
           (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
-        ]
+        ],
+        signin: false,
+        sent: false
       }
     },
     methods: {
       submit() {
         emailjs.send("gmail","template_LOOWuveW",{email: this.email});
+        this.sent = true;
+      },
+      clear() {
+        this.email = '';
       }
 
+    },
+    mounted() {
+      try {
+  			var email = firebase.auth().currentUser.email;
+  			this.signin = true;
+  		}
+  		catch (error) {
+  			this.signin = false;
+  		}
     }
   }
 </script>

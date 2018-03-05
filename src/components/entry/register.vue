@@ -5,7 +5,7 @@
         <v-flex md3 sm1 xs0></v-flex>
         <v-flex md6 sm10 xs12>
           <div id="spacer"></div>
-          <h1 class="mb-3">Sign in</h1>
+          <h1 class="mb-3">Register</h1>
           <v-card id="card" color="grey darken-4">
             <v-container id="contain" fluid text-xs-center>
               <v-layout id="row">
@@ -172,6 +172,7 @@ import * as firebase from 'firebase'
             ref.child('/' + key).update({key: key}).then(function(profile){
               //console.log(profile);
             });
+            bus.$emit('signIn', true);
             bus.$emit('signChange', true);
             this.$router.push('/');
           }).bind(this)).catch((function(error){
@@ -208,6 +209,7 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+          bus.$emit('signIn', true);
           bus.$emit('signChange', true);
           this.$router.push('/');
           // ...
@@ -242,6 +244,7 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+          bus.$emit('signIn', true);
           bus.$emit('signChange', true);
           this.$router.push('/');
           // ...
@@ -276,6 +279,7 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+          bus.$emit('signIn', true);
           // ...
           bus.$emit('signChange', true);
           this.$router.push('/');

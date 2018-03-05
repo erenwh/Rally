@@ -1,8 +1,13 @@
 <template>
   <div>
+
     <v-layout class="mt-3">
-      <v-flex xs12 sm6 offset-sm3>
-        <v-card id="card">
+      <v-flex xs12 sm6 offset-sm3 text-xs-center>
+        <v-alert type="success" v-if="sent" :value="true">
+          Report sent
+        </v-alert>
+        <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+        <v-card id="card" v-if="signin">
           <v-toolbar dark color="grey darken-4">
             <div class="text-xs-center">
               <v-toolbar-title class="white--text">Report a problem</v-toolbar-title>
@@ -40,15 +45,19 @@
 </template>
 
 <script>
+import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
     data () {
       return {
         report: {
           name: '',
-          email: ''
+          email: '',
 
-        }
+
+        },
+        signin: false,
+        sent: false
       }
     },
     methods: {
@@ -57,7 +66,17 @@ import * as firebase from 'firebase'
         var key = ref.push(this.report);
         key = key.path.pieces_[1];
         ref.child('/' + key).update({key: key});
+        this.sent = true;
       }
+    },
+    mounted(){
+      try {
+  			var email = firebase.auth().currentUser.email;
+  			this.signin = true;
+  		}
+  		catch (error) {
+  			this.signin = false;
+  		}
     }
   }
 </script>

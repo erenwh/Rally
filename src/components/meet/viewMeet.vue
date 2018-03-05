@@ -2,8 +2,9 @@
   <div>
     <v-container text-xs-center>
       <v-layout row justify-center>
-        <v-flex xs12 md-8>
-          <v-card class="elevation-4">
+        <v-flex xs12 md8>
+          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+          <v-card class="elevation-4" v-if="signin">
             <v-toolbar dark color="teal darken-4">
               <div class="text-xs-center">
                 <v-toolbar-title class="white--text">{{this.meets.title}}</v-toolbar-title>
@@ -55,6 +56,7 @@
 </template>
 
 <script>
+import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
     data () {
@@ -72,64 +74,78 @@ import * as firebase from 'firebase'
         tags: {},
         organized: false,
         register: false,
-        value: 0
+        value: 0,
+        signin: false
       }
     },
     mounted() {
 
-      var ref = firebase.database().ref('/meets/' + this.key);
+      try {
+        var email = firebase.auth().currentUser.email;
+        this.signin = true;
+      }
+      catch (error) {
+        this.signin = false;
+      }
 
-      ref.once('value').then((snap)=>{
-        //console.log(snap.val());
-        this.meets.pictureUrl = snap.val().imageUrl;
-        this.meets.description = snap.val().description;
-        this.meets.location = snap.val().location;
-        this.meets.date = snap.val().picker;
-        this.meets.time = snap.val().time;
-        this.meets.title = snap.val().title;
-        this.tags = snap.val().tags;
-        this.value = snap.val().number;
-        for(var tag in this.tags){
-          if(this.tags[tag]){
-            this.meets.tagList.push(tag)
-          }
-        }
-        //console.log(this.AtObject.tagList);
-      }).then(()=>{
-        var ref = firebase.database().ref('/profiles');
+      if(this.signin){
+        var ref = firebase.database().ref('/meets/' + this.key);
+
         ref.once('value').then((snap)=>{
-          snap.forEach(profile=>{
-            if(firebase.auth().currentUser.email == profile.val().email) {
-              var ref1 = firebase.database().ref('/profiles/' + profile.val().key + '/registered/');
-
-              ref1.once('value').then((snap)=>{
-                snap.forEach((reg)=>{
-                  if(reg.key === this.key) {
-                    this.register = true;
-                    var ref3 = firebase.database().ref('/profiles/' + profile.val().key + '/registered/' + this.key);
-                    ref3.update({
-                      change: false
-                    });
-                  }
-                });
-              });
-
-              var ref2 = firebase.database().ref('/profiles/' + profile.val().key + '/organized/');
-
-              ref2.once('value').then((snap)=>{
-                snap.forEach((org)=>{
-                  if(org.key === this.key) {
-                    this.organized = true;
-                  }
-                });
-              });
-
-
-
+          //console.log(snap.val());
+          this.meets.pictureUrl = snap.val().imageUrl;
+          this.meets.description = snap.val().description;
+          this.meets.location = snap.val().location;
+          this.meets.date = snap.val().picker;
+          this.meets.time = snap.val().time;
+          this.meets.title = snap.val().title;
+          this.tags = snap.val().tags;
+          this.value = snap.val().number;
+          for(var tag in this.tags){
+            if(this.tags[tag]){
+              this.meets.tagList.push(tag)
             }
+          }
+          //console.log(this.AtObject.tagList);
+        }).then(()=>{
+          var ref = firebase.database().ref('/profiles');
+          ref.once('value').then((snap)=>{
+            snap.forEach(profile=>{
+              if(firebase.auth().currentUser.email == profile.val().email) {
+                var ref1 = firebase.database().ref('/profiles/' + profile.val().key + '/registered/');
+
+                ref1.once('value').then((snap)=>{
+                  snap.forEach((reg)=>{
+                    if(reg.key === this.key) {
+                      this.register = true;
+                      var ref3 = firebase.database().ref('/profiles/' + profile.val().key + '/registered/' + this.key);
+                      ref3.update({
+                        change: false
+                      });
+                    }
+                  });
+                });
+
+                var ref2 = firebase.database().ref('/profiles/' + profile.val().key + '/organized/');
+
+                ref2.once('value').then((snap)=>{
+                  snap.forEach((org)=>{
+                    if(org.key === this.key) {
+                      this.organized = true;
+                    }
+                  });
+                });
+
+
+
+              }
+            });
           });
         });
-      });
+
+      }
+
+
 
 
     },

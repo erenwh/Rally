@@ -4,7 +4,8 @@
       <v-layout>
         <v-flex xs1></v-flex>
         <v-flex xs10>
-          <v-container fluid text-xs-center>
+          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+          <v-container fluid text-xs-center v-if="signin">
             <v-layout row wrap>
               <v-flex xs4 id="col" v-for="(meet, index) in meets" :key="meet.title">
                 <v-card dark color="blue-grey darken-4" class="elevation-7">
@@ -30,52 +31,68 @@
 </template>
 
 <script>
+import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
     data () {
       return {
         register: true,
-        meets: []
+        meets: [],
+        signin: false
       }
     },
     created() {
 
-      var email = firebase.auth().currentUser.email;
-      console.log(email);
-      var ref = firebase.database().ref('/profiles');
-      ref.once('value').then((snap)=>{
-        snap.forEach((prof)=>{
-          if(prof.val().email == email) {
-            console.log(prof.val().key);
-            var meets = [];
-            var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/registered/');
+      try {
+        var email = firebase.auth().currentUser.email;
+        this.signin = true;
+      }
+      catch (error) {
+        this.signin = false;
+      }
 
-            ref1.once('value').then((snap)=>{
-              snap.forEach((reg)=>{
-                var change = false;
-                var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/registered/' + reg.key);
-                ref2.once('value').then((snap)=>{
-                  change = snap.val().change;
-                  //console.log(change);
-                }).then((()=>{
+      if(this.signin){
 
-                  var ref3 = firebase.database().ref('/meets/' + reg.key);
-                  ref3.update({
-                    change: change
-                  });
-                  ref3.once('value').then((meet) => {
-                    meets.push(meet.val());
-                    this.meets = meets;
-                    //console.log(this.meets);
-                  });
-                }).bind(this));
+        console.log(email);
+        var ref = firebase.database().ref('/profiles');
+        ref.once('value').then((snap)=>{
+          snap.forEach((prof)=>{
+            if(prof.val().email == email) {
+              console.log(prof.val().key);
+              var meets = [];
+              var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/registered/');
+
+              ref1.once('value').then((snap)=>{
+                snap.forEach((reg)=>{
+                  var change = false;
+                  var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/registered/' + reg.key);
+                  ref2.once('value').then((snap)=>{
+                    change = snap.val().change;
+                    //console.log(change);
+                  }).then((()=>{
+
+                    var ref3 = firebase.database().ref('/meets/' + reg.key);
+                    ref3.update({
+                      change: change
+                    });
+                    ref3.once('value').then((meet) => {
+                      meets.push(meet.val());
+                      this.meets = meets;
+                      //console.log(this.meets);
+                    });
+                  }).bind(this));
 
 
+                });
               });
-            });
-          }
+            }
+          });
         });
-      });
+
+
+      }
+
+
 
     },
     methods: {

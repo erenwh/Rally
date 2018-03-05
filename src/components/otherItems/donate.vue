@@ -4,7 +4,8 @@
       <v-layout class="mt-3">
         <v-flex xs3></v-flex>
         <v-flex xs6>
-          <v-card id="card">
+					<h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+          <v-card id="card" v-if="signin">
             <v-toolbar dark color="grey darken-4">
               <div class="text-xs-center">
                 <v-toolbar-title class="white--text">Donate</v-toolbar-title>
@@ -49,7 +50,9 @@
 </template>
 
 <script>
+
 import PayPal from 'vue-paypal-checkout'
+import * as firebase from 'firebase'
 export default {
   data () {
     return {
@@ -58,7 +61,8 @@ export default {
     		production: "AbtDPSNtzICNnGM8bUNsubnepnbz6nFD5XX8qeJpGW83XspYaBzK0B8eLFLebQYKOB_CDGg6MHoWBS6C",
  		  },
  		  show: true,
-      amount: ''
+      amount: '',
+			signin: false
     }
   },
   methods: {
@@ -74,7 +78,17 @@ export default {
   },
   components: {
   	PayPal
-  }
+  },
+	mounted() {
+		try {
+			var email = firebase.auth().currentUser.email;
+			this.signin = true;
+		}
+		catch (error) {
+			this.signin = false;
+		}
+
+	}
 }
 </script>
 
