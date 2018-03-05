@@ -31,10 +31,12 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * [Project Charter](https://docs.google.com/document/d/15cPtRO2IZSlIIbxQIAzjKdeMH3HEPMQaVLZzSb-WlRo/edit?usp=sharing)
 * [Product Backlog](https://docs.google.com/document/d/1hjHZlZ0oMQMrNIRGFWsC3MCapC_0nXZfwV9oZpfptUo/edit?usp=sharing)
 * [Product Test Plan](https://docs.google.com/document/d/1c50bXMDoKWstFJ7nP9LG9DRZufbCH9ee3ijX7JdtxfM/edit?usp=sharing)
+* [Sprint 1 Design & Unit Testing] (https://docs.google.com/document/d/1ilSs19kYYj-ziZVYRCOkWBcdP84RLxrOD2POnWN3qPA/edit?usp=sharing)
 * [Incremental and Regression Testing](https://docs.google.com/document/d/1wDnaLlY_f6zHJnyPWvA7QEnW2hm_O4oRgNxLVnpbj9U/edit?usp=sharing)
+* [Sprint 2 Design & Unit Testing](https://docs.google.com/document/d/1NUlvD6_r_q15MS6FdWKLbD6qNP471b_en-5xNq40QD0/edit?usp=sharing)
 
 
 ## Update
-* As of Feb 18, 2018, The product backlog has been updated.
+* As of Feb 27, 2018, The product backlog has been updated.
 * As of Feb 18, 2018, [The automated software testing](https://github.com/erenwh/Rally/tree/test-han) using Karma has started
-  * testing covers sprint1(signup, signin modules)
+  * testing covers sprint1(signup, signin modules) and sprint2(signup, signin, invite, report, ...)
