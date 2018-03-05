@@ -7,8 +7,8 @@
 
           <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
 
-          <v-card>
-            <v-toolbar dark color="grey darken-4" v-if="signin">
+          <v-card v-if="signin">
+            <v-toolbar dark color="grey darken-4" >
               <v-toolbar-title class="white--text">Account Information</v-toolbar-title>
             </v-toolbar>
             <v-container fluid text-xs-center>
