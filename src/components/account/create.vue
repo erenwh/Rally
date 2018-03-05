@@ -125,38 +125,46 @@ import {bus} from '../../main';
     },
     methods: {
       submit() {
-        var ref = firebase.database().ref('/meets');
-        var key = ref.push(this.meet);
-        key = key.path.pieces_[1];
-        ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
-        //upload picture
-          var filename = this.image.name;
-          var ext = filename.slice(filename.lastIndexOf('.'));
-          var temp = firebase.storage().ref('/meets/' + key + '.' + ext);
-          temp.put(this.image).then((snap)=>{
-            console.log(snap);
-            this.imageUrl = snap.downloadURL;
-          }).then(()=>{
-            console.log(this.imageUrl);
+        //console.log(this.meet.title);
+        //console.log(this.meet.description);
+        if(this.meet.title === '' || this.meet.description === ''){
+          //console.log('invalidMeet');
+          this.meet.title = 'Please Fill out Form Properly'; //alert here instead?
+        }
+        else {
+          var ref = firebase.database().ref('/meets');
+          var key = ref.push(this.meet);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
+          //upload picture
+            var filename = this.image.name;
+            var ext = filename.slice(filename.lastIndexOf('.'));
+            var temp = firebase.storage().ref('/meets/' + key + '.' + ext);
+            temp.put(this.image).then((snap)=>{
+              console.log(snap);
+              this.imageUrl = snap.downloadURL;
+            }).then(()=>{
+              console.log(this.imageUrl);
 
-            ref = firebase.database().ref("/meets/" + key);
-            ref.update({imageUrl: this.imageUrl});
+              ref = firebase.database().ref("/meets/" + key);
+              ref.update({imageUrl: this.imageUrl});
+            });
           });
-        });
 
-        var email = firebase.auth().currentUser.email;
-        var ref1 = firebase.database().ref('/profiles');
-        ref1.once('value').then((snap)=>{
-          snap.forEach((prof)=>{
-            if (prof.val().email == email) {
-              var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
-              ref2.child('/' + key).update({key: key}).then(function(profile){
-              });
-            }
-            this.$router.push('/');
-          });
-        })
-        this.$router.push('/');
+          var email = firebase.auth().currentUser.email;
+          var ref1 = firebase.database().ref('/profiles');
+          ref1.once('value').then((snap)=>{
+            snap.forEach((prof)=>{
+              if (prof.val().email == email) {
+                var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
+                ref2.child('/' + key).update({key: key}).then(function(profile){
+                });
+              }
+              this.$router.push('/');
+            });
+          })
+          this.$router.push('/');
+        }
       },
       onPickFile(){
         this.$refs.fileInput.click();
