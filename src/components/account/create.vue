@@ -125,6 +125,10 @@ import {bus} from '../../main';
     },
     methods: {
       submit() {
+        if(description === ''){
+          console.log("must enter something");
+          return;
+        }
         var ref = firebase.database().ref('/meets');
         var key = ref.push(this.meet);
         key = key.path.pieces_[1];

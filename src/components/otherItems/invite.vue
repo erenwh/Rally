@@ -15,7 +15,7 @@
                 <v-toolbar-title class="white--text">Invite a Friend</v-toolbar-title>
               </div>
             </v-toolbar>
-          <v-form class="ma-3 pa-3">
+          <v-form class="ma-3 pa-3" v-model="valid" lazy-validation @submit.prevent="submit">
             <v-text-field
               label="E-mail"
               v-model="email"
@@ -46,8 +46,9 @@ import {bus} from '../../main';
         email: '',
         emailRules: [
           (v) => !!v || 'Must have email to send to',
-          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid'
         ],
+        valid: true,
         signin: false,
         sent: false
       }
