@@ -1,4 +1,8 @@
+// For authoring Nightwatch tests, see
+// http://nightwatchjs.org/guide#usage
+
 module.exports = {
+
   'Test if register works' :client => {
     client
     .url('http://localhost:8080/register')
@@ -29,5 +33,4 @@ module.exports = {
     .pause(5000)
     .end();
   }
-
 }
