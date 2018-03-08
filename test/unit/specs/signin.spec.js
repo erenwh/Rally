@@ -38,10 +38,10 @@ describe('signin.vue', () => {
             }*/
         }).$mount();
         //insert information
-        signinComponent.username = 'john';
+        //signinComponent.username = 'john';
         signinComponent.email = 'john@john.com';
         signinComponent.password = 'johnjohn';
-        signinComponent.Conpassword = 'johnjohn';
+        //signinComponent.Conpassword = 'johnjohn';
         
         //expect(signinComponent.$el.textContent).to.contain('john');
         //expect(signinComponent.$el.textContent).to.contain('john@john.com');
@@ -52,7 +52,7 @@ describe('signin.vue', () => {
         const clickEvent = new window.Event('click');
         button.dispatchEvent(clickEvent);
         signinComponent._watcher.run();
-        expect(signinComponent.username).to.contain('john');
         expect(signinComponent.email).to.contain('john@john.com');
+        expect(signinComponent.password).to.contain('johnjohn');
     })
 })

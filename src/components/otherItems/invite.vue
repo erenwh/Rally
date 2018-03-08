@@ -56,7 +56,7 @@ import {bus} from '../../main';
     methods: {
       submit() {
         emailjs.send("gmail","template_LOOWuveW",{email: this.email});
-        this.sent = true;
+        if (this.valid) this.sent = true;
       },
       clear() {
         this.email = '';

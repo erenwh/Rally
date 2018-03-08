@@ -39,6 +39,7 @@ describe('register.vue', () => {
         }).$mount();
         //insert information
         registerComponent.username = 'john';
+        registerComponent.dob = '12/12/12';
         registerComponent.email = 'john@john.com';
         registerComponent.password = 'johnjohn';
         registerComponent.Conpassword = 'johnjohn';
@@ -53,6 +54,9 @@ describe('register.vue', () => {
         button.dispatchEvent(clickEvent);
         registerComponent._watcher.run();
         expect(registerComponent.username).to.contain('john');
+        expect(registerComponent.dob).to.contain('12/12/12');
         expect(registerComponent.email).to.contain('john@john.com');
+        expect(registerComponent.password).to.contain('johnjohn');
+        expect(registerComponent.Conpassword).to.contain('johnjohn');
     })
 })
