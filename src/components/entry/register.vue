@@ -1,11 +1,11 @@
 <template>
-  <div id="time">
+  <div id="register">
     <v-container id="contain" fluid text-xs-center>
       <v-layout id="row">
         <v-flex md3 sm1 xs0></v-flex>
         <v-flex md6 sm10 xs12>
           <div id="spacer"></div>
-          <h1 class="mb-3">Register</h1>
+          <h1 class="mb-3">Sign in</h1>
           <v-card id="card" color="grey darken-4">
             <v-container id="contain" fluid text-xs-center>
               <v-layout id="row">
@@ -17,7 +17,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs12 md=4>
-                  <v-btn @click="fb" id="btn" color="indigo darken-2" class="white--text">
+                  <v-btn @click="fb" id="btn" name="facebook" color="indigo darken-2" class="white--text">
                     <facebook-box id="fb"/>
                     Facebook
                   </v-btn>
@@ -39,7 +39,7 @@
                 <v-flex xs2 ></v-flex>
                 <v-flex xs8>
                   <h4 class="mb-3 mt-3 white--text">Or Register with...</h4>
-                  <v-alert type="error" :value="value">
+                  <v-alert id="alert" type="error" :value="value">
                     {{this.error}}
                   </v-alert>
                 </v-flex>
@@ -52,6 +52,7 @@
                     <v-text-field
                       label="Username"
                       color="white"
+                      name="userName"
                       box
                       dark
                       v-model="username"
@@ -64,6 +65,7 @@
                       color="white"
                       box
                       dark
+                      name="dob"
                       v-model="dob"
                       :rules="dobRules"
                       required
@@ -72,6 +74,7 @@
                       label="E-mail"
                       dark
                       box
+                      name="email"
                       color="white"
                       v-model="email"
                       :rules="emailRules"
@@ -82,6 +85,7 @@
                       dark
                       box
                       color="white"
+                      name="pass"
                       v-model="password"
                       :rules="passwordRules"
                       type="password"
@@ -92,6 +96,7 @@
                       dark
                       box
                       color="white"
+                      name="compass"
                       v-model="Conpassword"
                       type="password"
                       required
@@ -172,7 +177,6 @@ import * as firebase from 'firebase'
             ref.child('/' + key).update({key: key}).then(function(profile){
               //console.log(profile);
             });
-            bus.$emit('signIn', true);
             bus.$emit('signChange', true);
             this.$router.push('/');
           }).bind(this)).catch((function(error){
@@ -209,7 +213,6 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
-          bus.$emit('signIn', true);
           bus.$emit('signChange', true);
           this.$router.push('/');
           // ...
@@ -244,7 +247,6 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
-          bus.$emit('signIn', true);
           bus.$emit('signChange', true);
           this.$router.push('/');
           // ...
@@ -279,7 +281,6 @@ import * as firebase from 'firebase'
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
-          bus.$emit('signIn', true);
           // ...
           bus.$emit('signChange', true);
           this.$router.push('/');

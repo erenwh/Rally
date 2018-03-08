@@ -72,16 +72,12 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn id="sub" class="green accent-4" @click="submit">Log In</v-btn>
+                  <v-btn class="green accent-4" @click="submit">Log In</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="white" @click="forgot">Forgot Password</v-btn>
                 </v-flex>
               </v-layout>
-              <p class="white--text mt-4">
-                Haven't Registered yet?
-              </p>
-              <v-btn class="white" to="/register">Register</v-btn>
             </v-container>
           </v-card>
         </v-flex>
@@ -107,7 +103,6 @@ import * as firebase from 'firebase'
     },
     methods: {
       submit() {
-        bus.$emit('signIn', true);
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((function(user){
               console.log(firebase.auth().currentUser);
               bus.$emit('signChange', true);
@@ -116,7 +111,6 @@ import * as firebase from 'firebase'
               this.value = true;
               console.log("caught error: " + error);
         }).bind(this));
-
       },
       forgot() {
         firebase.auth().sendPasswordResetEmail(this.email).then(()=>{
@@ -126,7 +120,6 @@ import * as firebase from 'firebase'
         });
       },
       fb() {
-
         var provider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(provider).then((function(result) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -135,7 +128,6 @@ import * as firebase from 'firebase'
           var user = result.user;
 
           // ...
-
           bus.$emit('signChange', true);
           this.$router.push('/');
         }).bind(this)).catch(function(error) {
@@ -156,7 +148,6 @@ import * as firebase from 'firebase'
           var user = result.user;
           console.log(firebase.auth().currentUser);
           console.log(user);
-          bus.$emit('signIn', true);
           bus.$emit('signChange', true);
           this.$router.push('/');
           }).bind(this)).catch(function(error) {
@@ -175,7 +166,6 @@ import * as firebase from 'firebase'
           var user = result.user;
           console.log(firebase.auth().currentUser);
           console.log(user);
-          bus.$emit('signIn', true);
           bus.$emit('signChange', true);
           this.$router.push('/');
           }).bind(this)).catch(function(error) {

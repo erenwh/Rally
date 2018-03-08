@@ -4,8 +4,7 @@
       <v-layout class="mt-3">
         <v-flex xs2></v-flex>
         <v-flex xs8>
-          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
-          <v-card id="card" v-if="signin">
+          <v-card id="card">
             <v-toolbar dark color="grey darken-4">
               <div class="text-xs-center">
                 <v-toolbar-title class="white--text">Organize a meet up</v-toolbar-title>
@@ -96,7 +95,6 @@
 
 <script>
 import * as firebase from 'firebase'
-import {bus} from '../../main';
   export default {
     data () {
       return {
@@ -119,52 +117,42 @@ import {bus} from '../../main';
         image: null,
         imageUrl: '',
         email: '',
-        key: '',
-        signin: false
+        key: ''
       }
     },
     methods: {
       submit() {
-        //console.log(this.meet.title);
-        //console.log(this.meet.description);
-        if(this.meet.title === '' || this.meet.description === ''){
-          //console.log('invalidMeet');
-          this.meet.title = 'Please Fill out Form Properly'; //alert here instead?
-        }
-        else {
-          var ref = firebase.database().ref('/meets');
-          var key = ref.push(this.meet);
-          key = key.path.pieces_[1];
-          ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
-          //upload picture
-            var filename = this.image.name;
-            var ext = filename.slice(filename.lastIndexOf('.'));
-            var temp = firebase.storage().ref('/meets/' + key + '.' + ext);
-            temp.put(this.image).then((snap)=>{
-              console.log(snap);
-              this.imageUrl = snap.downloadURL;
-            }).then(()=>{
-              console.log(this.imageUrl);
+        var ref = firebase.database().ref('/meets');
+        var key = ref.push(this.meet);
+        key = key.path.pieces_[1];
+        ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
+        //upload picture
+          var filename = this.image.name;
+          var ext = filename.slice(filename.lastIndexOf('.'));
+          var temp = firebase.storage().ref('/meets/' + key + '.' + ext);
+          temp.put(this.image).then((snap)=>{
+            console.log(snap);
+            this.imageUrl = snap.downloadURL;
+          }).then(()=>{
+            console.log(this.imageUrl);
 
-              ref = firebase.database().ref("/meets/" + key);
-              ref.update({imageUrl: this.imageUrl});
-            });
+            ref = firebase.database().ref("/meets/" + key);
+            ref.update({imageUrl: this.imageUrl});
           });
+        });
 
-          var email = firebase.auth().currentUser.email;
-          var ref1 = firebase.database().ref('/profiles');
-          ref1.once('value').then((snap)=>{
-            snap.forEach((prof)=>{
-              if (prof.val().email == email) {
-                var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
-                ref2.child('/' + key).update({key: key}).then(function(profile){
-                });
-              }
-              this.$router.push('/');
-            });
-          })
-          this.$router.push('/');
-        }
+        var email = firebase.auth().currentUser.email;
+        var ref1 = firebase.database().ref('/profiles');
+        ref1.once('value').then((snap)=>{
+          snap.forEach((prof)=>{
+            if (prof.val().email == email) {
+              var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
+              ref2.child('/' + key).update({key: key}).then(function(profile){
+              });
+            }
+          });
+        })
+
       },
       onPickFile(){
         this.$refs.fileInput.click();
@@ -184,29 +172,16 @@ import {bus} from '../../main';
       }
     },
     mounted(){
-
-        try {
-          var email = firebase.auth().currentUser.email;
-          this.signin = true;
-        }
-        catch (error) {
-          this.signin = false;
-        }
-
-        if(this.signin){
-          var ref = firebase.database().ref('/profiles');
-          ref.once('value').then((snap)=>{
-            snap.forEach((prof)=>{
-              if (prof.val().email == email) {
-                this.email = prof.val().email;
-                this.key = prof.val().key;
-              }
-            });
-          })
-        }
-
-
-
+      var email = firebase.auth().currentUser.email;
+      var ref = firebase.database().ref('/profiles');
+      ref.once('value').then((snap)=>{
+        snap.forEach((prof)=>{
+          if (prof.val().email == email) {
+            this.email = prof.val().email;
+            this.key = prof.val().key;
+          }
+        });
+      })
     }
   }
 </script>

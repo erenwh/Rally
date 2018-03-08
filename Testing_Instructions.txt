@@ -1,0 +1,5 @@
+Commands to run:
+
+1. selenium-standalone start
+2. npm run dev
+3. nightwatch

@@ -110,11 +110,7 @@ import {bus} from '../../main';
     created() {
       bus.$on('signChange', (data) => {
         this.signin = data;
-
-      });
-
-
-
+      })
     },
     methods: {
       otherItem(data) {
@@ -124,7 +120,6 @@ import {bus} from '../../main';
           this.sideNav = false;
           firebase.auth().signOut().then((function() {
             this.$router.push("/");
-            location.reload();
             console.log('Signed Out');
           }).bind(this));
 

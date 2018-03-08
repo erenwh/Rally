@@ -4,8 +4,7 @@
       <v-layout>
         <v-flex xs1></v-flex>
         <v-flex xs10>
-          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
-          <v-container fluid text-xs-center v-if="signin">
+          <v-container fluid text-xs-center>
             <v-layout row wrap>
               <v-flex xs4 id="col" v-for="(meet, index) in meets" :key="meet.title">
                 <v-card dark color="blue-grey darken-4" class="elevation-7">
@@ -81,56 +80,42 @@
 </template>
 
 <script>
-import {bus} from '../../main';
 import * as firebase from 'firebase'
   export default {
     data () {
       return {
         register: true,
         meets: [],
-        dialog: false,
-        signin: false
+        dialog: false
       }
     },
     created() {
 
-      try {
-        var email = firebase.auth().currentUser.email;
-        this.signin = true;
-      }
-      catch (error) {
-        this.signin = false;
-      }
+      var email = firebase.auth().currentUser.email;
+      console.log(email);
+      var ref = firebase.database().ref('/profiles');
+      ref.once('value').then((snap)=>{
+        snap.forEach((prof)=>{
+          if(prof.val().email == email) {
+            console.log(prof.val().key);
+            //this.userKey = prof.val().key;
 
+            var meets = [];
+            var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/organized/');
 
-      if(this.signin){
-        var ref = firebase.database().ref('/profiles');
-        ref.once('value').then((snap)=>{
-          snap.forEach((prof)=>{
-            if(prof.val().email == email) {
-              console.log(prof.val().key);
-              //this.userKey = prof.val().key;
-
-              var meets = [];
-              var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/organized/');
-
-              ref1.once('value').then((snap)=>{
-                snap.forEach((org)=>{
-                  var ref3 = firebase.database().ref('/meets/' + org.key);
-                  ref3.once('value').then((meet) => {
-                    meets.push(meet.val());
-                    this.meets = meets;
-                    console.log(this.meets);
-                  });
+            ref1.once('value').then((snap)=>{
+              snap.forEach((org)=>{
+                var ref3 = firebase.database().ref('/meets/' + org.key);
+                ref3.once('value').then((meet) => {
+                  meets.push(meet.val());
+                  this.meets = meets;
+                  console.log(this.meets);
                 });
               });
-            }
-          });
+            });
+          }
         });
-
-
-      }
-
+      });
 
     },
     methods: {

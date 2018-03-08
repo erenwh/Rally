@@ -4,11 +4,8 @@
       <v-layout>
         <v-flex md2></v-flex>
         <v-flex xs12 md8>
-
-          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
-
-          <v-card v-if="signin">
-            <v-toolbar dark color="grey darken-4" >
+          <v-card>
+            <v-toolbar dark color="grey darken-4">
               <v-toolbar-title class="white--text">Account Information</v-toolbar-title>
             </v-toolbar>
             <v-container fluid text-xs-center>
@@ -63,12 +60,12 @@
               </v-layout>
               <v-layout v-if="!edit">
                 <v-flex xs12>
-                  <v-btn id="edit" @click="editing" dark color="grey darken-4">Edit Information</v-btn>
+                  <v-btn @click="editing" dark color="grey darken-4">Edit Information</v-btn>
                 </v-flex>
               </v-layout>
               <v-layout v-if="edit">
                 <v-flex xs4>
-                  <v-btn id="save" @click="save" dark color="green accent-4">Save</v-btn>
+                  <v-btn @click="save" dark color="green accent-4">Save</v-btn>
                 </v-flex>
                 <v-flex xs4>
                   <v-btn @click="cancel" dark color="red accent-4">Cancel</v-btn>
@@ -99,38 +96,24 @@ import {bus} from '../../main';
         dob: '',
         disabled: true,
         image: null,
-        imageUrl: '',
-        signin: false
+        imageUrl: ''
       }
     },
-    created(){
+    mounted(){
+      var email = firebase.auth().currentUser.email;
+      var ref = firebase.database().ref('/profiles');
+      ref.once('value').then((snap)=>{
+        snap.forEach((prof)=>{
+          if (prof.val().email == email) {
+            this.email = prof.val().email;
+            this.username = prof.val().username;
+            this.dob = prof.val().dob;
+            this.key = prof.val().key;
+            this.imageUrl = prof.val().imageUrl;
 
-        try {
-          var email = firebase.auth().currentUser.email;
-          this.signin = true;
-        }
-        catch (error) {
-          this.signin = false;
-        }
-
-        if(this.signin){
-          var ref = firebase.database().ref('/profiles');
-          ref.once('value').then((snap)=>{
-            snap.forEach((prof)=>{
-              if (prof.val().email == email) {
-                this.email = prof.val().email;
-                this.username = prof.val().username;
-                this.dob = prof.val().dob;
-                this.key = prof.val().key;
-                this.imageUrl = prof.val().imageUrl;
-
-              }
-            });
-          });
-        }
-
-
-
+          }
+        });
+      })
     },
     methods: {
       editing() {
