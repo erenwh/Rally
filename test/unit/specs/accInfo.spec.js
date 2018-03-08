@@ -1,6 +1,8 @@
 import accInfo from '@/components/account/accInfo';
 import Vue from 'vue';
 
+import signin from '@/components/entry/signin';
+
 describe('accInfo.vue', () => {
 
     it('has an editing function', () => {
@@ -34,7 +36,28 @@ describe('accInfo.vue', () => {
         assert.typeOf(accInfoComponent.onFilePicked, 'function');
     })
   
-    it('tests form input and submit button click', () => {
+    it('tests edit info button click, username form input, and save button click', () => {
+        //make sure to always signin since we have url manipulation blocks
+        const Constructor0 = Vue.extend(signin);
+        const signinComponent = new Constructor0({
+            /*data() {
+                username: 'john';
+                email: 'john@john.com';
+                password: 'johnjohn';
+                Conpassword: 'johnjohn';
+            }*/
+        }).$mount();
+        signinComponent.email = 'john@john.com';
+        signinComponent.password = 'johnjohn';
+        
+        // buttons: 1st facebook, 2nd google, 3rd twitter, 4th submit
+        const button = signinComponent.$el.querySelectorAll('button')[3];
+        const clickEvent = new window.Event('click');
+        button.dispatchEvent(clickEvent);
+        signinComponent._watcher.run();
+        //end of signin
+
+        //beginning of account info
         const Constructor = Vue.extend(accInfo);
         const accInfoComponent = new Constructor({
             /*data() {
@@ -44,22 +67,25 @@ describe('accInfo.vue', () => {
                 Conpassword: 'johnjohn';
             }*/
         }).$mount();
-        //insert information
-        //accInfoComponent.username = 'john';
-        accInfoComponent.email = 'john@john.com';
-        accInfoComponent.password = 'johnjohn';
-        //accInfoComponent.Conpassword = 'johnjohn';
-        
-        //expect(accInfoComponent.$el.textContent).to.contain('john');
-        //expect(accInfoComponent.$el.textContent).to.contain('john@john.com');
         
         // simulate click event
-        // buttons: 1st facebook, 2nd google, 3rd twitter, 4th submit
-        const button = accInfoComponent.$el.querySelectorAll('button')[3];
-        const clickEvent = new window.Event('click');
-        button.dispatchEvent(clickEvent);
+        // click edit info button
+        const buttonEdit = accInfoComponent.$el.querySelector('button');
+        const click = new window.Event('click');
+        buttonEdit.dispatchEvent(click);
         accInfoComponent._watcher.run();
-        expect(accInfoComponent.email).to.contain('john@john.com');
-        expect(accInfoComponent.password).to.contain('johnjohn');
+        //done clicking
+        
+        //put in username
+        accInfoComponent.username = 'john';
+        
+        // click edit save button
+        const buttonSave = accInfoComponent.$el.querySelectorAll('button')[0];
+        buttonSave.dispatchEvent(click);
+        accInfoComponent._watcher.run();
+        //done clicking
+
+        //username should be in data
+        expect(accInfoComponent.username).to.contain('john');
     })
 })
