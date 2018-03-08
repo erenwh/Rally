@@ -72,7 +72,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn class="green accent-4" @click="submit">Log In</v-btn>
+                  <v-btn id="sub" class="green accent-4" @click="submit">Log In</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="white" @click="forgot">Forgot Password</v-btn>

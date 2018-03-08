@@ -63,12 +63,12 @@
               </v-layout>
               <v-layout v-if="!edit">
                 <v-flex xs12>
-                  <v-btn @click="editing" dark color="grey darken-4">Edit Information</v-btn>
+                  <v-btn id="edit" @click="editing" dark color="grey darken-4">Edit Information</v-btn>
                 </v-flex>
               </v-layout>
               <v-layout v-if="edit">
                 <v-flex xs4>
-                  <v-btn @click="save" dark color="green accent-4">Save</v-btn>
+                  <v-btn id="save" @click="save" dark color="green accent-4">Save</v-btn>
                 </v-flex>
                 <v-flex xs4>
                   <v-btn @click="cancel" dark color="red accent-4">Cancel</v-btn>
