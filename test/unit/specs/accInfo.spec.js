@@ -8,7 +8,7 @@ describe('accInfo.vue', () => {
     it('has an editing function', () => {
         const Constructor = Vue.extend(accInfo);
         const accInfoComponent = new Constructor().$mount();
-        assert.typeOf(accInfoComponent.editing, 'function');
+        assert.typeOf(accInfoComponent.edit, 'function');
     })
 
     it('has a save function', () => {
