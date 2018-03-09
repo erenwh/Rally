@@ -50,10 +50,10 @@
                 <v-flex xs8>
                   <v-form v-model="valid">
                     <v-text-field
+                      name="email"
                       label="E-mail"
                       dark
                       box
-                      name="email"
                       color="white"
                       v-model="email"
                       required
@@ -75,7 +75,9 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
+
                   <v-btn id="loginBTN" class="green accent-4" @click="submit">Log In</v-btn>
+
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="white" @click="forgot">Forgot Password</v-btn>
