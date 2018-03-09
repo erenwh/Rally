@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/account/orgMeets.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/components/account/</a> orgMeets.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/36</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/36</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;div&gt;
+    &lt;v-container fluid text-xs-center&gt;
+      &lt;v-layout&gt;
+        &lt;v-flex xs1&gt;&lt;/v-flex&gt;
+        &lt;v-flex xs10&gt;
+          &lt;h1 v-if="!signin" class="mb-3"&gt;Please Log in first!!&lt;/h1&gt;
+          &lt;v-container fluid text-xs-center v-if="signin"&gt;
+            &lt;v-layout row wrap&gt;
+              &lt;v-flex xs4 id="col" v-for="(meet, index) in meets" :key="meet.title"&gt;
+                &lt;v-card dark color="blue-grey darken-4" class="elevation-7"&gt;
+                  &lt;v-toolbar id="tool" dark color="grey darken-4"&gt;
+                    &lt;v-toolbar-title class="white--text" @click="clicked(meet)"&gt;{{ meet.title }}&lt;/v-toolbar-title&gt;
+                  &lt;/v-toolbar&gt;
+                  &lt;img class="elevation-7" id="img" :src="meet.imageUrl" @click="clicked(meet)"/&gt;
+                  &lt;h3 class="ma-3"&gt;{{ meet.picker }}&lt;/h3&gt;
+                  &lt;h3 class="ma-3"&gt;{{ meet.time }}&lt;/h3&gt;
+&nbsp;
+                  &lt;!--Modal from here--&gt;
+                  &lt;v-dialog v-model="dialog" persistent max-width="500px"&gt;
+                    &lt;v-btn color="primary" class="mb-3" dark slot="activator"&gt;Edit&lt;/v-btn&gt;
+                    &lt;v-card&gt;
+                      &lt;v-card-title&gt;
+                        &lt;span class="headline"&gt;Edit Event&lt;/span&gt;
+                      &lt;/v-card-title&gt;
+                      &lt;v-card-text&gt;
+                        &lt;v-container grid-list-md&gt;
+                          &lt;v-layout wrap&gt;
+                            &lt;v-flex xs12&gt;
+                              &lt;v-text-field
+                                label="Add a description"
+                                multi-line
+                                required
+                                v-model="meet.description"
+                                color = "black"
+                              &gt;&lt;/v-text-field&gt;
+                            &lt;/v-flex&gt;
+                            &lt;v-flex xs12&gt;
+                              &lt;v-text-field
+                                label="Location"
+                                required
+                                v-model="meet.location"
+                                color = "black"
+                              &gt;&lt;/v-text-field&gt;
+                            &lt;/v-flex&gt;
+                            &lt;v-flex xs12&gt;
+                              &lt;v-text-field
+                                label="Date"
+                                required
+                                v-model="meet.picker"
+                                color = "black"
+                              &gt;&lt;/v-text-field&gt;
+                            &lt;/v-flex&gt;
+                            &lt;v-flex xs12&gt;
+                              &lt;v-text-field
+                                label="Time"
+                                required
+                                v-model="meet.time"
+                                color = "black"
+                              &gt;&lt;/v-text-field&gt;
+                            &lt;/v-flex&gt;
+                          &lt;/v-layout&gt;
+                        &lt;/v-container&gt;
+                      &lt;/v-card-text&gt;
+                      &lt;v-card-actions&gt;
+                        &lt;v-spacer&gt;&lt;/v-spacer&gt;
+                        &lt;v-btn color="blue darken-1" flat @click.native="dialog = false"&gt;Close&lt;/v-btn&gt;
+                        &lt;v-btn color="blue darken-1" @click="save(meet)" flat&gt;Save&lt;/v-btn&gt;
+                      &lt;/v-card-actions&gt;
+                    &lt;/v-card&gt;
+                  &lt;/v-dialog&gt;
+                &lt;/v-card&gt;
+              &lt;/v-flex&gt;
+            &lt;/v-layout&gt;
+          &lt;/v-container&gt;
+        &lt;/v-flex&gt;
+        &lt;v-flex xs1&gt;&lt;/v-flex&gt;
+      &lt;/v-layout&gt;
+    &lt;/v-container&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+import {bus} from '../../main';
+import * as firebase from 'firebase'
+  export default {
+    data () {
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        register: true,
+        meets: [],
+        dialog: false,
+        signin: false
+      }
+    },
+    created() {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      try {</span>
+        var email = <span class="cstat-no" title="statement not covered" >firebase.auth().currentUser.email;</span>
+<span class="cstat-no" title="statement not covered" >        this.signin = true;</span>
+      }
+      catch (error) {
+<span class="cstat-no" title="statement not covered" >        this.signin = false;</span>
+      }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if(this.signin){</span>
+        var ref = <span class="cstat-no" title="statement not covered" >firebase.database().ref('/profiles');</span>
+<span class="cstat-no" title="statement not covered" >        ref.once('value').then((snap)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >          snap.forEach((prof)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >            if(prof.val().email == email) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log(prof.val().key);</span>
+              //this.userKey = prof.val().key;
+&nbsp;
+              var meets = <span class="cstat-no" title="statement not covered" >[];</span>
+              var ref1 = <span class="cstat-no" title="statement not covered" >firebase.database().ref('/profiles/' + prof.val().key + '/organized/');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              ref1.once('value').then((snap)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >                snap.forEach((org)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+                  var ref3 = <span class="cstat-no" title="statement not covered" >firebase.database().ref('/meets/' + org.key);</span>
+<span class="cstat-no" title="statement not covered" >                  ref3.once('value').then((meet) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >                    meets.push(meet.val());</span>
+<span class="cstat-no" title="statement not covered" >                    this.meets = meets;</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(this.meets);</span>
+                  });
+                });
+              });
+            }
+          });
+        });
+&nbsp;
+&nbsp;
+      }
+&nbsp;
+&nbsp;
+    },
+    methods: {
+      clicked(meet) {
+<span class="cstat-no" title="statement not covered" >        this.$router.push('/viewmeet/' + meet.key);</span>
+      },
+      save(meet) {
+        var ref = <span class="cstat-no" title="statement not covered" >firebase.database().ref('/meets/' + meet.key);</span>
+<span class="cstat-no" title="statement not covered" >        ref.update({</span>
+          description: meet.description,
+          location: meet.location,
+          picker: meet.picker,
+          time: meet.time
+        });
+&nbsp;
+        var email = <span class="cstat-no" title="statement not covered" >firebase.auth().currentUser.email;</span>
+<span class="cstat-no" title="statement not covered" >        console.log(email);</span>
+        var ref = <span class="cstat-no" title="statement not covered" >firebase.database().ref('/profiles');</span>
+<span class="cstat-no" title="statement not covered" >        ref.once('value').then((snap)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >          snap.forEach((prof)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >            console.log(prof.val().key);</span>
+            var ref1 = <span class="cstat-no" title="statement not covered" >firebase.database().ref('/profiles/' + prof.val().key + '/registered/');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            ref1.once('value').then((snap)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >              snap.forEach((reg)=&gt;<span class="fstat-no" title="function not covered" >{</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if(reg.key === meet.key){</span>
+&nbsp;
+                  var ref3 = <span class="cstat-no" title="statement not covered" >firebase.database().ref('/profiles/' + prof.val().key + '/registered/' + reg.key);</span>
+<span class="cstat-no" title="statement not covered" >                  ref3.update({</span>
+                    change: true
+                  });
+                }
+&nbsp;
+&nbsp;
+              });
+            });
+          });
+        });
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.dialog = false;</span>
+      }
+    }
+  }
+&lt;/script&gt;
+&nbsp;
+&nbsp;
+&lt;style scoped&gt;
+#img {
+  width: 100%;
+  cursor: pointer;
+}
+&nbsp;
+#col {
+  padding: 20px 20px 20px 20px;
+&nbsp;
+}
+&nbsp;
+#tool {
+  cursor: pointer;
+}
+&nbsp;
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 08 2018 16:50:57 GMT-0500 (EST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
