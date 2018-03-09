@@ -1,5 +1,5 @@
 <template>
-  <div id="time">
+  <div id="signin">
     <v-container id="contain" fluid text-xs-center>
       <v-layout id="row">
         <v-flex md3 sm1 xs0></v-flex>
@@ -50,6 +50,7 @@
                 <v-flex xs8>
                   <v-form v-model="valid">
                     <v-text-field
+                      name="email"
                       label="E-mail"
                       dark
                       box
@@ -58,6 +59,7 @@
                       required
                     ></v-text-field>
                     <v-text-field
+                    name="pass"
                       label="Password"
                       dark
                       box
@@ -72,7 +74,7 @@
               </v-layout>
               <v-layout id="row">
                 <v-flex xs6>
-                  <v-btn class="green accent-4" @click="submit">Log In</v-btn>
+                  <v-btn id="signinBTN" class="green accent-4" @click="submit">Log In</v-btn>
                 </v-flex>
                 <v-flex xs6>
                   <v-btn class="white" @click="forgot">Forgot Password</v-btn>
