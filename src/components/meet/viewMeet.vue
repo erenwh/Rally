@@ -29,7 +29,7 @@
             <p class="ma-3">{{this.meets.time}}</p>
             <v-divider></v-divider>
             <div v-if="register">
-              <v-btn id="registerBTN" class="ma-3" dark color="red accent-4" @click="unregistered">Unregister</v-btn>
+              <v-btn id="unregisterBTN" class="ma-3" dark color="red accent-4" @click="unregistered">Unregister</v-btn>
             </div>
             <div v-else-if="organized">
               <v-btn flat large disabled>Organized</v-btn>
@@ -44,7 +44,7 @@
                  {{ value }}
                </v-progress-circular>
                <br />
-               <v-btn id="registerBTN" class="ma-3" @click="cancel" dark color="red accent-4">Cancel Meet</v-btn>
+               <v-btn id="cancelBTN" class="ma-3" @click="cancel" dark color="red accent-4">Cancel Meet</v-btn>
             </div>
             <div v-else-if="!register && !organized">
               <v-btn id="registerBTN" class="ma-3" @click="registered" dark color="green accent-4">Register</v-btn>
