@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="orgMeets">
     <v-container fluid text-xs-center>
       <v-layout>
         <v-flex xs1></v-flex>
