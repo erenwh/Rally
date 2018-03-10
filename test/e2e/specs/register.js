@@ -13,7 +13,7 @@ module.exports = {
     .setValue('input[name=pass]', '12345678')
     .setValue('input[name=compass]', '12345678')
     .click('button[id=submitBTN]')
-    .pause(5000)
+    .pause(4000)
     .end();
   },
 
@@ -30,7 +30,7 @@ module.exports = {
     .pause(5000)
     .assert.urlEquals('http://localhost:8080/register')
     .assert.containsText('#register', 'Username must be 10 characters or less')
-    .pause(5000)
+    .pause(4000)
     .end();
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="meetPage">
     <v-container text-xs-center>
       <v-layout row justify-center>
         <v-flex xs12 md-8>
@@ -45,7 +45,7 @@
                </v-progress-circular>
             </div>
             <div v-else-if="!register && !organized">
-              <v-btn class="ma-3" @click="registered" dark color="green accent-4">Register</v-btn>
+              <v-btn id="registerBTN" class="ma-3" @click="registered" dark color="green accent-4">Register</v-btn>
             </div>
           </v-card>
         </v-flex>
