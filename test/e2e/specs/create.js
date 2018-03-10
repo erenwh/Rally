@@ -17,6 +17,7 @@ module.exports = {
     .click('button[id="sub"]')
     .pause(5000)
     .assert.urlEquals('http://localhost:8080/orgmeets')
+    .assert.containsText('#orgMeets', 'HanTest')
     .end();
   }
 }
