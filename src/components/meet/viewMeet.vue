@@ -43,6 +43,8 @@
                >
                  {{ value }}
                </v-progress-circular>
+               <br />
+               <v-btn id="registerBTN" class="ma-3" @click="cancel" dark color="red accent-4">Cancel Meet</v-btn>
             </div>
             <div v-else-if="!register && !organized">
               <v-btn id="registerBTN" class="ma-3" @click="registered" dark color="green accent-4">Register</v-btn>
@@ -162,6 +164,31 @@ import * as firebase from 'firebase'
 
 
       },
+
+      cancel(){
+
+        var email = firebase.auth().currentUser.email;
+        //console.log(email);
+        var ref = firebase.database().ref('/profiles');
+        ref.once('value').then((snap)=>{
+          snap.forEach((prof)=>{
+            if(prof.val().email == email) {
+
+
+              var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/organized/' + this.key);
+              ref1.remove();
+            }
+          });
+        });
+
+        ref = firebase.database().ref('/meets/' + this.key);
+        ref.remove();
+
+        this.$router.push("/");
+
+
+      },
+
       unregistered() {
         var email = firebase.auth().currentUser.email;
         //console.log(email);
