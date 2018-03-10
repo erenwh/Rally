@@ -17,6 +17,7 @@
                   <v-text-field
                     label="Title"
                     id="title"
+                   
                     required
                     v-model="meet.title"
                     color = "red"
@@ -106,6 +107,9 @@ import * as firebase from 'firebase'
           picker: '',
           time: new Date(),
           title: '',
+          /*titleRules: [
+            (v) => !!v || 'Title is required',
+          ],*/
           description: '',
           location: '',
           number: 0,
