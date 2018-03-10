@@ -1,5 +1,4 @@
 module.exports = {
-
   'Test for register meets' :client => {
     client
     .url('http://localhost:8080/signin')
@@ -20,4 +19,5 @@ module.exports = {
     .assert.containsText('#orgMeets', 'HanTest')
     .end();
   }
+  
 }
