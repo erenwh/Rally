@@ -35,5 +35,4 @@ module.exports = {
     .pause(5000)
     .end();
    }
-  }
 }
