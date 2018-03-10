@@ -23,13 +23,13 @@
                   </v-btn>
                 </v-flex>
                 <v-flex xs12 md=4>
-                  <v-btn @click="google" id="btn" color="green darken-3" class="white--text">
+                  <v-btn @click="google" id="btn" name="google" color="green darken-3" class="white--text">
                     <google id="google"/>
                     Google
                   </v-btn>
                 </v-flex>
                 <v-flex xs12 md=4>
-                  <v-btn @click="twitter" id="btn" color="light-blue accent-4" class="white--text">
+                  <v-btn @click="twitter" id="btn" name="twitter" color="light-blue accent-4" class="white--text">
                     <twitter id="twitter"/>
                     Twitter
                   </v-btn>
@@ -102,17 +102,17 @@
                       required
                       :rules="[comparePasswords]"
                     ></v-text-field>
+                    <v-layout id="row">
+                      <v-flex xs6>
+                        <v-btn id="submitBTN" class="green accent-4" :disabled="!valid" dark @click="submit">Submit</v-btn>
+                      </v-flex>
+                      <v-flex xs6>
+                        <v-btn class="red accent-4" dark @click="clear">Cancel</v-btn>
+                      </v-flex>
+                    </v-layout>
                   </v-form>
                 </v-flex>
                 <v-flex xs2></v-flex>
-              </v-layout>
-              <v-layout id="row">
-                <v-flex xs6>
-                  <v-btn id="submitBTN" class="green accent-4" @click="submit">Submit</v-btn>
-                </v-flex>
-                <v-flex xs6>
-                  <v-btn class="red accent-4" @click="clear">Cancel</v-btn>
-                </v-flex>
               </v-layout>
             </v-container>
           </v-card>
@@ -163,34 +163,36 @@ import * as firebase from 'firebase'
     },
     methods: {
       submit() {
-
-        if(this.password === this.Conpassword) {
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(((user) =>{
-            var ref = firebase.database().ref('/profiles');
-            var profile = {
-              email: user.email,
-              username: this.username,
-              dob: this.dob
-            };
-            var key = ref.push(profile);
-            key = key.path.pieces_[1];
-            ref.child('/' + key).update({key: key}).then(function(profile){
-              //console.log(profile);
-            });
-            bus.$emit('signChange', true);
-            this.$router.push('/');
-          }).bind(this)).catch((function(error){
-            this.value = true;
-            this.error = error.message;
-            console.log(error.message);
-          }).bind(this));
-
-
+         if (this.$refs.form.validate()){
+           if(this.password === this.Conpassword) {
+             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(((user) =>{
+               var ref = firebase.database().ref('/profiles');
+               var profile = {
+                 email: user.email,
+                 username: this.username,
+                 dob: this.dob
+               };
+               var key = ref.push(profile);
+               key = key.path.pieces_[1];
+               ref.child('/' + key).update({key: key}).then(function(profile){
+                 //console.log(profile);
+               });
+               bus.$emit('signChange', true);
+               this.$router.push('/');
+             }).bind(this)).catch((function(error){
+               this.value = true;
+               this.error = error.message;
+               console.log(error.message);
+             }).bind(this));
 
 
-        } else {
-          console.log("Passwords do not match");
-        }
+
+
+           } else {
+             console.log("Passwords do not match");
+           }
+         }
+
       },
       clear() {
         this.$refs.form.reset();

@@ -1,8 +1,8 @@
-
+ 
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
 
-module.exports = {
+/*module.exports = {
 
   'Test if login works' :client => {
     client
@@ -35,3 +35,4 @@ module.exports = {
     .pause(5000)
     .end();
   }
+}*/
