@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="createPage">
     <v-container id="contain" fluid text-xs-center>
       <v-layout class="mt-3">
         <v-flex xs2></v-flex>
@@ -23,10 +23,12 @@
                   ></v-text-field>
                   <v-text-field
                     label="Add a description"
+                    id="description"
                     multi-line
                     required
                     v-model="meet.description"
                     color = "red"
+
                   ></v-text-field>
                   <img v-if="imageUrl" id="img" class="elevation-7" :src="imageUrl" />
                   <br />
@@ -50,12 +52,13 @@
                   />
                   <v-text-field
                     label="Location"
+                    id="location"
                     required
                     v-model="meet.location"
                     color = "red"
                   ></v-text-field>
 
-                  <v-btn color="black" dark @click.stop="dialog = true">Tags</v-btn>
+                  <v-btn id="tags" color="black" dark @click.stop="dialog = true">Tags</v-btn>
                   <v-dialog v-model="dialog" max-width="500px">
                     <v-card>
                       <v-card-title>
@@ -64,6 +67,7 @@
                       <v-divider></v-divider>
                       <v-card-text style="height: 300px;">
                         <v-checkbox
+                        id="checkbox"
                          v-for="item in tagDes"
                          :key="item.label"
                          :label="item.label"
@@ -149,6 +153,7 @@ import * as firebase from 'firebase'
               var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
               ref2.child('/' + key).update({key: key}).then(function(profile){
               });
+              this.$router.push('/orgmeets');
             }
           });
         })
