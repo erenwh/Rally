@@ -40,7 +40,7 @@
                 <v-flex xs8>
                   <h4 class="mb-3 mt-3 white--text">Or Register with...</h4>
                   <v-alert id="alert" type="error" :value="value">
-                    {{this.error}}
+                    The email address is already in use by another account
                   </v-alert>
                 </v-flex>
                 <v-flex xs2></v-flex>
@@ -107,7 +107,7 @@
                         <v-btn id="submitBTN" class="green accent-4" :disabled="!valid" dark @click="submit">Submit</v-btn>
                       </v-flex>
                       <v-flex xs6>
-                        <v-btn class="red accent-4" dark @click="clear">Cancel</v-btn>
+                        <v-btn class="red accent-4" id="clear" dark @click="clear">Cancel</v-btn>
                       </v-flex>
                     </v-layout>
                   </v-form>

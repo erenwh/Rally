@@ -1,4 +1,5 @@
-module.exports = {
+
+/*module.exports = {
   'Test for creating meets': client => {
     client
       .url('http://localhost:8080/signin')
@@ -19,4 +20,4 @@ module.exports = {
       .assert.containsText('#orgMeets', 'HanTest')
       .end();
   }
-}
+}*/

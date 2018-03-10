@@ -1,4 +1,4 @@
-module.exports = {
+/*module.exports = {
 
     'Test if register for a Meeting works' :client => {
         client
@@ -35,5 +35,5 @@ module.exports = {
         .click('button[id=registerBTN]')
         .pause(4000)
         .end();
-    }*/
-}
+    }
+}*/

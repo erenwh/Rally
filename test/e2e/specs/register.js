@@ -1,6 +1,6 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-
+/*
 module.exports = {
 
   'Test if username is empty' :client => {
@@ -174,6 +174,23 @@ module.exports = {
     .end();
   },
 
+  'Test if already registered account' :client => {
+    client
+    .url('http://localhost:8080/register')
+    .waitForElementVisible('#register', 1000)
+    .setValue('input[name=userName]', 'john')
+    .setValue('input[name=dob]', '02/12/12')
+    .setValue('input[name=email]', 'john@john.com')
+    .setValue('input[name=pass]', '12345678')
+    .setValue('input[name=compass]', '12345678')
+    .click('button[id=submitBTN]')
+    .pause(1000)
+    .assert.urlEquals('http://localhost:8080/register')
+    .assert.containsText('#alert', 'The email address is already in use by another account')
+    .pause(3000)
+    .end();
+  },
+
   'Test if FB works' :client => {
     client
     .url('http://localhost:8080/register')
@@ -199,6 +216,27 @@ module.exports = {
     .click('button[name=twitter]')
     .pause(5000)
     .end();
+  },
+
+  'Test if clear button works' :client => {
+    client
+    .url('http://localhost:8080/register')
+    .waitForElementVisible('#register', 1000)
+    .setValue('input[name=userName]', 'john')
+    .setValue('input[name=dob]', '02/12/12')
+    .setValue('input[name=email]', 'john@john.com')
+    .setValue('input[name=pass]', '12345678')
+    .setValue('input[name=compass]', '12345678')
+    .click('button[id=clear]')
+    .pause(2000)
+    .assert.containsText('input[name=userName]', '')
+    .assert.containsText('input[name=dob]', '')
+    .assert.containsText('input[name=email]', '')
+    .assert.containsText('input[name=pass]', '')
+    .assert.containsText('input[name=compass]', '')
+    .pause(3000)
+    .end();
   }
 
 }
+*/
