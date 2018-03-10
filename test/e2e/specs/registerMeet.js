@@ -9,8 +9,9 @@ module.exports = {
         .click('button[id=loginBTN]')
         .pause(5000)
         .assert.urlEquals('http://localhost:8080/')
-        .pause(5000)
-        .click('#img')
+        .pause(1000)
+        .click('.white--text')
+        .pause(1000)
         .end();
     }
 }
