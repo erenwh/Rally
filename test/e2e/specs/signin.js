@@ -14,7 +14,7 @@ module.exports = {
     .setValue('input[name=pass]', '12345678')
     // .setValue('input[name=compass]', '12345678')
     .click('button[id=loginBTN]')
-    .pause(5000)
+    .pause(4000)
     .end();
   },
 
@@ -32,7 +32,7 @@ module.exports = {
     .assert.urlEquals('http://localhost:8080/signin')
     // .assert.containsText('#time', 'E-mail must be valid')
     .assert.containsText('#time', 'Password must be 8 characters or more')
-    .pause(5000)
+    .pause(4000)
     .end();
    }
 }
