@@ -34,5 +34,5 @@ module.exports = {
     .assert.containsText('#time', 'Password must be 8 characters or more')
     .pause(5000)
     .end();
-  }
+   }
 }
