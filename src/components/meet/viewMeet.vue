@@ -29,7 +29,7 @@
             <p class="ma-3">{{this.meets.time}}</p>
             <v-divider></v-divider>
             <div v-if="register">
-              <v-btn class="ma-3" dark color="red accent-4" @click="unregistered">Unregister</v-btn>
+              <v-btn id="registerBTN" class="ma-3" dark color="red accent-4" @click="unregistered">Unregister</v-btn>
             </div>
             <div v-else-if="organized">
               <v-btn flat large disabled>Organized</v-btn>
