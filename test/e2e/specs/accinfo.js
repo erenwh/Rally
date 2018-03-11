@@ -1,6 +1,6 @@
 
 // testing for accinfo page
-
+/*
 module.exports = {
   'accinfo : Test for edit information button works' :client => {
     client
@@ -111,7 +111,7 @@ module.exports = {
     .click('button[id=cancelBTN]')
     .pause(3000)
     .end();
-  },*/
+  },
 
   //onPickFile()
   'accinfo : Test if upload button works' :client => {
@@ -163,4 +163,4 @@ module.exports = {
   }
 
 
-}
+}*/
