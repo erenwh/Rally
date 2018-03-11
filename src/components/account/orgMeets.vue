@@ -47,6 +47,7 @@
                             <v-flex xs12>
                               <v-text-field
                                 label="Date"
+                                id="Date"
                                 required
                                 v-model="meet.picker"
                                 color = "black"
@@ -55,6 +56,7 @@
                             <v-flex xs12>
                               <v-text-field
                                 label="Time"
+                                id="Time"
                                 required
                                 v-model="meet.time"
                                 color = "black"
@@ -65,7 +67,7 @@
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
+                        <v-btn id="closeBTN" color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
                         <v-btn id="saveBTN" color="blue darken-1" @click="save(meet)" flat>Save</v-btn>
                       </v-card-actions>
                     </v-card>
