@@ -37,6 +37,7 @@
                     color="blue-grey"
                     dark
                     class="ma-4"
+                    id="uploadBTN"
                     justify-center
                     raised
                     @click="onPickFile"
@@ -46,6 +47,7 @@
                   </v-btn>
                   <input
                   type="file"
+                  id="imgUpload"
                   style="display: none"
                   ref="fileInput"
                   accept="image/*"
