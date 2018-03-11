@@ -17,8 +17,8 @@
 
                   <!--Modal from here-->
                   <v-dialog v-model="dialog" persistent max-width="500px">
-                    <v-btn color="primary" class="mb-3" dark slot="activator">Edit</v-btn>
-                    <v-card>
+                    <v-btn id="editBTN" color="primary" class="mb-3" dark slot="activator">Edit</v-btn>
+                    <v-card id="editEvent">
                       <v-card-title>
                         <span class="headline">Edit Event</span>
                       </v-card-title>
@@ -28,6 +28,7 @@
                             <v-flex xs12>
                               <v-text-field
                                 label="Add a description"
+                                id="description"
                                 multi-line
                                 required
                                 v-model="meet.description"
@@ -37,6 +38,7 @@
                             <v-flex xs12>
                               <v-text-field
                                 label="Location"
+                                id="location"
                                 required
                                 v-model="meet.location"
                                 color = "black"
@@ -64,7 +66,7 @@
                       <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-                        <v-btn color="blue darken-1" @click="save(meet)" flat>Save</v-btn>
+                        <v-btn id="saveBTN" color="blue darken-1" @click="save(meet)" flat>Save</v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-dialog>

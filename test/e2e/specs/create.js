@@ -1,4 +1,4 @@
-
+/*
 module.exports = {
   
   'Test for creating meets with only title': client => {
@@ -161,3 +161,4 @@ module.exports = {
   },
 
 }
+*/
