@@ -13,6 +13,7 @@
             name="nameField"
             label="Name"
             v-model="report.name"
+            :rules="report.nameRules"
             required
           ></v-text-field>
           <v-text-field
@@ -26,6 +27,7 @@
             name="issueField"
             label="Describe the issue"
             v-model="report.issue"
+            :rules="report.issueRules"
             multi-line
             required
           ></v-text-field>
@@ -49,21 +51,29 @@ import * as firebase from 'firebase'
       return {
         report: {
           name: '',
+          nameRules: [
+            (v) => !!v || 'Must have a name',
+          ],
           email: '',
           emailRules: [
             (v) => !!v || 'Must have email to send to',
             (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
           ],
           issue: '',
+          issueRules: [
+            (v) => !!v || 'Must have an issue',
+          ],
         }
       }
     },
     methods: {
       submit() {
-        var ref = firebase.database().ref('/reports');
-        var key = ref.push(this.report);
-        key = key.path.pieces_[1];
-        ref.child('/' + key).update({key: key});
+        if (this.$refs.form.validate()){
+          var ref = firebase.database().ref('/reports');
+          var key = ref.push(this.report);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key});
+        }
       },
       clear() {
         this.$refs.form.reset();
