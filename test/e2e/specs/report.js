@@ -1,9 +1,9 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-
+/*
 module.exports = {
 
-  /*'Report: Test Invalid Email Input' :client => {
+  'Report: Test Invalid Email Input' :client => {
     client
     .url('http://localhost:8080/report')
     .waitForElementVisible('#report', 1000)
@@ -39,6 +39,6 @@ module.exports = {
     .assert.containsText('input[name=emailField]', '')
     .assert.containsText('textarea[name=issueField]', '')
     .end();
-  },*/
-
+  },
 }
+*/

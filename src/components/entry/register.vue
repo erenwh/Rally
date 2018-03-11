@@ -150,7 +150,7 @@ import * as firebase from 'firebase'
         dob: '',
         dobRules: [
           (v) => !!v || 'Date of Birth is required',
-          (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be XX/XX/XX'
+          (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be MM/DD/YY'
         ],
         error: '',
         value: false

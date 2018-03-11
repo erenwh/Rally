@@ -64,7 +64,7 @@ module.exports = {
     .setValue('input[name=dob]', '02/2/12')
     .pause(3000)
     .assert.urlEquals('http://localhost:8080/register')
-    .assert.containsText('#register', 'Format must be XX/XX/XX');
+    .assert.containsText('#register', 'Format must be MM/DD/YY');
     client.expect.element('#submitBTN').to.not.be.enabled;
     client
     .pause(3000)

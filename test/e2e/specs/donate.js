@@ -1,9 +1,9 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-
+/*
 module.exports = {
 
-  /*'Donate: Test Donation' :client => {
+  'Donate: Test Donation' :client => {
     client
     .url('http://localhost:8080/donate')
     .waitForElementVisible('#donate', 1000)
@@ -22,6 +22,7 @@ module.exports = {
     .pause(5000)
     .assert.containsText('#donate', 'Please enter numbers')
     .end();
-  },*/
+  },
 
 }
+*/

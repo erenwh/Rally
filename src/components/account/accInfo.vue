@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id = "accInfo">
     <v-container fluid text-xs-center>
       <v-layout>
         <v-flex md2></v-flex>
@@ -12,13 +12,15 @@
               <v-layout>
                 <v-flex xs7>
                   <v-text-field
-                    name="input-7-1"
+
+                    name="input-7-1-email"
                     v-model="email"
                     label="Email"
                     disabled
                   ></v-text-field>
                   <v-text-field
-                    name="input-7-1"
+
+                    name="input-7-1-username"
                     v-model="username"
                     color="black"
                     label="Username"
@@ -26,29 +28,23 @@
                     :disabled="disabled"
                   ></v-text-field>
                   <v-text-field
-                    name="input-7-1"
+
+                    name="input-7-1-dob"
                     v-model="dob"
                     label="Date of Birth"
                     color="black"
                     auto-grow
                     :disabled="disabled"
+                    :rules="dobRules"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs5>
                   <img v-if="imageUrl" id="img" :src="imageUrl" alt="Avatar">
                   <br />
-                  <v-btn
-                    color="blue-grey"
-                    dark
-                    class="ma-4"
-                    justify-center
-                    raised
-                    @click="onPickFile"
-                    v-if="edit"
-                    >
-                    Upload
-                    <v-icon right dark>cloud_upload</v-icon>
+                  <v-btn id="unloadBTN" color="blue-grey" dark class="ma-4" justify-center raised @click="onPickFile" v-if="edit">
+                    Upload <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
+
                   <input
                   type="file"
                   style="display: none"
@@ -60,18 +56,18 @@
               </v-layout>
               <v-layout v-if="!edit">
                 <v-flex xs12>
-                  <v-btn @click="editing" dark color="grey darken-4">Edit Information</v-btn>
+                  <v-btn id="editBTN" @click="editing" dark color="grey darken-4">Edit Information</v-btn>
                 </v-flex>
               </v-layout>
               <v-layout v-if="edit">
                 <v-flex xs4>
-                  <v-btn @click="save" dark color="green accent-4">Save</v-btn>
+                  <v-btn id="saveBTN" @click="save" dark color="green accent-4">Save</v-btn>
                 </v-flex>
                 <v-flex xs4>
-                  <v-btn @click="cancel" dark color="red accent-4">Cancel</v-btn>
+                  <v-btn id="cancelBTN" @click="cancel" dark color="red accent-4">Cancel</v-btn>
                 </v-flex>
                 <v-flex xs4>
-                  <v-btn @click="deleteacc" dark color="blue accent-4">Delete Account</v-btn>
+                  <v-btn id="deleteBTN" @click="deleteacc" dark color="blue accent-4">Delete Account</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -91,9 +87,18 @@ import {bus} from '../../main';
       return {
         edit: false,
         email: '',
+        emailRules: [
+        (v) => !!v || 'E-mail is required',
+        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length <= 100 || 'E-mail must be valid'
+        ],
         username: '',
         key: '',
         dob: '',
+        dob: '',
+        dobRules: [
+          // (v) => !!v || 'Date of Birth is required',
+          (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be MM/DD/YY'
+        ],
         disabled: true,
         image: null,
         imageUrl: ''

@@ -1,6 +1,6 @@
-
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
+// Header.vue Testing
 /*
 module.exports = {
 
@@ -178,6 +178,6 @@ module.exports = {
     .pause(3000)
     .end();
   }
-}
 
-*/
+}
+  */
