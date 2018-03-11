@@ -21,36 +21,7 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-      <v-list
-        dense
-        v-if="signin">
-        <v-list-group v-for="item in menuItems" :value="item.active" v-bind:key="item.title">
-          <v-list-tile slot="item"
-            @click="">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-            </v-list-tile-content>
-            <v-list-tile-action>
-              <v-icon>keyboard_arrow_down</v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
-          <v-list-tile
-          v-for="subItem in item.itemS"
-          v-bind:key="subItem.title"
-          @click="otherItem(subItem)"
-          :to="subItem.link">
-            <v-list-tile-action>
-              <v-icon>{{ subItem.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list-group>
-      </v-list>
+
       <v-list
         dense
         v-if="signin"
@@ -58,7 +29,9 @@
         <v-list-tile
           v-for="item in otherItems"
           v-bind:key="item.title"
-          :to="item.link">
+          :to="item.link"
+          @click="otherItem(item)"
+          :id="item.id">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -69,7 +42,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="grey darken-4" dark dense>
-      <v-toolbar-side-icon @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
+      <v-toolbar-side-icon id="side" @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
       <v-toolbar-title>
         <router-link to="/" tag="span" id="title">Rally</router-link>
       </v-toolbar-title>
@@ -92,18 +65,19 @@ import {bus} from '../../main';
         menuItems: [
           { icon: "account_box", title: "Account",
             itemS: [
-              { icon: "account_circle", title: "Account Information", link: "/accInfo"},
-              { icon: "favorite", title: "Registered Meetings", link: "/meets" },
-              { icon: "bookmark", title: "Organized Meetings", link: "/orgmeets" },
-              { icon: "lock", title: "Sign Out", link: "" }
+
             ]
           }
         ],
         otherItems: [
-          { icon: "create", title: "Create a Rally", link: "/create" },
-          { icon: "credit_card", title: "Donate", link: "/donate" },
-          { icon: "get_app", title: "Invite a friend", link: "/invite" },
-          { icon: "gavel", title: "Report a problem", link: "/report" }
+          { icon: "account_circle", title: "Account Information", link: "/accInfo", id: "acc"},
+          { icon: "favorite", title: "Registered Meetings", link: "/meets", id: "reg" },
+          { icon: "bookmark", title: "Organized Meetings", link: "/orgmeets", id: "org" },
+          { icon: "create", title: "Create a Rally", link: "/create", id: "create" },
+          { icon: "credit_card", title: "Donate", link: "/donate", id: "donate" },
+          { icon: "get_app", title: "Invite a friend", link: "/invite", id: "invite" },
+          { icon: "gavel", title: "Report a problem", link: "/report", id: "report" },
+          { icon: "lock", title: "Sign Out", link: "", id: "signout" }
         ]
       }
     },

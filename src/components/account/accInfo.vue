@@ -34,6 +34,7 @@
                     label="Date of Birth"
                     color="black"
                     auto-grow
+                    id="accDob"
                     :disabled="disabled"
                     :rules="dobRules"
                   ></v-text-field>
