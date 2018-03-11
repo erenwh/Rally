@@ -48,7 +48,9 @@
     },
     methods: {
       submit() {
-        emailjs.send("gmail","template_LOOWuveW",{email: this.email});
+        if (this.$refs.form.validate()){
+          emailjs.send("gmail","template_LOOWuveW",{email: this.email});
+        }
       },
       clear() {
         this.$refs.form.reset();
