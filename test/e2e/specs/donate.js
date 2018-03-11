@@ -56,7 +56,7 @@ module.exports = {
     .pause(5000)
     .assert.containsText('#donate', 'Amount is required')
     .end();
-  },*/
+  },
 
 }
 */
