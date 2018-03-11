@@ -10,7 +10,7 @@
                 <v-toolbar-title class="white--text">Donate</v-toolbar-title>
                 </div>
             </v-toolbar>
-          <v-form class="ma-3 pa-3" lazy-validation @paypalClick.prevent="paypalClick">
+          <v-form class="ma-3 pa-3">
             <v-text-field
 							name="amount"
               label="Amount"
@@ -34,7 +34,6 @@
         		</div>
         		<div v-show="show" class="text-xs-center">
         			<PayPal
-								@click="paypalClick"
 								id="paypal"
         				:amount="amount"
         				currency="USD"
