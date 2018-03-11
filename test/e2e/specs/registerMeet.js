@@ -37,6 +37,15 @@
                 .pause(5000)
             }
         })
+        .pause(1000)
+        //-----------From here its to click the hamburger menu
+        .click('button[id=side]')
+        .pause(3000)
+        //-----------From here its to click the create menu
+        .click('a[id=reg]')
+        .pause(1000)
+        .click('.white--text')
+        .pause(1000)
         .assert.containsText('#unregisterBTN', 'UNREGISTER')
         .pause(5000)
         .end();
@@ -51,7 +60,13 @@
         .pause(5000)
 
         .assert.urlEquals('http://localhost:8080/')
-        .pause(500)
+
+        //-----------From here its to click the hamburger menu
+        .click('button[id=side]')
+        .pause(3000)
+        //-----------From here its to click the create menu
+        .click('a[id=reg]')
+        .pause(1000)
         .click('.white--text')
         .pause(1000)
 
@@ -76,7 +91,28 @@
                 .pause(5000)
             }
         })
-        .assert.containsText('button[id=registerBTN]', 'REGISTER')
+        .pause(1000)
+
+        //-----------From here its to click the hamburger menu
+        .click('button[id=side]')
+        .pause(3000)
+        //-----------From here its to click the create menu
+        .click('a[id=acc]')
+        .pause(1000)
+        .click('.white--text')
+        .pause(1000)
+
+        //-----------From here its to click the hamburger menu
+        .click('button[id=side]')
+        .pause(3000)
+        //-----------From here its to click the create menu
+        .click('a[id=reg]')
+        .pause(1000)
+        
+        //.click('.white--text')
+        //.pause(1000)
+
+        .assert.elementNotPresent('.white--text')
         .pause(5000)
         .end();
     }
