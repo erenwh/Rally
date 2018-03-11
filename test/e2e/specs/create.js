@@ -1,7 +1,7 @@
 
 module.exports = {
 
-  'Test for creating meets with title empty': client => {
+  /*'Test for creating meets with title empty': client => {
     client
       //sign in
       .url('http://localhost:8080/signin')
@@ -97,7 +97,7 @@ module.exports = {
       .pause(1000)
       .assert.urlEquals('http://localhost:8080/')
       .end();
-  },
+  },*/
   'Test for creating meets with all information': client => {
     client
       //sign in
