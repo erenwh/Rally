@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="donate">
     <v-container id="contain" fluid text-xs-center>
       <v-layout class="mt-3">
         <v-flex xs3></v-flex>
@@ -10,9 +10,11 @@
                 <v-toolbar-title class="white--text">Donate</v-toolbar-title>
                 </div>
             </v-toolbar>
-          <v-form class="ma-3 pa-3">
+          <v-form class="ma-3 pa-3" lazy-validation @paypalClick.prevent="paypalClick">
             <v-text-field
+							name="amount"
               label="Amount"
+							:rules="amountRules"
               required
               raised
               box
@@ -20,7 +22,7 @@
               color="amber accent-4"
               v-model="amount"
             ></v-text-field>
-            <div v-show="show===false">
+            <div v-show="!show">
               <v-alert
                 color="success"
                 icon="check_circle"
@@ -30,8 +32,10 @@
                 Thank you! The payment went through.
               </v-alert>
         		</div>
-        		<div v-show="show===true" class="text-xs-center">
+        		<div v-show="show" class="text-xs-center">
         			<PayPal
+								@click="paypalClick"
+								id="paypal"
         				:amount="amount"
         				currency="USD"
         				:client='credentials'
@@ -58,7 +62,11 @@ export default {
     		production: "AbtDPSNtzICNnGM8bUNsubnepnbz6nFD5XX8qeJpGW83XspYaBzK0B8eLFLebQYKOB_CDGg6MHoWBS6C",
  		  },
  		  show: true,
-      amount: ''
+      amount: '',
+			amountRules: [
+			(v) => !!v || 'Amount is required',
+			(v) => /^[0-9]*$/.test(v) && v.length <= 100 || 'Please enter numbers'
+			],
     }
   },
   methods: {
