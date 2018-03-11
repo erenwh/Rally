@@ -12,7 +12,8 @@
         v-if="!signin"
         >
         <v-list-tile
-          :to="item.link">
+          :to="item.link"
+          :id="item.id">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -59,8 +60,8 @@ import {bus} from '../../main';
         sideNav: false,
         signin: false,
         itemNS: [
-          { icon: "lock_open", title: "Sign In", link: "/signin" },
-          { icon: "face", title: "Register", link: "/register" }
+          { icon: "lock_open", title: "Sign In", link: "/signin", id: "signSide" },
+          { icon: "face", title: "Register", link: "/register", id: "regSide" }
         ],
         menuItems: [
           { icon: "account_box", title: "Account",

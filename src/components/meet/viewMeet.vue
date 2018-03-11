@@ -177,6 +177,9 @@ import * as firebase from 'firebase'
 
               var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/organized/' + this.key);
               ref1.remove();
+
+              ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/registered/' + this.key);
+              ref1.remove();
             }
           });
         });
