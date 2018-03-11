@@ -61,8 +61,6 @@ module.exports = {
     .assert.containsText('textarea[name=issueField]', '')
     .end();
   },
-<<<<<<< HEAD
-=======
 
   'Report: Testing No Inputs for Name, Email, Issue with value sets' :client => {
     client

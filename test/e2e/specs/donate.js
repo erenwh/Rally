@@ -37,8 +37,7 @@ module.exports = {
     .assert.containsText('#donate', 'Please enter numbers')
     .end();
   },
-<<<<<<< HEAD
-=======
+
 
   'Donate: Test No Donation Input' :client => {
     client

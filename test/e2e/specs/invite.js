@@ -1,9 +1,9 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-
+/*
 module.exports = {
 
-  /*'Invite: Test Invitation' :client => {
+  'Invite: Test Invitation' :client => {
     client
     .url('http://localhost:8080/signin')
     .waitForElementVisible('#signin', 1000)
@@ -89,6 +89,7 @@ module.exports = {
     .pause(5000)
     .assert.containsText('#invite', 'Must have email to send to')
     .end();
-  },*/
+  },
 
 }
+*/
