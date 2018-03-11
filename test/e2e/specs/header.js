@@ -201,6 +201,31 @@ module.exports = {
     .pause(3000)
     .end();
 
+  },
+
+  'Test for signout btn in side menu': client => {
+    client
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signSide]')
+    .pause(3000)
+    .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .click('button[id=loginBTN]')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signout]')
+    .pause(3000)
+    .assert.urlEquals('http://localhost:8080/')
+    .pause(3000)
+    .end();
+
   }
 
 }
+*/
