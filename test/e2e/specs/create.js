@@ -1,6 +1,6 @@
 
 module.exports = {
-  /*
+  
   'Test for creating meets with only title': client => {
     client
       //sign in
@@ -87,7 +87,7 @@ module.exports = {
       .assert.containsText('#createPage', 'Description is required')
       .end();
   },
-*/
+
   'Test for creating meets with only Title and Description': client => {
     client
       //sign in
