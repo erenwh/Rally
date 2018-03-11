@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="report">
     <v-layout class="mt-3">
       <v-flex xs12 sm6 offset-sm3>
         <v-card id="card">
@@ -8,29 +8,32 @@
               <v-toolbar-title class="white--text">Report a problem</v-toolbar-title>
               </div>
           </v-toolbar>
-        <v-form class="ma-3 pa-3">
+        <v-form class="ma-3 pa-3" ref="form" lazy-validation @submit.prevent="submit">
           <v-text-field
+            name="nameField"
             label="Name"
             v-model="report.name"
             required
           ></v-text-field>
           <v-text-field
+            name="emailField"
             label="E-mail"
             v-model="report.email"
+            :rules="report.emailRules"
             required
           ></v-text-field>
           <v-text-field
-            name="input-7-1"
+            name="issueField"
             label="Describe the issue"
             v-model="report.issue"
             multi-line
             required
           ></v-text-field>
           <div class="text-xs-center">
-            <v-btn @click="submit">
+            <v-btn id="submit" @click="submit">
               submit
             </v-btn>
-            <v-btn>clear</v-btn>
+            <v-btn id="clear" @click="clear">clear</v-btn>
           </div>
         </v-form>
       </v-card>
@@ -46,8 +49,12 @@ import * as firebase from 'firebase'
       return {
         report: {
           name: '',
-          email: ''
-
+          email: '',
+          emailRules: [
+            (v) => !!v || 'Must have email to send to',
+            (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
+          ],
+          issue: '',
         }
       }
     },
@@ -57,7 +64,10 @@ import * as firebase from 'firebase'
         var key = ref.push(this.report);
         key = key.path.pieces_[1];
         ref.child('/' + key).update({key: key});
-      }
+      },
+      clear() {
+        this.$refs.form.reset();
+      },
     }
   }
 </script>
