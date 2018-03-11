@@ -37,6 +37,7 @@
                     color="blue-grey"
                     dark
                     class="ma-4"
+                    id="uploadBTN"
                     justify-center
                     raised
                     @click="onPickFile"
