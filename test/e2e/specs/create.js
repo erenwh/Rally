@@ -1,6 +1,6 @@
-/*
-module.exports = {
-  
+
+/*module.exports = {
+
   'Test for creating meets with only title': client => {
     client
       //sign in
@@ -29,7 +29,7 @@ module.exports = {
       .assert.containsText('#createPage', 'Location is required')
       .end();
   },
-  
+
   'Test for creating meets with only Description': client => {
     client
       //sign in
@@ -158,7 +158,7 @@ module.exports = {
       .assert.urlEquals('http://localhost:8080/')
       .pause(2000)
       .end();
+
   },
 
-}
-*/
+}*/

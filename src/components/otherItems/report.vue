@@ -8,26 +8,29 @@
               <v-toolbar-title class="white--text">Report a problem</v-toolbar-title>
               </div>
           </v-toolbar>
-        <v-form class="ma-3 pa-3" ref="form" lazy-validation @submit.prevent="submit">
+          <v-alert id="alertsuccess" type="success"  :value="value" >
+            Report Sent :)
+          </v-alert>
+        <v-form class="ma-3 pa-3" v-model="valid" ref="form" lazy-validation @submit.prevent="submit">
           <v-text-field
             name="nameField"
             label="Name"
             v-model="report.name"
-            :rules="report.nameRules"
+            :rules="nameRules"
             required
           ></v-text-field>
           <v-text-field
             name="emailField"
             label="E-mail"
             v-model="report.email"
-            :rules="report.emailRules"
+            :rules="emailRules"
             required
           ></v-text-field>
           <v-text-field
             name="issueField"
             label="Describe the issue"
             v-model="report.issue"
-            :rules="report.issueRules"
+            :rules="issueRules"
             multi-line
             required
           ></v-text-field>
@@ -51,19 +54,21 @@ import * as firebase from 'firebase'
       return {
         report: {
           name: '',
-          nameRules: [
-            (v) => !!v || 'Must have a name',
-          ],
           email: '',
-          emailRules: [
-            (v) => !!v || 'Must have email to send to',
-            (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
-          ],
           issue: '',
-          issueRules: [
-            (v) => !!v || 'Must have an issue',
-          ],
-        }
+        },
+        issueRules: [
+          (v) => !!v || 'Must have an issue',
+        ],
+        emailRules: [
+          (v) => !!v || 'Must have email to send to',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',
+        ],
+        nameRules: [
+          (v) => !!v || 'Must have a name',
+        ],
+        valid: true,
+        value: false
       }
     },
     methods: {
@@ -73,6 +78,8 @@ import * as firebase from 'firebase'
           var key = ref.push(this.report);
           key = key.path.pieces_[1];
           ref.child('/' + key).update({key: key});
+          this.value = true;
+          this.$refs.form.reset();
         }
       },
       clear() {

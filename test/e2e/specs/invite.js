@@ -12,7 +12,11 @@ module.exports = {
     .click('button[id=loginBTN]')
     .pause(5000)
     .assert.urlEquals('http://localhost:8080/')
-    .url('http://localhost:8080/invite')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=invite]')
+    .pause(3000)
     .waitForElementVisible('#invite', 1000)
     .setValue('input[name=emailField]', 'john@john.com')
     .click('#submit')
@@ -29,7 +33,11 @@ module.exports = {
     .click('button[id=loginBTN]')
     .pause(5000)
     .assert.urlEquals('http://localhost:8080/')
-    .url('http://localhost:8080/invite')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=invite]')
+    .pause(3000)
     .waitForElementVisible('#invite', 1000)
     .setValue('input[name=emailField]', 'john@john.com')
     .click('#clear')
@@ -47,12 +55,16 @@ module.exports = {
     .click('button[id=loginBTN]')
     .pause(5000)
     .assert.urlEquals('http://localhost:8080/')
-    .url('http://localhost:8080/invite')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=invite]')
+    .pause(3000)
     .waitForElementVisible('#invite', 1000)
     .setValue('input[name=emailField]', 'aaa')
     .click('#submit')
     .pause(5000)
-    .assert.containsText('#invite', 'E-mail must be valid')
+    .assert.containsText('#card', 'E-mail must be valid')
     .end();
   },
 
@@ -65,12 +77,16 @@ module.exports = {
     .click('button[id=loginBTN]')
     .pause(5000)
     .assert.urlEquals('http://localhost:8080/')
-    .url('http://localhost:8080/invite')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=invite]')
+    .pause(3000)
     .waitForElementVisible('#invite', 1000)
     .setValue('input[name=emailField]', '')
     .click('#submit')
     .pause(5000)
-    .assert.containsText('#invite', 'Must have email to send to')
+    .assert.containsText('#card', 'Must have email to send to')
     .end();
   },
 
@@ -83,13 +99,16 @@ module.exports = {
     .click('button[id=loginBTN]')
     .pause(5000)
     .assert.urlEquals('http://localhost:8080/')
-    .url('http://localhost:8080/invite')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=invite]')
+    .pause(3000)
     .waitForElementVisible('#invite', 1000)
     .click('#submit')
     .pause(5000)
-    .assert.containsText('#invite', 'Must have email to send to')
+    .assert.containsText('#card', 'Must have email to send to')
     .end();
   },
 
-}
-*/
+}*/
