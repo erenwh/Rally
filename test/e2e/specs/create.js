@@ -4,8 +4,8 @@ module.exports = {
   'Test for creating meets': client => {
     client
       .url('http://localhost:8080/signin')
-      .waitForElementVisible('#time', 1000)
-      .setValue('input[name=email]', 'test@test.com')
+      .waitForElementVisible('#signin', 1000)
+      .setValue('input[id=email]', 'test@test.com')
       .setValue('input[name=pass]', '12345678')
       .click('button[id=loginBTN]')
       .pause(5000)
