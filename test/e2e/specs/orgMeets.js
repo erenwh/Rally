@@ -52,6 +52,7 @@
             .setValue('textarea[id="description"]', 'HanDescription1-EDIT')
             .pause(500)
             .setValue('input[id="location"]', 'DO NOT DELETE FOR TESTING-EDIT')
+            .pause(5000)
             .end();
     },*/
     /*'Test for edit then closing an organized meet wihtout change': client => {
