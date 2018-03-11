@@ -103,7 +103,7 @@ module.exports = {
     .assert.containsText('#report', 'Must have email to send to')
     .assert.containsText('#report', 'Must have an issue')
     .end();
-  },*/
+  },
 
 }
 */
