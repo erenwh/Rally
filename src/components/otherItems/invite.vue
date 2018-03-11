@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="invite">
     <v-container id="contain" fluid text-xs-center>
       <v-layout class="mt-3">
         <v-flex xs3></v-flex>
@@ -10,18 +10,21 @@
                 <v-toolbar-title class="white--text">Invite a Friend</v-toolbar-title>
               </div>
             </v-toolbar>
-          <v-form class="ma-3 pa-3">
+          <v-form ref="form" class="ma-3 pa-3" lazy-validation @submit.prevent="submit">
             <v-text-field
+              name="emailField"
               label="E-mail"
               v-model="email"
               :rules="emailRules"
               required
             ></v-text-field>
             <div class="text-xs-center">
-              <v-btn @click="submit">
+              <v-btn id="submit" @click="submit">
                 submit
               </v-btn>
-              <v-btn>clear</v-btn>
+              <v-btn id="clear" @click="clear">
+                clear
+              </v-btn>
             </div>
           </v-form>
         </v-card>
@@ -46,8 +49,10 @@
     methods: {
       submit() {
         emailjs.send("gmail","template_LOOWuveW",{email: this.email});
-      }
-
+      },
+      clear() {
+        this.$refs.form.reset();
+      },
     }
   }
 </script>
