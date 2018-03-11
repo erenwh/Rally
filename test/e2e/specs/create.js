@@ -1,4 +1,4 @@
-
+/*
 module.exports = {
 
   'Test for creating meets with title empty': client => {
@@ -117,6 +117,8 @@ module.exports = {
       /*.click('button[id=uploadBTN]')
       .setValue('.selector', path.resolve('./assets/logo.png'))
       .pause(1000)*/
+
+      /*
       .setValue('input[id="location"]', "HanTestLocation4")
       .click('button[id="sub"]')
       .pause(5000)
@@ -132,5 +134,7 @@ module.exports = {
       .pause(1000)
       .assert.urlEquals('http://localhost:8080/')
       .end();
+
   },
-}
+
+}    */

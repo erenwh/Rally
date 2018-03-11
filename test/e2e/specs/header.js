@@ -1,183 +1,206 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
 // Header.vue Testing
-/*
+
+
 module.exports = {
 
-  'Test if Email is empty' :client => {
+  'Test for signin btn in side menu': client => {
     client
-    .url('http://localhost:8080/signin')
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signSide]')
+    .pause(3000)
     .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+
+    .end();
+
+  },
+
+  'Test for register btn in side menu': client => {
+    client
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=regSide]')
+    .pause(3000)
+    .waitForElementVisible('#register', 1000)
+    .pause(1000)
+
+    .end();
+
+  },
+
+  'Test for accInfo btn in side menu': client => {
+    client
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signSide]')
+    .pause(3000)
+    .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
     .setValue('input[name=pass]', '12345678')
     .click('button[id=loginBTN]')
+    .pause(1000)
+    .click('button[id=side]')
     .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .assert.containsText('#signin', 'E-mail is required');
-    client.expect.element('#loginBTN').to.not.be.enabled;
-
-    client
+    .click('a[id=acc]')
     .pause(3000)
-    .end();
-  },
-
-  'Test if Email is unacceptable' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .setValue('input[id=email]', 'john')
-    .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .assert.containsText('#signin', 'E-mail must be valid');
-
-    client.expect.element('#loginBTN').to.not.be.enabled;
-
-    client
+    .waitForElementVisible('#accInfo', 1000)
     .pause(3000)
     .end();
+
   },
 
-  'Test if Password is empty' :client => {
+  'Test for register meetings btn in side menu': client => {
     client
-    .url('http://localhost:8080/signin')
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signSide]')
+    .pause(3000)
     .waitForElementVisible('#signin', 1000)
-    .setValue('input[id=email]', 'john@john.com')
-    .click('button[id=loginBTN]')
-    .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .assert.containsText('#signin', 'Password is required');
-    client.expect.element('#loginBTN').to.not.be.enabled;
-
-    client
-    .pause(3000)
-    .end();
-  },
-
-  'Test if Password is unacceptable' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .setValue('input[name=pass]', '1234567')
-    .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .assert.containsText('#signin', 'Password must be 8 characters or more');
-
-    client.expect.element('#loginBTN').to.not.be.enabled;
-
-    client
-    .pause(3000)
-    .end();
-  },
-
-  'Test if signin works' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .setValue('input[id=email]', 'john@john.com')
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
     .setValue('input[name=pass]', '12345678')
-    .pause(1000)
-    .click('button[id=loginBTN]')
-    .pause(3000)
-    .end();
-  },
-
-  'Test if signin has wrong inputs' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .setValue('input[id=email]', 'john@john.com')
-    .setValue('input[name=pass]', '123456789')
-    .pause(1000)
     .click('button[id=loginBTN]')
     .pause(1000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .assert.containsText('#alert', 'Invalid Email/Password')
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=reg]')
+    .pause(3000)
+    .waitForElementVisible('#regMeets', 1000)
     .pause(3000)
     .end();
+
   },
 
-  'Test if FB works' :client => {
+  'Test for organized meetings btn in side menu': client => {
     client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .click('button[name=facebook]')
-    .pause(5000)
-    .end();
-  },
-
-  'Test if Google works' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .click('button[name=google]')
-    .pause(5000)
-    .end();
-  },
-
-  'Test if Twitter works' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .click('button[name=twitter]')
-    .pause(5000)
-    .end();
-  },
-
-  'Test if Forgot Pass button works' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .click('button[id=fgpass]')
-    .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .waitForElementVisible('#dia', 1000)
-    .pause(3000)
-    .end();
-  },
-
-  'Test if Email is empty in Forgot Pass' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .click('button[id=fgpass]')
-    .pause(3000)
-    .click('button[id=fg]')
-    .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    client.expect.element('#fg').to.not.be.enabled;
-
-    client
-    .pause(3000)
-    .end();
-  },
-
-  'Test if Email is correct in Forgot Pass' :client => {
-    client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .click('button[id=fgpass]')
-    .setValue('input[id=emailf]', 'j@j.com')
+    .url('http://localhost:8080')
     .pause(2000)
-    .click('button[id=fg]')
+    .click('button[id=side]')
     .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .assert.containsText('#alertsuccess', 'Email Sent :)')
+    .click('a[id=signSide]')
+    .pause(3000)
+    .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .click('button[id=loginBTN]')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=org]')
+    .pause(3000)
+    .waitForElementVisible('#orgMeets', 1000)
     .pause(3000)
     .end();
+
   },
 
-  'Test if cancel btn works in Forgot Pass' :client => {
+  'Test for create meeting btn in side menu': client => {
     client
-    .url('http://localhost:8080/signin')
-    .waitForElementVisible('#signin', 1000)
-    .click('button[id=fgpass]')
+    .url('http://localhost:8080')
     .pause(2000)
-    .click('button[id=can]')
+    .click('button[id=side]')
     .pause(3000)
-    .assert.urlEquals('http://localhost:8080/signin')
-    .assert.containsText('#signin', 'Sign in')
+    .click('a[id=signSide]')
+    .pause(3000)
+    .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .click('button[id=loginBTN]')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=create]')
+    .pause(3000)
+    .waitForElementVisible('#createPage', 1000)
     .pause(3000)
     .end();
+
+  },
+
+  'Test for donate btn in side menu': client => {
+    client
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signSide]')
+    .pause(3000)
+    .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .click('button[id=loginBTN]')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=donate]')
+    .pause(3000)
+    .waitForElementVisible('#donate', 1000)
+    .pause(3000)
+    .end();
+
+  },
+
+  'Test for invite btn in side menu': client => {
+    client
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signSide]')
+    .pause(3000)
+    .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .click('button[id=loginBTN]')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=invite]')
+    .pause(3000)
+    .waitForElementVisible('#invite', 1000)
+    .pause(3000)
+    .end();
+
+  },
+
+  'Test for report btn in side menu': client => {
+    client
+    .url('http://localhost:8080')
+    .pause(2000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=signSide]')
+    .pause(3000)
+    .waitForElementVisible('#signin', 1000)
+    .pause(1000)
+    .setValue('input[id=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .click('button[id=loginBTN]')
+    .pause(1000)
+    .click('button[id=side]')
+    .pause(3000)
+    .click('a[id=report]')
+    .pause(3000)
+    .waitForElementVisible('#report', 1000)
+    .pause(3000)
+    .end();
+
   }
 
 }
-  */
