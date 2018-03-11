@@ -1,7 +1,7 @@
 
 module.exports = {
-  
-  'Test for creating meets with only title': client => {
+
+  'Test for creating meets with title empty': client => {
     client
       //sign in
       .url('http://localhost:8080/signin')
@@ -12,7 +12,15 @@ module.exports = {
       .pause(5000)
       .assert.urlEquals('http://localhost:8080/')
       //create event
-      .url('http://localhost:8080/create')
+      //.url('http://localhost:8080/create')
+      .pause(1000)
+      //-----------From here its to click the hamburger menu
+      .click('button[id=side]')
+      .pause(3000)
+      //-----------From here its to click the create menu
+      .click('a[id=create]')
+      .pause(3000)
+
       .waitForElementVisible('#createPage', 3000)
       .setValue('input[id="title"]', 'HanTest1')
       .click('button[id="sub"]')
@@ -26,6 +34,7 @@ module.exports = {
       .click('button[id="cancelBTN"]')
       .pause(1000)
       .assert.urlEquals('http://localhost:8080/')
+      .pause(2000)
       .end();
   },
   'Test for creating meets with only title and location': client => {
@@ -125,4 +134,3 @@ module.exports = {
       .end();
   },
 }
-

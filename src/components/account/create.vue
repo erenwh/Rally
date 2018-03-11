@@ -14,80 +14,86 @@
               <v-layout>
                 <v-flex xs1></v-flex>
                 <v-flex xs10>
-                  <v-text-field
-                    label="Title"
-                    id="title"
-                   
-                    required
-                    v-model="meet.title"
-                    color = "red"
-                  ></v-text-field>
-                  <v-text-field
-                    label="Add a description"
-                    id="description"
-                    multi-line
-                    required
-                    v-model="meet.description"
-                    color = "red"
+                  <!--Form-->
+                  <v-form v-model="valid" ref="form" lazy-validation @submit.prevent="submit">
+                    <v-text-field
+                      label="Title"
+                      id="title"
+                      required
+                      v-model="meet.title"
+                      :rules="titleRules"
+                      color = "red"
+                    ></v-text-field>
+                    <v-text-field
+                      label="Add a description"
+                      id="description"
+                      multi-line
+                      required
+                      :rules="desRules"
+                      v-model="meet.description"
+                      color = "red"
+                    ></v-text-field>
+                    <img v-if="imageUrl" id="img" class="elevation-7" :src="imageUrl" />
+                    <br />
+                    <v-btn
+                      color="blue-grey"
+                      dark
+                      class="ma-4"
+                      id="uploadBTN"
+                      justify-center
+                      raised
+                      @click="onPickFile"
+                      >
+                      Upload
+                      <v-icon right dark>cloud_upload</v-icon>
+                    </v-btn>
+                    <input
+                    type="file"
+                    id="imgUpload"
+                    style="display: none"
+                    ref="fileInput"
+                    accept="image/*"
+                    @change="onFilePicked"
+                    />
+                    <v-text-field
+                      label="Location"
+                      id="location"
+                      required
+                      :rules="locationRules"
+                      v-model="meet.location"
+                      color = "red"
+                    ></v-text-field>
 
-                  ></v-text-field>
-                  <img v-if="imageUrl" id="img" class="elevation-7" :src="imageUrl" />
-                  <br />
-                  <v-btn
-                    color="blue-grey"
-                    dark
-                    class="ma-4"
-                    id="uploadBTN"
-                    justify-center
-                    raised
-                    @click="onPickFile"
-                    >
-                    Upload
-                    <v-icon right dark>cloud_upload</v-icon>
-                  </v-btn>
-                  <input
-                  type="file"
-                  id="imgUpload"
-                  style="display: none"
-                  ref="fileInput"
-                  accept="image/*"
-                  @change="onFilePicked"
-                  />
-                  <v-text-field
-                    label="Location"
-                    id="location"
-                    required
-                    v-model="meet.location"
-                    color = "red"
-                  ></v-text-field>
+                    <v-btn id="tags" color="black" dark @click.stop="dialog = true">Tags</v-btn>
+                    <v-dialog v-model="dialog" max-width="500px">
+                      <v-card>
+                        <v-card-title>
+                          Select Tags
+                        </v-card-title>
+                        <v-divider></v-divider>
+                        <v-card-text style="height: 300px;">
+                          <v-checkbox
+                          id="checkbox"
+                           v-for="item in tagDes"
+                           :key="item.label"
+                           :label="item.label"
+                           v-model="tagSelect.science"></v-checkbox>
+                        </v-card-text>
+                        <v-card-actions>
+                          <v-btn color="red" dark @click.stop="dialog=false">Close</v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
+                    <input style="display: none" type="file">
+                    <v-date-picker id="picker" class="elevation-7" :rules="pickerRules" color="red" v-model="meet.picker"></v-date-picker>
 
-                  <v-btn id="tags" color="black" dark @click.stop="dialog = true">Tags</v-btn>
-                  <v-dialog v-model="dialog" max-width="500px">
-                    <v-card>
-                      <v-card-title>
-                        Select Tags
-                      </v-card-title>
-                      <v-divider></v-divider>
-                      <v-card-text style="height: 300px;">
-                        <v-checkbox
-                        id="checkbox"
-                         v-for="item in tagDes"
-                         :key="item.label"
-                         :label="item.label"
-                         v-model="tagSelect.science"></v-checkbox>
-                      </v-card-text>
-                      <v-card-actions>
-                        <v-btn color="red" dark @click.stop="dialog=false">Close</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                  <input style="display: none" type="file">
-                  <v-date-picker id="picker" class="elevation-7" color="red" v-model="meet.picker"></v-date-picker>
-                  {{meet.picker}}
-                  <v-time-picker id="time" class="elevation-7" color="red" v-model="meet.time"></v-time-picker>
-                  {{meet.time}}
-                  <v-divider></v-divider>
-                  <v-btn dark class="elevation-7" id="sub" color="green accent-4" @click="submit">Submit</v-btn>
+                    <v-time-picker id="time" class="elevation-7" color="red" :rules="timeRules" v-model="meet.time"></v-time-picker>
+
+                    <v-divider></v-divider>
+                    <v-btn dark class="elevation-7" id="sub" color="green accent-4" @click="submit">Submit</v-btn>
+
+                  </v-form>
+
                 </v-flex>
                 <v-flex xs1></v-flex>
               </v-layout>
@@ -127,42 +133,56 @@ import * as firebase from 'firebase'
         image: null,
         imageUrl: '',
         email: '',
-        key: ''
+        key: '',
+        valid: true,
+        titleRules: [
+          (v) => !!v || 'Title is required',
+        ],
+        desRules: [
+          (v) => !!v || 'Description is required',
+        ],
+        locationRules: [
+          (v) => !!v || 'Location is required',
+        ]
+
       }
     },
     methods: {
       submit() {
-        var ref = firebase.database().ref('/meets');
-        var key = ref.push(this.meet);
-        key = key.path.pieces_[1];
-        ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
-        //upload picture
-          var filename = this.image.name;
-          var ext = filename.slice(filename.lastIndexOf('.'));
-          var temp = firebase.storage().ref('/meets/' + key + '.' + ext);
-          temp.put(this.image).then((snap)=>{
-            console.log(snap);
-            this.imageUrl = snap.downloadURL;
-          }).then(()=>{
-            console.log(this.imageUrl);
+        if (this.$refs.form.validate()){
+          var ref = firebase.database().ref('/meets');
+          var key = ref.push(this.meet);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
+          //upload picture
+            var filename = this.image.name;
+            var ext = filename.slice(filename.lastIndexOf('.'));
+            var temp = firebase.storage().ref('/meets/' + key + '.' + ext);
+            temp.put(this.image).then((snap)=>{
+              console.log(snap);
+              this.imageUrl = snap.downloadURL;
+            }).then(()=>{
+              console.log(this.imageUrl);
 
-            ref = firebase.database().ref("/meets/" + key);
-            ref.update({imageUrl: this.imageUrl});
+              ref = firebase.database().ref("/meets/" + key);
+              ref.update({imageUrl: this.imageUrl});
+            });
           });
-        });
 
-        var email = firebase.auth().currentUser.email;
-        var ref1 = firebase.database().ref('/profiles');
-        ref1.once('value').then((snap)=>{
-          snap.forEach((prof)=>{
-            if (prof.val().email == email) {
-              var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
-              ref2.child('/' + key).update({key: key}).then(function(profile){
-              });
-              this.$router.push('/orgmeets');
-            }
-          });
-        })
+          var email = firebase.auth().currentUser.email;
+          var ref1 = firebase.database().ref('/profiles');
+          ref1.once('value').then((snap)=>{
+            snap.forEach((prof)=>{
+              if (prof.val().email == email) {
+                var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
+                ref2.child('/' + key).update({key: key}).then(function(profile){
+                });
+                this.$router.push('/orgmeets');
+              }
+            });
+          })
+        }
+
 
       },
       onPickFile(){
