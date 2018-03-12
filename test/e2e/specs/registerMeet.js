@@ -93,6 +93,8 @@
         })
         .pause(1000)
 
+        .assert.containsText('#registerBTN', 'REGISTER')
+
         //-----------From here its to click the hamburger menu
         .click('button[id=side]')
         .pause(3000)
@@ -116,4 +118,5 @@
         .pause(5000)
         .end();
     }
-}*/
+}
+*/
