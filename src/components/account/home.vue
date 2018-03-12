@@ -4,7 +4,8 @@
       <v-layout>
         <v-flex xs1></v-flex>
         <v-flex xs10>
-          <v-container fluid text-xs-center>
+          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+          <v-container fluid text-xs-center v-if="signin">
             <v-layout row wrap>
               <v-flex xs4 id="col" v-for="(meet, index) in meets" :key="meet.title">
                 <v-card dark color="blue-grey darken-4" class="elevation-7">
@@ -31,18 +32,32 @@ import * as firebase from 'firebase'
     data () {
       return {
         register: false,
-        meets: []
+        meets: [],
+        signin: false
       }
     },
     created() {
-      var ref = firebase.database().ref('/meets');
-      var meets = [];
-      ref.once('value').then((snap)=>{
-        snap.forEach((meet)=>{
-          meets.push(meet.val());
-          this.meets = meets;
+
+      try {
+        var email = firebase.auth().currentUser.email;
+        this.signin = true;
+      }
+      catch (error) {
+        this.signin = false;
+      }
+      console.log(email);
+
+      if(this.signin){
+        var ref = firebase.database().ref('/meets');
+        var meets = [];
+        ref.once('value').then((snap)=>{
+          snap.forEach((meet)=>{
+            meets.push(meet.val());
+            this.meets = meets;
+          });
         });
-      });
+      }
+
     },
     methods: {
       clicked(meet) {

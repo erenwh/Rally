@@ -1,6 +1,6 @@
 
 // testing for accinfo page
-/*
+
 module.exports = {
 
   'create test account for account information' :client => {
@@ -179,4 +179,3 @@ module.exports = {
 
 
 }
-*/

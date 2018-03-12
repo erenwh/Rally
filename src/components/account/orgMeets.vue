@@ -4,7 +4,8 @@
       <v-layout>
         <v-flex xs1></v-flex>
         <v-flex xs10>
-          <v-container fluid text-xs-center>
+          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+          <v-container fluid text-xs-center v-if="signin">
             <v-layout row wrap>
               <v-flex xs4 id="col" v-for="(meet, index) in meets" :key="meet.title">
                 <v-card dark color="blue-grey darken-4" class="elevation-7">
@@ -60,7 +61,7 @@
                               <v-flex xs12>
                                 <v-text-field
                                   label="Time"
-                                  
+
                                   id="Time"
                                   required
                                   v-model="meet.time"
@@ -105,36 +106,48 @@ import * as firebase from 'firebase'
         ],
         timeRules: [
           (v) => !!v || 'Time is required',
-        ]
+        ],
+        signin: false
       }
     },
     created() {
 
-      var email = firebase.auth().currentUser.email;
-      console.log(email);
-      var ref = firebase.database().ref('/profiles');
-      ref.once('value').then((snap)=>{
-        snap.forEach((prof)=>{
-          if(prof.val().email == email) {
-            console.log(prof.val().key);
-            //this.userKey = prof.val().key;
+      try {
+        var email = firebase.auth().currentUser.email;
+        this.signin = true;
+      }
+      catch (error) {
+        this.signin = false;
+      }
 
-            var meets = [];
-            var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/organized/');
+      if(this.signin){
+        console.log(email);
+        var ref = firebase.database().ref('/profiles');
+        ref.once('value').then((snap)=>{
+          snap.forEach((prof)=>{
+            if(prof.val().email == email) {
+              console.log(prof.val().key);
+              //this.userKey = prof.val().key;
 
-            ref1.once('value').then((snap)=>{
-              snap.forEach((org)=>{
-                var ref3 = firebase.database().ref('/meets/' + org.key);
-                ref3.once('value').then((meet) => {
-                  meets.push(meet.val());
-                  this.meets = meets;
-                  console.log(this.meets);
+              var meets = [];
+              var ref1 = firebase.database().ref('/profiles/' + prof.val().key + '/organized/');
+
+              ref1.once('value').then((snap)=>{
+                snap.forEach((org)=>{
+                  var ref3 = firebase.database().ref('/meets/' + org.key);
+                  ref3.once('value').then((meet) => {
+                    meets.push(meet.val());
+                    this.meets = meets;
+                    console.log(this.meets);
+                  });
                 });
               });
-            });
-          }
+            }
+          });
         });
-      });
+
+      }
+
 
     },
     methods: {

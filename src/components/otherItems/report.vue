@@ -2,7 +2,8 @@
   <div id="report">
     <v-layout class="mt-3">
       <v-flex xs12 sm6 offset-sm3>
-        <v-card id="card">
+        <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+        <v-card id="card" v-if="signin">
           <v-toolbar dark color="grey darken-4">
             <div class="text-xs-center">
               <v-toolbar-title class="white--text">Report a problem</v-toolbar-title>
@@ -68,7 +69,8 @@ import * as firebase from 'firebase'
           (v) => !!v || 'Must have a name',
         ],
         valid: true,
-        value: false
+        value: false,
+        signin: false
       }
     },
     methods: {
@@ -85,6 +87,15 @@ import * as firebase from 'firebase'
       clear() {
         this.$refs.form.reset();
       },
+    },
+    mounted(){
+      try {
+  			var email = firebase.auth().currentUser.email;
+  			this.signin = true;
+  		}
+  		catch (error) {
+  			this.signin = false;
+  		}
     }
   }
 </script>

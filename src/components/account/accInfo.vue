@@ -4,7 +4,10 @@
       <v-layout>
         <v-flex md2></v-flex>
         <v-flex xs12 md8>
-          <v-card>
+
+          <h1 v-if="!signin" class="mb-3">Please Log in first!!</h1>
+
+          <v-card v-if="signin">
             <v-toolbar dark color="grey darken-4">
               <v-toolbar-title class="white--text">Account Information</v-toolbar-title>
             </v-toolbar>
@@ -102,24 +105,36 @@ import {bus} from '../../main';
         ],
         disabled: true,
         image: null,
-        imageUrl: ''
+        imageUrl: '',
+        signin: false
       }
     },
     mounted(){
-      var email = firebase.auth().currentUser.email;
-      var ref = firebase.database().ref('/profiles');
-      ref.once('value').then((snap)=>{
-        snap.forEach((prof)=>{
-          if (prof.val().email == email) {
-            this.email = prof.val().email;
-            this.username = prof.val().username;
-            this.dob = prof.val().dob;
-            this.key = prof.val().key;
-            this.imageUrl = prof.val().imageUrl;
 
-          }
+      try {
+        var email = firebase.auth().currentUser.email;
+        this.signin = true;
+      }
+      catch (error) {
+        this.signin = false;
+      }
+
+      if(this.signin){
+        var ref = firebase.database().ref('/profiles');
+        ref.once('value').then((snap)=>{
+          snap.forEach((prof)=>{
+            if (prof.val().email == email) {
+              this.email = prof.val().email;
+              this.username = prof.val().username;
+              this.dob = prof.val().dob;
+              this.key = prof.val().key;
+              this.imageUrl = prof.val().imageUrl;
+
+            }
+          });
         });
-      })
+      }
+
     },
     methods: {
       editing() {
