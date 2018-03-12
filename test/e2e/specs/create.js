@@ -1,5 +1,5 @@
 
-/*module.exports = {
+module.exports = {
 
   'Test for creating meets with only title': client => {
     client
@@ -161,4 +161,4 @@
 
   },
 
-}*/
+}

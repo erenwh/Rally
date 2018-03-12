@@ -1,6 +1,6 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-/*
+
 module.exports = {
 
   'Report: Test Invalid Email Input' :client => {
@@ -123,4 +123,4 @@ module.exports = {
     .end();
   },
 
-}*/
+}
