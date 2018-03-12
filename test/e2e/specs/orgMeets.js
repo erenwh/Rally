@@ -1,4 +1,4 @@
-/*
+
 module.exports = {
     'Test for opening organized meet': client => {
         client
@@ -91,6 +91,5 @@ module.exports = {
         .assert.containsText('#meetPage', 'test/')
         .assert.containsText('#meetPage', 'test2/')
         .end();
-},
+      },
 }
-*/

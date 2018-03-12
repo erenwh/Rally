@@ -1,6 +1,6 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-/*
+
 module.exports = {
 
   'Donate: Test Donation' :client => {
@@ -70,4 +70,3 @@ module.exports = {
   },
 
 }
-*/

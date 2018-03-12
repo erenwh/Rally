@@ -1,4 +1,4 @@
-/*module.exports = {
+module.exports = {
 
     'Test if register for a Meeting works' :client => {
         client
@@ -110,7 +110,7 @@
         //-----------From here its to click the create menu
         .click('a[id=reg]')
         .pause(1000)
-        
+
         //.click('.white--text')
         //.pause(1000)
 
@@ -119,4 +119,3 @@
         .end();
     }
 }
-*/
