@@ -1,4 +1,4 @@
-//module.exports = {
+module.exports = {
     /*'Test for opening organized meet': client => {
         client
         //signin
@@ -55,7 +55,7 @@
             .pause(5000)
             .end();
     },*/
-    /*'Test for edit then closing an organized meet wihtout change': client => {
+    'Test for edit then closing an organized meet wihtout change': client => {
         client
             //signin
             .url('http://localhost:8080/signin')
@@ -63,7 +63,7 @@
             .setValue('input[id=email]', 'orgmeettest@test.com')
             .setValue('input[name=pass]', '11111111')
             .click('button[id=loginBTN]')
-            .pause(5000)
+            .pause(3000)
             .assert.urlEquals('http://localhost:8080/')
             .pause(1000)
             .click('button[id=side]')
@@ -72,18 +72,18 @@
             .pause(3000)
             .assert.urlEquals('http://localhost:8080/orgmeets')
             .waitForElementVisible('#orgMeets', 3000)
-            .pause(500)
-            .click('button[id="editBTN"]')
+            .click('button[id=editBTN]')
+            .pause(3000)
+            .verify.visible('button[id=can]')
             .pause(1000)
-            //.click('button[id="closeBTN"]')
-            .click('#closeBTN')
-            .pause(1000)
-            .click('button[id="editBTN"]')
-            .pause(1000)
+            .execute(function() {
+              document.querySelector('#can').click()
+            })
+            .pause(3000)
             //.assert.containsText('#editEvent', 'HanDescription2')
             //.assert.containsText('#editEvent', 'DO NOT DELETE FOR TESTING')
             //.assert.containsText('#editEvent', '2018-03-22')
             //.assert.containsText('#editEvent', '19:36')
             .end();
-    },*/
-//}
+    }
+}

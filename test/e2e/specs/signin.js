@@ -1,9 +1,9 @@
 
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-/*
-module.exports = {
 
+/*module.exports = {
+/*
   'Test if Email is empty' :client => {
     client
     .url('http://localhost:8080/signin')
@@ -178,6 +178,4 @@ module.exports = {
     .pause(3000)
     .end();
   }
-}
-
-*/
+}*/
