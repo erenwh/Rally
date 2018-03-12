@@ -1,7 +1,22 @@
 
 // testing for accinfo page
-/*
-module.exports = {
+
+/*module.exports = {
+
+  'create test account for account information' :client => {
+    client
+    .url('http://localhost:8080/register')
+    .waitForElementVisible('#register', 1000)
+    .setValue('input[name=userName]', 'test')
+    .setValue('input[name=dob]', '12/11/12')
+    .setValue('input[name=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .setValue('input[name=compass]', '12345678')
+    .click('button[id=submitBTN]')
+    .pause(3000)
+    .end();
+  },
+
   'accinfo : Test for edit information button works' :client => {
     client
     .url('http://localhost:8080/signin')
@@ -76,7 +91,7 @@ module.exports = {
     .pause(3000)
     .click('input[name=input-7-1-username]')
     .clearValue('input[name=input-7-1-username]')
-    .setValue('input[name=input-7-1-username]', 'ericistesting')
+    .setValue('input[name=input-7-1-username]', 'eric&eli_testing')
     .click('input[id=accDob]')
     .clearValue('input[id=accDob]')
     .setValue('input[name=input-7-1-dob]', '03/05/18')
@@ -163,5 +178,5 @@ module.exports = {
   }
 
 
-}
-*/
+}*/
+
