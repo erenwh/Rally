@@ -1,6 +1,6 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-/*
+
 module.exports = {
 
   'Invite: Test Invitation' :client => {
@@ -111,4 +111,4 @@ module.exports = {
     .end();
   },
 
-}*/
+}
