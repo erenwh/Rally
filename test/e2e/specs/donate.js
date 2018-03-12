@@ -3,6 +3,20 @@
 /*
 module.exports = {
 
+  'create test account for donate and other tests below it' :client => {
+    client
+    .url('http://localhost:8080/register')
+    .waitForElementVisible('#register', 1000)
+    .setValue('input[name=userName]', 'test')
+    .setValue('input[name=dob]', '12/11/12')
+    .setValue('input[name=email]', 'test@test.com')
+    .setValue('input[name=pass]', '12345678')
+    .setValue('input[name=compass]', '12345678')
+    .click('button[id=submitBTN]')
+    .pause(3000)
+    .end();
+  },
+
   'Donate: Test Donation' :client => {
     client
     .url('http://localhost:8080/signin')
