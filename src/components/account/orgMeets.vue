@@ -19,7 +19,7 @@
                   <v-dialog v-model="dialog" persistent max-width="500px">
                     <v-btn id="editBTN" color="primary" class="mb-3" dark slot="activator">Edit</v-btn>
                     <v-card id="editEvent">
-                      <v-form v-model="valid" ref="form" lazy-validation @submit.prevent="save">
+
                         <v-card-title>
                           <span class="headline">Edit Event</span>
                         </v-card-title>
@@ -31,7 +31,7 @@
                                   label="Add a description"
                                   id="description"
                                   multi-line
-                                  :rules="desRules"
+
                                   required
                                   v-model="meet.description"
                                   color = "black"
@@ -41,7 +41,7 @@
                                 <v-text-field
                                   label="Location"
                                   id="location"
-                                  :rules="locationRules"
+
                                   required
                                   v-model="meet.location"
                                   color = "black"
@@ -51,7 +51,7 @@
                                 <v-text-field
                                   label="Date"
                                   id="Date"
-                                  :rules="dateRules"
+
                                   required
                                   v-model="meet.picker"
                                   color = "black"
@@ -60,7 +60,7 @@
                               <v-flex xs12>
                                 <v-text-field
                                   label="Time"
-                                  :rules="timeRules"
+                                  
                                   id="Time"
                                   required
                                   v-model="meet.time"
@@ -71,8 +71,8 @@
                           </v-container>
                         </v-card-text>
                         <v-btn color="blue darken-1" id="can" flat @click.native="dialog = false">Close</v-btn>
-                        <v-btn color="blue darken-1" id="sbtn" :disabled="!valid" @click="save(meet)" flat>Save</v-btn>
-                      </v-form>
+                        <v-btn color="blue darken-1" id="sbtn" @click="save(meet)" flat>Save</v-btn>
+
                     </v-card>
                   </v-dialog>
                 </v-card>
@@ -141,8 +141,9 @@ import * as firebase from 'firebase'
       clicked(meet) {
         this.$router.push('/viewmeet/' + meet.key);
       },
+
       save(meet) {
-        if (this.$refs.form.validate()){
+
           var ref = firebase.database().ref('/meets/' + meet.key);
           ref.update({
             description: meet.description,
@@ -179,7 +180,7 @@ import * as firebase from 'firebase'
 
 
           this.dialog = false;
-        }
+
 
       }
     }

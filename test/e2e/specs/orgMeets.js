@@ -1,4 +1,4 @@
-module.exports = {
+//module.exports = {
     /*'Test for opening organized meet': client => {
         client
         //signin
@@ -86,4 +86,4 @@ module.exports = {
             .assert.containsText('#orgMeets', '20:39')
             .end();
     }*/
-}
+//}
