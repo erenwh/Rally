@@ -1,4 +1,4 @@
-module.exports = {
+//module.exports = {
     /*'Test for opening organized meet': client => {
         client
         //signin
@@ -55,7 +55,7 @@ module.exports = {
             .pause(5000)
             .end();
     },*/
-    'Test for edit then closing an organized meet wihtout change': client => {
+    /*'Test for edit then closing an organized meet wihtout change': client => {
         client
             //signin
             .url('http://localhost:8080/signin')
@@ -85,5 +85,5 @@ module.exports = {
             //.assert.containsText('#editEvent', '2018-03-22')
             //.assert.containsText('#editEvent', '19:36')
             .end();
-    }
-}
+    }*/
+//}

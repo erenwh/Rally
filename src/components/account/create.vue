@@ -77,7 +77,8 @@
                            v-for="item in tagDes"
                            :key="item.label"
                            :label="item.label"
-                           v-model="tagSelect.science"></v-checkbox>
+                           v-model="tagSelect.science">
+                         </v-checkbox>
                         </v-card-text>
                         <v-card-actions>
                           <v-btn color="red" dark @click.stop="dialog=false">Close</v-btn>
@@ -125,10 +126,20 @@ import * as firebase from 'firebase'
         },
         dialog: false,
         tagSelect: {
-          science: false
+          Science: false,
+          Games: false,
+          Dancing: false,
+          Movie: false,
+          Chauncey: false,
+          Swim: false
         },
         tagDes: [
-          {label: "Science"}
+          {label: "Science"},
+          {label: "Games"},
+          {label: "Dancing"},
+          {label: "Movie"},
+          {label: "Chauncey"},
+          {label: "Swim"}
         ],
         image: null,
         imageUrl: '',
