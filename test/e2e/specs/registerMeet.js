@@ -110,7 +110,7 @@ module.exports = {
         //-----------From here its to click the create menu
         .click('a[id=reg]')
         .pause(1000)
-
+        
         //.click('.white--text')
         //.pause(1000)
 

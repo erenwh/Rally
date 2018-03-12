@@ -91,5 +91,5 @@ module.exports = {
         .assert.containsText('#meetPage', 'test/')
         .assert.containsText('#meetPage', 'test2/')
         .end();
-      },
+},
 }
