@@ -75,11 +75,34 @@
                         <v-card-text style="height: 300px;">
                           <v-checkbox
                           id="checkbox"
-                           v-for="item in tagDes"
-                           :key="item.label"
-                           :label="item.label"
-                           v-model="tagSelect.science">
+                           label="Science"
+                           v-model="tagSelect.Science">
                          </v-checkbox>
+                         <v-checkbox
+                         id="checkbox"
+                          label="Games"
+                          v-model="tagSelect.Games">
+                        </v-checkbox>
+                        <v-checkbox
+                        id="checkbox"
+                         label="Dancing"
+                         v-model="tagSelect.Dancing">
+                       </v-checkbox>
+                       <v-checkbox
+                       id="checkbox"
+                        label="Movie"
+                        v-model="tagSelect.Movie">
+                      </v-checkbox>
+                      <v-checkbox
+                      id="checkbox"
+                       label="Chauncey"
+                       v-model="tagSelect.Chauncey">
+                     </v-checkbox>
+                     <v-checkbox
+                     id="checkbox"
+                      label="Swim"
+                      v-model="tagSelect.Swim">
+                    </v-checkbox>
                         </v-card-text>
                         <v-card-actions>
                           <v-btn color="red" dark @click.stop="dialog=false">Close</v-btn>
