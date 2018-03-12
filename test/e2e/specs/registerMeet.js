@@ -4,8 +4,8 @@
         client
         .url('http://localhost:8080/signin')
         .waitForElementVisible('#signin', 1000)
-        .setValue('input[id=email]', 'test@test.com')
-        .setValue('input[name=pass]', '12345678')
+        .setValue('input[id=email]', 'register@meet.com')
+        .setValue('input[name=pass]', '12341234')
         .click('button[id=loginBTN]')
         .pause(5000)
 
@@ -54,8 +54,8 @@
         client
         .url('http://localhost:8080/signin')
         .waitForElementVisible('#signin', 1000)
-        .setValue('input[id=email]', 'test@test.com')
-        .setValue('input[name=pass]', '12345678')
+        .setValue('input[id=email]', 'register@meet.com')
+        .setValue('input[name=pass]', '12341234')
         .click('button[id=loginBTN]')
         .pause(5000)
 
