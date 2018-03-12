@@ -1,4 +1,4 @@
-
+/*
 module.exports = {
     'Test for opening organized meet': client => {
         client
@@ -93,3 +93,4 @@ module.exports = {
         .end();
 },
 }
+*/

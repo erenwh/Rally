@@ -1,4 +1,4 @@
-module.exports = {
+/*module.exports = {
 
     'Test if register for a Meeting works' :client => {
         client
@@ -119,3 +119,4 @@ module.exports = {
         .end();
     }
 }
+*/

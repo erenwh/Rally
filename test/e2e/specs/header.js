@@ -2,7 +2,7 @@
 // http://nightwatchjs.org/guide#usage
 // Header.vue Testing
 
-
+/*
 module.exports = {
 
   'Test for signin btn in side menu': client => {
@@ -228,4 +228,4 @@ module.exports = {
   }
 
 }
-
+*/
