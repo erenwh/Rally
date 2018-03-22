@@ -101,7 +101,7 @@ import {bus} from '../../main';
         dob: '',
         dobRules: [
           // (v) => !!v || 'Date of Birth is required',
-          (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be MM/DD/YY'
+          //(v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be MM/DD/YY'
         ],
         disabled: true,
         image: null,

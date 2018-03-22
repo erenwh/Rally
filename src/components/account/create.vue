@@ -65,7 +65,7 @@
                       color = "red"
                     ></v-text-field>
 
-                    <v-btn id="tags" color="black" dark @click.stop="dialog = true">Tags</v-btn>
+                    <v-btn id="tags" color="black" dark>Tags</v-btn>
                     <v-dialog v-model="dialog" max-width="500px">
                       <v-card>
                         <v-card-title>
@@ -171,13 +171,13 @@ import * as firebase from 'firebase'
         key: '',
         valid: true,
         titleRules: [
-          (v) => !!v || 'Title is required',
+          //(v) => !!v || 'Title is required',
         ],
         desRules: [
-          (v) => !!v || 'Description is required',
+          //(v) => !!v || 'Description is required',
         ],
         locationRules: [
-          (v) => !!v || 'Location is required',
+          //(v) => !!v || 'Location is required',
         ],
         signin: false
 
@@ -222,7 +222,7 @@ import * as firebase from 'firebase'
 
       },
       onPickFile(){
-        this.$refs.fileInput.click();
+        //this.$refs.fileInput.click();
       },
       onFilePicked(event) {
         const files = event.target.files;

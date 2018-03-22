@@ -45,7 +45,8 @@
     <v-toolbar color="grey darken-4" dark dense>
       <v-toolbar-side-icon id="side" @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
       <v-toolbar-title>
-        <router-link to="/" tag="span" id="title">Rally</router-link>
+        <span id="title">Rally</span>
+        <!--router-link to="/" tag="span" id="title">Rally</router-link-->
       </v-toolbar-title>
     </v-toolbar>
   </div>
@@ -71,6 +72,7 @@ import {bus} from '../../main';
           }
         ],
         otherItems: [
+          { icon: "home", title: "Home", link: "/", id: "home"},
           { icon: "account_circle", title: "Account Information", link: "/accInfo", id: "acc"},
           { icon: "favorite", title: "Registered Meetings", link: "/meets", id: "reg" },
           { icon: "bookmark", title: "Organized Meetings", link: "/orgmeets", id: "org" },

@@ -32,7 +32,6 @@
                                   label="Add a description"
                                   id="description"
                                   multi-line
-
                                   required
                                   v-model="meet.description"
                                   color = "black"
@@ -96,16 +95,16 @@ import * as firebase from 'firebase'
         meets: [],
         dialog: false,
         desRules: [
-          (v) => !!v || 'Description is required',
+          //(v) => !!v || 'Description is required',
         ],
         locationRules: [
-          (v) => !!v || 'Location is required',
+          //(v) => !!v || 'Location is required',
         ],
         dateRules: [
-          (v) => !!v || 'Date is required',
+          //(v) => !!v || 'Date is required',
         ],
         timeRules: [
-          (v) => !!v || 'Time is required',
+          //(v) => !!v || 'Time is required',
         ],
         signin: false
       }
