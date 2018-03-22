@@ -144,13 +144,13 @@ import * as firebase from 'firebase'
         email: '',
         emailf: '',
         emailRules: [
-        (v) => !!v || 'E-mail is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length <= 100 || 'E-mail must be valid'
+        //(v) => !!v || 'E-mail is required',
+        //(v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length <= 100 || 'E-mail must be valid'
         ],
         password: '',
         passwordRules: [
-          (v) => !!v || 'Password is required',
-          (v) => v && v.length >= 8 || 'Password must be 8 characters or more'
+          //(v) => !!v || 'Password is required',
+          //(v) => v && v.length >= 8 || 'Password must be 8 characters or more'
         ],
         error: 'Invalid Email/Password',
         value: false,

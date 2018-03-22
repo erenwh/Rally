@@ -131,27 +131,27 @@ import * as firebase from 'firebase'
     data () {
       return {
         username: '',
-        /*nameRules: [
-          (v) => !!v || 'Username is required',
-          (v) => v && v.length < 11 || 'Username must be 10 characters or less'
-        ]*/,
+        nameRules: [
+          //(v) => !!v || 'Username is required',
+          //(v) => v && v.length < 11 || 'Username must be 10 characters or less'
+        ],
         email: '',
-        /*emailRules: [
-        (v) => !!v || 'E-mail is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length <= 100 || 'E-mail must be valid'
-        ]*/,
+        emailRules: [
+        //(v) => !!v || 'E-mail is required',
+        //(v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length <= 100 || 'E-mail must be valid'
+        ],
         password: '',
-        /*passwordRules: [
-          (v) => !!v || 'Password is required',
-          (v) => v && v.length >= 8 || 'Password must be 8 characters or more'
-        ]*/,
+        passwordRules: [
+          //(v) => !!v || 'Password is required',
+          //(v) => v && v.length >= 8 || 'Password must be 8 characters or more'
+        ],
         Conpassword: '',
         valid: true,
         dob: '',
-        /*dobRules: [
-          (v) => !!v || 'Date of Birth is required',
-          (v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be MM/DD/YY'
-        ]*/,
+        dobRules: [
+          //(v) => !!v || 'Date of Birth is required',
+          //(v) => /^\d\d\/\d\d\/\d\d$/.test(v) || 'Format must be MM/DD/YY'
+        ],
         error: '',
         value: false
       }
