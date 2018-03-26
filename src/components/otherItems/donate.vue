@@ -65,8 +65,8 @@ export default {
  		  show: true,
       amount: '',
 			amountRules: [
-			/*(v) => !!v || 'Amount is required',
-			(v) => /^[0-9]*$/.test(v) && v.length <= 100 || 'Please enter numbers'*/
+			(v) => !!v || 'Amount is required',
+			(v) => /^[0-9]*$/.test(v) && v.length <= 100 || 'Please enter numbers'
 			],
 			signin: false
     }
