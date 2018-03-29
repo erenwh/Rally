@@ -66,7 +66,7 @@
                     ></v-text-field>
 
                     <v-btn id="tags" color="black" dark @click.stop="dialog = true">Tags</v-btn>
-                    <v-dialog v-model="dialog" max-width="500px">
+                    <v-dialog v-model="dialog" max-width="500px" scrollable>
                       <v-card>
                         <v-card-title>
                           Select Tags
