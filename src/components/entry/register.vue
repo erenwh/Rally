@@ -61,7 +61,7 @@
                       required
                     ></v-text-field>
                     <v-text-field
-                      label="DOB"
+                      label="DOB (xx/xx/xx)"
                       color="white"
                       box
                       dark
@@ -87,6 +87,7 @@
                       color="white"
                       name="pass"
                       v-model="password"
+                      :counter="8"
                       :rules="passwordRules"
                       type="password"
                       required
@@ -98,6 +99,7 @@
                       color="white"
                       name="compass"
                       v-model="Conpassword"
+                      :counter="8"
                       type="password"
                       required
                       :rules="[comparePasswords]"
@@ -158,13 +160,13 @@ import * as firebase from 'firebase'
     },
     computed: {
       comparePasswords () {
-        return this.password !== this.Conpassword ? 'Passwords do not match' : true
+        return true; //this.password !== this.Conpassword ? 'Passwords do not match' : true
       }
     },
     methods: {
       submit() {
          if (this.$refs.form.validate()){
-           if(this.password === this.Conpassword) {
+
              firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(((user) =>{
                var ref = firebase.database().ref('/profiles');
                var profile = {
@@ -188,14 +190,13 @@ import * as firebase from 'firebase'
 
 
 
-           } else {
-             console.log("Passwords do not match");
-           }
+
          }
 
       },
       clear() {
-        this.$refs.form.reset();
+        this.username = '';
+        this.dob = '';
       },
       fb() {
         var provider = new firebase.auth.FacebookAuthProvider();

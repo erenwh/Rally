@@ -12,7 +12,7 @@
                   <v-toolbar id="tool" dark color="grey darken-4">
                     <v-toolbar-title class="white--text" @click="clicked(meet)">{{ meet.title }}</v-toolbar-title>
                   </v-toolbar>
-                  <img class="elevation-7" id="img" :src="meet.imageUrl" @click="clicked(meet)"/>
+                  <img class="elevation-7" id="img" :src="meet.imageUrl" @click="clickedpic(meet)"/>
                   <h3 class="ma-3">{{ meet.picker }}</h3>
                   <h3 class="ma-3">{{ meet.time }}</h3>
                 </v-card>
@@ -62,6 +62,9 @@ import * as firebase from 'firebase'
     methods: {
       clicked(meet) {
         this.$router.push('/viewmeet/' + meet.key);
+      },
+      clickedpic(meet) {
+        this.$router.push('/accInfo');
       }
     }
   }

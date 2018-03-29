@@ -46,6 +46,7 @@
                </v-progress-circular>
                <br />
                <v-btn id="cancelBTN" class="ma-3" @click="cancel" dark color="red accent-4">Cancel Meet</v-btn>
+               <v-btn id="registerBTN" class="ma-3" @click="registered" dark color="green accent-4">Register</v-btn>
             </div>
             <div v-else-if="!register && !organized">
               <v-btn id="registerBTN" class="ma-3" @click="registered" dark color="green accent-4">Register</v-btn>
@@ -102,6 +103,9 @@ import * as firebase from 'firebase'
           this.meets.title = snap.val().title;
           this.tags = snap.val().tags;
           this.value = snap.val().number;
+          if(this.value > 1){
+            this.value = 1;
+          }
           for(var tag in this.tags){
             if(this.tags[tag]){
               this.meets.tagList.push(tag)

@@ -61,7 +61,7 @@ import * as firebase from 'firebase'
         }
       },
       clear() {
-        this.$refs.form.reset();
+        
       },
     },
     mounted() {

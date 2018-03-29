@@ -205,6 +205,25 @@ import * as firebase from 'firebase'
             });
           });
 
+          ref = firebase.database().ref('/meets');
+          key = ref.push(this.meet);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
+          //upload picture
+            var filename = this.image.name;
+            var ext = filename.slice(filename.lastIndexOf('.'));
+            var temp = firebase.storage().ref('/meets/' + key + '.' + ext);
+            temp.put(this.image).then((snap)=>{
+              console.log(snap);
+              this.imageUrl = snap.downloadURL;
+            }).then(()=>{
+              console.log(this.imageUrl);
+
+              ref = firebase.database().ref("/meets/" + key);
+              ref.update({imageUrl: this.imageUrl});
+            });
+          });
+
           var email = firebase.auth().currentUser.email;
           var ref1 = firebase.database().ref('/profiles');
           ref1.once('value').then((snap)=>{
@@ -213,7 +232,7 @@ import * as firebase from 'firebase'
                 var ref2 = firebase.database().ref('/profiles/' + prof.val().key + '/organized');
                 ref2.child('/' + key).update({key: key}).then(function(profile){
                 });
-                this.$router.push('/orgmeets');
+                //this.$router.push('/orgmeets');
               }
             });
           })

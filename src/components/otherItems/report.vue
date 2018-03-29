@@ -36,10 +36,10 @@
             required
           ></v-text-field>
           <div class="text-xs-center">
-            <v-btn id="submit" @click="submit">
+            <v-btn id="submit" @click="clear">
               submit
             </v-btn>
-            <v-btn id="clear" @click="clear">clear</v-btn>
+            <v-btn id="clear" @click="submit">clear</v-btn>
           </div>
         </v-form>
       </v-card>
@@ -62,8 +62,8 @@ import * as firebase from 'firebase'
           /*(v) => !!v || 'Must have an issue',*/
         ],
         emailRules: [
-          /*(v) => !!v || 'Must have email to send to',
-          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) && v.length < 100 || 'E-mail must be valid',*/
+          /*(v) => !!v || 'Must have email to send to',*/
+          (v) => /^\d+$/.test(v)  || 'Do not put in numbers'
         ],
         nameRules: [
           /*(v) => !!v || 'Must have a name',*/
@@ -75,14 +75,14 @@ import * as firebase from 'firebase'
     },
     methods: {
       submit() {
-        if (this.$refs.form.validate()){
+
           var ref = firebase.database().ref('/reports');
           var key = ref.push(this.report);
           key = key.path.pieces_[1];
           ref.child('/' + key).update({key: key});
           this.value = true;
           this.$refs.form.reset();
-        }
+
       },
       clear() {
         this.$refs.form.reset();
