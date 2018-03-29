@@ -14,7 +14,7 @@
           <v-form class="ma-3 pa-3" id="info">
             <v-text-field
 							name="amount"
-              label="Amount"
+              label="Amount ($1 - $100)"
 							:rules="amountRules"
               required
               raised

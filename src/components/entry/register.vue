@@ -109,7 +109,7 @@
                         <v-btn id="submitBTN" class="green accent-4" :disabled="!valid" dark @click="submit">Submit</v-btn>
                       </v-flex>
                       <v-flex xs6>
-                        <v-btn class="red accent-4" id="clear" dark @click="clear">Cancel</v-btn>
+                        <v-btn class="red accent-4" id="clear" dark @click="clear">Clear</v-btn>
                       </v-flex>
                     </v-layout>
                   </v-form>

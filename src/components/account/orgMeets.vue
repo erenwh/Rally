@@ -159,9 +159,7 @@ import * as firebase from 'firebase'
           var ref = firebase.database().ref('/meets/' + meet.key);
           ref.update({
             description: meet.description,
-            location: meet.location,
-            picker: meet.picker,
-            time: meet.time
+            
           });
 
           var email = firebase.auth().currentUser.email;

@@ -118,7 +118,9 @@
                     <v-btn dark class="elevation-7" id="sub" color="green accent-4" @click="submit">Submit</v-btn>
 
                   </v-form>
-
+                  <v-alert id="alertsuccess" type="success"  :value="value" >
+                    Organized a Meet :)
+                  </v-alert>
                 </v-flex>
                 <v-flex xs1></v-flex>
               </v-layout>
@@ -179,7 +181,8 @@ import * as firebase from 'firebase'
         locationRules: [
           //(v) => !!v || 'Location is required',
         ],
-        signin: false
+        signin: false,
+        value: false
 
       }
     },
@@ -237,7 +240,7 @@ import * as firebase from 'firebase'
             });
           })
         }
-
+        this.value = true;
 
       },
       onPickFile(){
