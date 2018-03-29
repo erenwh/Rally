@@ -40,7 +40,7 @@
                 <v-flex xs8>
                   <h4 class="mb-3 mt-3 white--text">Or Register with...</h4>
                   <v-alert id="alert" type="error" :value="value">
-                    The email address is already in use by another account
+                    Invalid Email
                   </v-alert>
                 </v-flex>
                 <v-flex xs2></v-flex>
